@@ -1,0 +1,429 @@
+/* Add here all your CSS customizations */
+@font-face{
+	font-family:IRANSansWeb;src:url('fonts/IRANSansWeb(FaNum).ttf') format('truetype'),url('fonts/IRANSansWeb(FaNum).woff') format('woff'),url('fonts/IRANSansWeb(FaNum).eot') format('eot');
+}
+body{
+	font-family: IRANSansWeb !important;
+}
+html{
+	font-family: IRANSansWeb !important;
+}
+.header-body{
+	direction: ltr !important;
+}
+.owl-carousel{
+	direction: ltr !important;
+}
+#mainNav{
+	direction: rtl;
+}
+.custom-top-title-box{
+	text-align: right;
+}
+.sliderText{
+	margin-top: 14px;
+}
+.custom-bar{
+	text-align: right;
+}
+.eventsMarginTop{
+	margin-top: 40px;
+	margin-bottom: 0px;
+}
+.sort-source{
+	direction: ltr;
+}
+.ovaem_events_filter_content .ova-item .ova_thumbnail {
+	text-align: center;
+	position: relative;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail img {
+	border-radius: 0;
+}
+.ovaem_events_filter_content .ova-item .ova_thumbnail img {
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	width: 100%;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .date {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	width: auto;
+	text-align: left;
+	background: #fff;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .date {
+	text-align: left;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue {
+	bottom: 35px;
+	top: auto;
+	left: 15px;
+	right: 15px;
+	text-align: right;
+	width: auto;
+}
+.ovaem_events_filter_content .ova-item .ova_thumbnail .venue {
+	position: absolute;
+	top: 50%;
+	margin-top: -30px;
+	left: 0;
+	width: 100%;
+	line-height: 24px;
+	font-size: 14px;
+	color: #fff;
+	visibility: hidden;
+	z-index: 1;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue span {
+	background-color: rgba( 72,98,196, 0.5 );
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue span {
+	display: inline-block;
+	display: inline-block;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	line-height: 32px;
+	border-radius: 100%;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .time {
+	bottom: 35px;
+	right: 35px;
+	left: auto;
+}
+ .ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .time {
+	bottom: 35px;
+	right: 35px;
+	left: auto;
+}
+ .ovaem_events_filter_content .ova-item .time {
+	width: 90px;
+	height: 90px;
+	word-wrap: break-word;
+	text-align: center;
+	margin: 0 auto;
+	border-radius: 100%;
+	color: #fff;
+	padding-top: 34px;
+	background: #f53f7b;
+	bottom: -35px;
+	left: 50%;
+	margin-left: -35px;
+	z-index: 1;
+	position: absolute;
+}
+.ovaem_events_filter_content .ova-item .ova_thumbnail::after {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	content: "";
+	background-color: transparent;
+}
+.ovaem_events_filter_content .ova-item.style3:hover .ova_thumbnail::after {
+	border-radius: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+.ovaem_events_filter_content .ova-item:hover .ova_thumbnail::after {
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+.ovaem_events_filter_content .ova-item.style3:hover .ova_thumbnail .time {
+	display: none;
+	visibility: hidden;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue {
+	bottom: 90px;
+	top: auto;
+	left: 15px;
+	right: 15px;
+	text-align: center;
+	width: auto;
+}
+.ovaem_events_filter_content .ova-item:hover .ova_thumbnail .venue {
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+	visibility: visible;
+}
+.ovaem_events_filter_content .ova-item .ova_thumbnail .venue {
+	position: absolute;
+	top: 50%;
+	margin-top: -30px;
+	left: 0;
+	width: 100%;
+	line-height: 24px;
+	font-size: 14px;
+	color: #fff;
+	visibility: hidden;
+	z-index: 1;
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue span {
+	background-color: rgba( 72,98,196, 0.5 );
+}
+.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue span {
+	display: inline-block;
+	display: inline-block;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 100%;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content {
+	border-radius: 0;
+	text-align: right;
+}
+.ovaem_events_filter .ovaem_events_filter_content .ova-item .wrap_content {
+	border: 1px solid #dfdfdf;
+	padding: 0 15px;
+	border-top: none;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content h2 {
+	padding-top: 20px;
+	text-align: center;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content h2 a {
+	text-transform: uppercase;
+	color: #242b46;
+	font-size: 16px;
+	direction: rtl;
+	text-align:right;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content .except {
+	margin-bottom: 15px;
+}
+.ovaem_events_filter_content .ova-item .wrap_content .except {
+	padding-top: 10px;
+	font-weight: normal;
+	line-height: 24px;
+	margin-bottom: 60px;
+	color: #666;
+}
+.ovaem_events_filter_content .ova-item .wrap_content {
+	border: 1px solid #dfdfdf;
+	padding: 0 15px;
+	border-top: none;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content .more_detail {
+	margin-top: 0px;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	width: 50%;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+.ovaem_events_filter .ovaem_events_filter_content .ova-item.style3 .wrap_content .more_detail .btn_link {
+	display: flex;
+	background-color: transparent;
+	border: none;
+	text-transform: uppercase;
+	padding-left: 0;
+	padding-right: 5px;
+	color: #000;
+	font-weight: 500;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content .more_detail .btn_link i {
+	padding-top: 2px;
+	font-size: 18px;
+	visibility: hidden;
+	width: 0;
+	-webkit-transition: all 300ms ease-in;
+	-webkit-transform: scale(1);
+	-ms-transition: all 200ms ease-in;
+	-ms-transform: scale(1);
+	-moz-transition: all 300ms ease-in;
+	-moz-transform: scale(1);
+	transition: all 300ms ease-in;
+	transform: scale(1);
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content .status {
+	width: 48%;
+	display: inline-block;
+	text-align: left;
+	text-transform: uppercase;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content .status {
+	text-align: left;
+	text-transform: uppercase;
+}
+.ovaem_events_filter_content .ova-item.style2 .wrap_content .venue i, .venues_slider .item .address span.icon i, .ova_service .icon, .ova_speaker_list_wrap .ova_speaker_list .content .job, .ova_speaker_list_wrap.style2 .ova_speaker_list:hover .content .job, .ova_speaker_list_wrap.style4 .ova_speaker_list:hover .content .wrap_info .job, .ova_map1 .content .info i, .ovaem_schedule .wrap_content .content_side .speaker_info .speaker_job, ul.ovaem_list_categories_widget li a:hover, .ovaem_list_events_widget ul li h3.widget_title a:hover, .ovaem_single_speaker .content .job, .ovaem_general_sidebar .widget.widget_categories ul li a:hover, .ova_venue_item .content .address i, .event_gallery_v1 .item .info .date, .woocommerce .ovaem_general_sidebar .widget.widget_product_categories ul li a:hover, .event_info .icon, .ovaem_schedule_single_event .ovaem_schedule .wrap_content .content_side .speaker_info .speaker_job, .ovaem_events_list .info .venue span i, .ovaem_general_sidebar .widget ul li a:hover, .ovaem_events_filter .ovaem_events_filter_content .ova-item .wrap_content .status, .ovaem_events_list .ova_thumbnail .event_status {
+	color: #4862c4;
+}
+.ovaem_events_filter_content .ova-item .wrap_content .status {
+	color: #4862c4;
+	font-weight: 500;
+}
+.ovaem_events_filter_content .ova-item.style3 .wrap_content .venue_mobile {
+	display: none;
+}
+.ovaem_events_filter_content .ova-item:hover .wrap_content {
+	background-color: #f2f2f2;
+}
+.status > a{
+	color: #4862c4;
+}
+.conference{
+	margin-top: 40px;
+	
+}
+.events_filter_show_nav {
+	display: block;
+}
+.make_top.ovaem_events_filter .ovaem_events_filter_nav {
+	text-align: right;
+	margin: 0;
+	margin-top: -49px;
+}
+ .ovaem_events_filter_nav.style3 li {
+	padding-right: 0px;
+	padding-left: 15px;
+}
+ .ovaem_events_filter_nav li {
+	display: inline-block;
+	padding: 0px 5px;
+}
+ .ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter .ovaem_events_filter_nav.style3 li.current a {
+	border-bottom-color: #f53f7b;
+}
+a.ova-btn.ova-btn-rad-30{
+	color: #000;
+	font-weight: bolder;
+}
+.ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter_nav.style3 li.current a {
+	border-bottom-color: #f53f7b;
+}
+.ovaem_events_filter_nav.style3 li.current a {
+	background-color: transparent;
+	border-color: transparent;
+	color: #000;
+	border-bottom: 2px solid #ccc;
+}
+.ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter_nav.style3 li.current a {
+	border-bottom-color: #f53f7b;
+}
+ .ovaem_events_filter_nav.style3 li a:hover {
+	background-color: transparent;
+	border-color: transparent;
+	border-bottom: 2px solid #ccc;
+}
+a:hover, a:focus {
+	text-decoration: none;
+	outline: none;
+}
+.ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter_nav.style3 li.current a {
+	border-bottom-color: #f53f7b;
+}
+.select_cat_mobile_btn{
+	text-align: right;
+}
+.teamofitFilter{
+	padding: 0px;
+}
+.ovaem_events_filter_nav.style3 li a {
+	color: #969696;
+	background-color: transparent;
+	border-color: transparent;
+	border-radius: 0;
+	padding-left: 0;
+	padding-right: 0;
+	text-transform: uppercase;
+}
+.venue.eventsIcons{
+	bottom: 40px !important;  
+}
+.marginBottomTeamofit{
+	margin-bottom: 150px;
+}
+.textAlginRightTeamofit{
+	text-align: right;
+}
+.container-menu{
+   max-width:200px;
+   background:#3c464f;
+   margin:0px 0px 40px 0px;
+   padding:10px 0px 20px 0px;
+   border:1px solid #111;
+   border-radius:4px;
+   box-shadow:0px 4px 5px rgba(0, 0, 0, 0.75);
+}
+.link{
+   font-size:16px;
+   font-weight:300;
+   text-align:center;
+   position:relative;
+   height:40px;
+   line-height:40px;
+   margin-top:10px;
+   overflow:hidden;
+   width:100%;
+   margin-left:5%;
+   cursor:pointer;
+}
+.link:after{
+   content: '';
+   position:absolute;
+   width:80%;
+   border-bottom:1px solid rgba(255, 255, 255, 0.5);
+   bottom:50%;
+   left:-100%;
+   transition-delay: all 0.5s;
+   transition: all 0.5s;
+}
+.link:hover:after,
+.link.hover:after{
+   left:100%;
+}
+.link .text{
+   text-shadow:0px -40px 0px rgba(255, 255, 255, 1);
+   transition:all 0.75s;
+   transform:translateY(100%) translateZ(0);
+   transition-delay:all 0.25s;
+}
+.link:hover .text,
+.link.hover .text{
+   text-shadow:0px -40px 0px rgba(255, 255, 255, 0);
+   transform:translateY(0%) translateZ(0) scale(1.1);
+   font-weight:600;
+}
+.container-body{
+	width: 100%;
+   background:#3c464f;
+   border:1px solid #111;
+   border-radius:4px;
+   box-shadow:0px 4px 5px rgba(0, 0, 0, 0.75);
+   padding-top:10px;
+   padding-bottom: 40px;
+}
+.teamofitMarginTop{
+	margin-top: 10px;
+}
+.teamofitTextAlignRight{
+	text-align: right;
+}
+.form-control{
+	border: none;
+}
