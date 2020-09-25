@@ -1,56 +1,8 @@
 @extends('app.master')
 
 @section('content')
-    <style>
-        .background-color-dark{
-            background-color: transparent !important;
-        }
-    </style>
-    <section id="overview" class="section custom-background-color-1 custom-background-style-1 m-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-lg-8">
-                <div class="custom-top-title-box">
-                    <span class="text-color-light font-weight-semibold">متن تست</span>
-                    <h1 class="text-color-light">نرم افزار موبایل</h1>
-                    <span class="text-color-light font-weight-semibold mb-5 sliderText">متن تست</span>
-                    <a href="{{ Route('app.events') }}" class="btn custom-btn-style-1 text-color-light mb-5" data-hash>رخدادهای ورزشی</a>
-                    <a href="#key-features" class="btn btn-primary custom-btn-style-1 _borders text-color-light ml-2 mb-5" data-hash data-hash-offset="62">راهنما</a>
-                    
-                </div>
-            </div>
-            <div class="col-8 col-md-4 col-lg-4 mx-auto">
-                <div class="owl-carousel custom-arrows-style-1 custom-left-pos-1 custom-background-1 m-0" data-plugin-options="{'items': 1, 'loop': true, 'dots': false, 'nav': true, 'autoplay': true, 'autoplayTimeout': 3000}">
-                    <div>
-                        <img src="img/demos/app-landing/product/overview-carousel-1.jpg" alt class="img-fluid" />
-                    </div>
-                    <div>
-                        <img src="img/demos/app-landing/product/overview-carousel-2.jpg" alt class="img-fluid" />
-                    </div>
-                    <div>
-                        <img src="img/demos/app-landing/product/overview-carousel-3.jpg" alt class="img-fluid" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<div id="home-intro" class="home-intro custom-home-intro background-color-tertiary m-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-sm-8">
-                <p class="text-color-light m-0">
-                    نرم افزار در  <strong>اندروید و IOS</strong> موجود می باشد .
-                    <span class="text-2">همینطور میتوانید از بازار و اپ استور تهییه کنید .</span>
-                </p>
-            </div>
-            <div class="col-lg-4 col-sm-4">
-                <a href="#downloads" class="btn btn-primary custom-btn-style-1 text-uppercase font-weight-semibold float-md-right mt-1" data-hash data-hash-offset="62"><i class="icon-cloud-download icons mr-3	"></i> همین الان دانلود کنید </a>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="container marginBottomTeamofit" >
 
     <h2 class="custom-bar _left text-color-dark eventsMarginTop">رویدادها</h2>
@@ -120,11 +72,8 @@
                 @endforeach
             </div>
         </div>
-
         
-
-
-
+       
     </div>
 
 </div>

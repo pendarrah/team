@@ -41,7 +41,6 @@ li {
 #header .header-body {
 	display: flex;
 	flex-direction: column;
-	background: #FFF;
 	-webkit-transition: min-height 0.3s ease;
 	-moz-transition: min-height 0.3s ease;
 	transition: min-height 0.3s ease;
@@ -384,15 +383,13 @@ html.sticky-header-active #header.header-transparent .header-body:before {
 }
 
 html #header.header-semi-transparent, html #header.header-semi-transparent-light {
-	min-height: 0 !important;
 	width: 100%;
-	position: absolute;
+	min-height: 70px !important;
 }
 
 html #header.header-semi-transparent .header-body, html #header.header-semi-transparent-light .header-body {
 	position: relative;
 	top: 0;
-	background: transparent;
 	border-top: 0;
 	border-bottom: 0;
 	box-shadow: none;

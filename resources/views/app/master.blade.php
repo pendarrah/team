@@ -72,8 +72,8 @@
 <body>
 
 <body data-spy="scroll" data-target=".header-nav-main nav" data-offset="65">
-<header id="header" class="header-narrow header-semi-transparent header-transparent-sticky-deactive custom-header-style" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '1'}">
-    <div class="header-body">
+<header id="header" class="header-narrow header-semi-transparent header-transparent-sticky-deactive custom-header-style @if(Route::current()->getName() == 'app.index') headerindex @endif" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '1'}">
+    <div class="header-body background-color-dark">
         <div class="header-container container">
             <div class="header-row">
                 <div class="header-column">
@@ -92,7 +92,7 @@
                                 <nav class="collapse">
                                 <ul class="nav nav-pills" id="mainNav">
                                         <li>
-                                            <a class="nav-link" href="#">
+                                            <a class="nav-link" href="{{ Route('app.index') }}">
                                                 <i class="fa fa-home"></i>
                                             </a>
                                         </li>
@@ -120,8 +120,8 @@
                                         </li>
 
                                         <li>
-                                            <a class="nav-link" href="#">
-                                                منو سوم
+                                            <a class="nav-link" href="{{ Route('app.events') }}">
+                                               رخدادهای ورزشی
                                             </a>
                                         </li>
 

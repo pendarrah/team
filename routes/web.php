@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'AppController@index')->name('app.index');
+Route::get('/events', 'AppController@events')->name('app.events');
 
 
 

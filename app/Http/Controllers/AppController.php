@@ -12,4 +12,10 @@ class AppController extends Controller
         $events = Event::all();
         return view('app.index', compact('events'));
     }
+
+    public function events()
+    {
+        $events = Event::all();
+        return view('app.events', compact('events'));
+    }
 }
