@@ -19,6 +19,7 @@ Auth::routes();
 Route::get('/', 'AppController@index')->name('app.index');
 Route::get('/events', 'AppController@events')->name('app.events');
 Route::get('/events/details', 'AppController@details')->name('app.details');
+Route::get('/coaches', 'AppController@coaches')->name('app.coaches');
 
 
 

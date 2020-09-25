@@ -22,6 +22,9 @@
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css">
 
+    <!-- Filtering Css -->
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("vendor/font-awesome/css/font-awesome.min.css") }}">
@@ -44,6 +47,8 @@
 
     <!-- Demo CSS -->
     <link rel="stylesheet" href="{{ asset('css/demos/rtl-demo-app-landing.css') }}">
+
+
 
     <!-- Skin CSS -->
     <link rel="stylesheet" href="{{ asset('css/skins/skin-app-landing.css') }}">
@@ -335,6 +340,8 @@
 
 <!-- Theme Custom -->
 <script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('js/jquery.mixitup.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 
 <!-- Theme Initialization Files -->
 <script src="{{ asset('js/theme.init.js') }}"></script>

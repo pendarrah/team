@@ -22,4 +22,8 @@ class AppController extends Controller
     {
         return view('app.details');    
     }
+    public function coaches()
+    {
+        return view('app.coaches');    
+    }
 }
