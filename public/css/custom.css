@@ -90,22 +90,17 @@ html{
 	display: inline-block;
 	display: inline-block;
 	text-align: center;
-	width: 30px;
-	height: 30px;
-	line-height: 32px;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
 	border-radius: 100%;
 }
 .ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .time {
-	bottom: 35px;
-	right: 35px;
+	bottom: 10px;
+	right: 10px;
 	left: auto;
 }
- .ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .time {
-	bottom: 35px;
-	right: 35px;
-	left: auto;
-}
- .ovaem_events_filter_content .ova-item .time {
+.ovaem_events_filter_content .ova-item .time {
 	width: 90px;
 	height: 90px;
 	word-wrap: break-word;
@@ -175,18 +170,6 @@ html{
 	color: #fff;
 	visibility: hidden;
 	z-index: 1;
-}
-.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue span {
-	background-color: rgba( 72,98,196, 0.5 );
-}
-.ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue span {
-	display: inline-block;
-	display: inline-block;
-	text-align: center;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	border-radius: 100%;
 }
 .ovaem_events_filter_content .ova-item.style3 .wrap_content {
 	border-radius: 0;
@@ -288,7 +271,7 @@ html{
 }
 .conference{
 	margin-top: 40px;
-	
+
 }
 .events_filter_show_nav {
 	display: block;
@@ -298,15 +281,15 @@ html{
 	margin: 0;
 	margin-top: -49px;
 }
- .ovaem_events_filter_nav.style3 li {
+.ovaem_events_filter_nav.style3 li {
 	padding-right: 0px;
 	padding-left: 15px;
 }
- .ovaem_events_filter_nav li {
+.ovaem_events_filter_nav li {
 	display: inline-block;
 	padding: 0px 5px;
 }
- .ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter .ovaem_events_filter_nav.style3 li.current a {
+.ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter .ovaem_events_filter_nav.style3 li.current a {
 	border-bottom-color: #f53f7b;
 }
 a.ova-btn.ova-btn-rad-30{
@@ -325,7 +308,7 @@ a.ova-btn.ova-btn-rad-30{
 .ovaem_events_filter_nav.style3 li a:hover, .ovaem_events_filter_nav.style3 li.current a {
 	border-bottom-color: #f53f7b;
 }
- .ovaem_events_filter_nav.style3 li a:hover {
+.ovaem_events_filter_nav.style3 li a:hover {
 	background-color: transparent;
 	border-color: transparent;
 	border-bottom: 2px solid #ccc;
@@ -353,7 +336,7 @@ a:hover, a:focus {
 	text-transform: uppercase;
 }
 .venue.eventsIcons{
-	bottom: 40px !important;  
+	bottom: 25px !important;
 }
 .marginBottomTeamofit{
 	margin-bottom: 150px;
@@ -361,69 +344,54 @@ a:hover, a:focus {
 .textAlginRightTeamofit{
 	text-align: right;
 }
-.container-menu{
-   max-width:200px;
-   background:#3c464f;
-   margin:0px 0px 40px 0px;
-   padding:10px 0px 20px 0px;
-   border:1px solid #111;
-   border-radius:4px;
-   box-shadow:0px 4px 5px rgba(0, 0, 0, 0.75);
+@media (max-width:767px){
+	.sliderTitle{
+		font-size: 40px;
+	}
+	.sliderText{
+		margin-bottom: 10px !important;
+	}
+	.owl-carousel.custom-left-pos-1{
+		margin-top: 0px !important;
+	}
 }
-.link{
-   font-size:16px;
-   font-weight:300;
-   text-align:center;
-   position:relative;
-   height:40px;
-   line-height:40px;
-   margin-top:10px;
-   overflow:hidden;
-   width:100%;
-   margin-left:5%;
-   cursor:pointer;
-}
-.link:after{
-   content: '';
-   position:absolute;
-   width:80%;
-   border-bottom:1px solid rgba(255, 255, 255, 0.5);
-   bottom:50%;
-   left:-100%;
-   transition-delay: all 0.5s;
-   transition: all 0.5s;
-}
-.link:hover:after,
-.link.hover:after{
-   left:100%;
-}
-.link .text{
-   text-shadow:0px -40px 0px rgba(255, 255, 255, 1);
-   transition:all 0.75s;
-   transform:translateY(100%) translateZ(0);
-   transition-delay:all 0.25s;
-}
-.link:hover .text,
-.link.hover .text{
-   text-shadow:0px -40px 0px rgba(255, 255, 255, 0);
-   transform:translateY(0%) translateZ(0) scale(1.1);
-   font-weight:600;
-}
-.container-body{
-	width: 100%;
-   background:#3c464f;
-   border:1px solid #111;
-   border-radius:4px;
-   box-shadow:0px 4px 5px rgba(0, 0, 0, 0.75);
-   padding-top:10px;
-   padding-bottom: 40px;
-}
-.teamofitMarginTop{
-	margin-top: 10px;
+.teamofitbtn{
+	background: #3c464f;
 }
 .teamofitTextAlignRight{
 	text-align: right;
 }
-.form-control{
-	border: none;
+.modal-header .close{
+	margin: -15px -15px -15px 0 !important;
+}
+.modal-footer{
+	display: block;
+}
+.ovaem_events_filter_content{
+	margin-top: 40px;
+}
+.style3{
+	margin-top: 20px;
+}
+.registerModalTeamofit{
+    display: none;
+    
+}
+#registerBtn,#loginBtn{
+    color: #fff;
+    background: #3c464f; 
+}
+#mainNav > li:first-child{
+    line-height: 47px;
+}
+#mainNav li:first-child > a > i{
+    font-size: 17px;
+}
+.sort-source{
+    direction: rtl;
+    text-align: right;
+    margin-top: 30px;
+}
+.sort-source a{
+    color: #3c464f;
 }

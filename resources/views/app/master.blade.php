@@ -80,7 +80,7 @@
                     <div class="header-row">
                         <div class="header-logo">
                             <a href="/">
-                                <img alt="teamofit" height="50" width="70" src="/img/logo.png">
+                                <img alt="teamofit"  width="50" src="/img/logo.png">
                             </a>
                         </div>
                     </div>
@@ -90,30 +90,54 @@
                         <div class="header-nav">
                             <div class="header-nav-main header-nav-main-square custom-header-nav-main-effect-1">
                                 <nav class="collapse">
-                                    <ul class="nav nav-pills" id="mainNav">
+                                <ul class="nav nav-pills" id="mainNav">
                                         <li>
-                                            <a class="nav-link active" href="/" data-hash>
-                                                صفحه اصلی
+                                            <a class="nav-link" href="#">
+                                                <i class="fa fa-home"></i>
+                                            </a>
+                                        </li>
+                                        <li class="dropdown dropdown-primary">
+                                            <a class="dropdown-toggle nav-link" href="#">
+                                                منو 1
+                                                <i class="fa fa-caret-down"></i></a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        زیر منو 1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        زیر منو 2
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        زیر منو 3
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a class="nav-link" href="#">
+                                                منو سوم
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="nav-link" href="#">
+                                                منو چهارم
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link" href="" data-hash data-hash-offset="62">
-                                                آخرین رویداد ها
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link" href="{{ route('login') }}" data-hash>
+                                            <a class="nav-link" data-toggle="modal" data-target="#registerModal">
                                                 ورود / عضویت
                                             </a>
                                         </li>
                                     </ul>
                                 </nav>
                             </div>
-                            <ul class="header-social-icons social-icons custom-social-icons-style-1 _white d-none d-sm-block">
-                                <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
-                                <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter-square"></i></a></li>
-                                <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin-square"></i></a></li>
-                            </ul>
                             <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
                                 <i class="fa fa-bars"></i>
                             </button>
@@ -124,6 +148,86 @@
         </div>
     </div>
 </header>
+<div class="modal fade" id="registerModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ورود</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="loginModalTeamofit">
+                <div class="modal-body teamofitTextAlignRight">
+                    
+                    <form class="form-horizontal" action="#">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">موبایل :</label>
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="email" placeholder="لطفا شماره موبایل خود را وارد کنید ..." name="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd">کلمه عبور :</label>
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="pwd" placeholder="لطفا کلمه عبور خود را وارد کنید ..." name="pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="remember"> مرا به خاطر بسپار</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <button type="submit" class="btn btn-success">ورود</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer teamofitTextAlignRight">
+                    <a id="registerBtn" class="btn col-md-12">ثبت نام </a>
+                </div>
+            </div>
+            <div class="registerModalTeamofit">
+                <div class="modal-body teamofitTextAlignRight">
+                    
+                    <form class="form-horizontal" action="#">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">موبایل :</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="email" placeholder="لطفا شماره موبایل خود را وارد کنید ..." name="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd">کلمه عبور :</label>
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="pwd" placeholder="لطفا کلمه عبور خود را وارد کنید ..." name="pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="pwd">تکرار کلمه عبور :</label>
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="pwd" placeholder="لطفا کلمه عبور خود را وارد کنید ..." name="pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <button type="submit" class="btn btn-success">ثبت نام</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer teamofitTextAlignRight">
+                    <a id="loginBtn" class="btn col-md-12" >ورود به ناحیه کاربری</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div role="main" class="main">
 
 
