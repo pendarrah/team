@@ -60,7 +60,7 @@ class VerificationController extends \App\Http\Controllers\Controller
         $request->validate([
             'fName' => 'required',
             'lName' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'type' => 'required|in:coach,user',
             'avatar' => 'required|mimes:png,PNG,jpeg,JPEG,gif',
         ]);

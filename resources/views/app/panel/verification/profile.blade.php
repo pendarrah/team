@@ -59,6 +59,17 @@
                                                     </div>
 
 
+                                                    <div class="form-row teamofitMarginTop">
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="title" value="{{ old('fName') }}" placeholder="نام" name="fName">
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" id="title" value="{{ old('lName') }}" placeholder="نام خانوادگی" name="lName">
+                                                        </div>
+                                                    </div>
+
+
 
                                                     <div class="form-row teamofitMarginTop teamofitTextAlignRight">
                                                         <div class="col">
