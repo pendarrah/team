@@ -25,6 +25,13 @@ Route::get('/events/details', 'AppController@details')->name('app.details');
 // Add middleware auth
 Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function () {
 
+
+    Route::get('verification/mobile/{mobileCode?}', 'VerificationController@mobile')->name('panel.verification.mobile');
+    Route::get('verification/mobile/send', 'VerificationController@send')->name('panel.verification.send');
+    Route::get('verification/profile', 'VerificationController@profile')->name('panel.verification.profile');
+    Route::post('verification/profile/store', 'VerificationController@profileStore')->name('panel.verification.profile.store');
+
+
     Route::get('/', 'PanelController@index')->name('panel.index');
 
     Route::get('event/my', 'EventController@my')->name('event.my');
