@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col">
 
-                <div class="featured-boxes" style="margin-top:100px;margin-bottom:100px;">
+                <div class="featured-boxes" style="margin-top:40px;margin-bottom:100px;">
                     <div class="row">
                         <div class="col-md-2">
                             @include('app.panel.menu')

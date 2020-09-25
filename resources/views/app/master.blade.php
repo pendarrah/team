@@ -22,9 +22,9 @@
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css">
 
-    <!-- Filtering Css -->
+    <!-- Filtering Css 
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">-->
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("vendor/font-awesome/css/font-awesome.min.css") }}">
