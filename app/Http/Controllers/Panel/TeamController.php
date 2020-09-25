@@ -86,7 +86,7 @@ class TeamController extends \App\Http\Controllers\Controller
         $request->validate([
             'name' => 'required',
             'banner' => 'nullable',
-            'avatar' => 'nullable',
+            'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
         ]);
 
         if ($request->has('avatar') AND $request->has('banner')) {

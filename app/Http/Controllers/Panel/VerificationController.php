@@ -48,8 +48,35 @@ class VerificationController extends \App\Http\Controllers\Controller
             return view('app.panel.verification.mobile');
     }
 
+
     public function profile()
     {
-        
+        return view('app.panel.verification.profile');
+    }
+
+    public function profileStore(Request $request)
+    {
+
+        $request->validate([
+            'fName' => 'required',
+            'lName' => 'required',
+            'email' => 'required|email',
+            'type' => 'required|in:coach,user',
+            'avatar' => 'required|mimes:png,PNG,jpeg,JPEG,gif',
+        ]);
+
+
+        $attachmentFile = $request->file('avatar');
+        $attachmentFileName = time() . "_" . $attachmentFile->getClientOriginalName();
+        $attachmentFile->move('files', $attachmentFileName);
+        $attachmentFileName = '/files/' . $attachmentFileName;
+
+        \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName]);
+
+        alert()->success('حساب کاربری شما تایید شد.', 'تایید شد.')->autoclose(5000);
+        return view('app.panel.index');
+
+
+
     }
 }
