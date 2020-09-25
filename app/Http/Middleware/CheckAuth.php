@@ -15,10 +15,22 @@ class CheckAuth
      */
     public function handle($request, Closure $next)
     {
-//        if(strstr($request->route()->getPrefix(),"panel") && \Auth::user()->type === 'admin'){
-//                return redirect()->route('dashboard.index');
-//        }else{
+
+        if(strstr($request->route()->getPrefix(),"panel") && \Auth::user()->status  === 0){
+            if ($request->route()->getName() == 'panel.verification.mobile' OR $request->route()->getName() == 'panel.verification.send' OR $request->route()->getName() == 'panel.verification.profile' OR $request->route()->getName() == 'panel.verification.profile.store') {
+                return $next($request);
+            } else {
+                return redirect()->route('panel.verification.mobile');
+            }
+        }elseif(strstr($request->route()->getPrefix(),"panel") && \Auth::user()->status === 1) {
+            if ($request->route()->getName() == 'panel.verification.profile' OR $request->route()->getName() == 'panel.verification.profile.store') {
+                return $next($request);
+            } else {
+                return redirect()->route('panel.verification.profile');
+            }
+        }else{
             return $next($request);
-//        }
+        }
+
     }
 }

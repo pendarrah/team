@@ -195,6 +195,8 @@ return array(
         'timeStart' => 'زمان شروع',
         'timeFinish' => 'زمان پایان',
         'heightNew' => 'طول جدید',
+        'type' => 'نوع کاربر',
+        'avatar' => 'تصویر پروفایل',
         'heightNew' => 'طول جدید',
     ),
 );

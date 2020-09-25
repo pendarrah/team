@@ -125,7 +125,7 @@ class EventController extends \App\Http\Controllers\Controller
             'timeFinish' => 'required',
             'address' => 'required',
             'description' => 'required',
-            'picture' => 'nullable',
+            'picture' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
         ]);
 
         $date = substr($request->timeStart, 0, 10);
