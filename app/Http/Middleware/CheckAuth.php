@@ -15,10 +15,10 @@ class CheckAuth
      */
     public function handle($request, Closure $next)
     {
-        if(strstr($request->route()->getPrefix(),"panel") && \Auth::user()->type === 'admin'){
-                return redirect()->route('dashboard.index');
-        }else{
+//        if(strstr($request->route()->getPrefix(),"panel") && \Auth::user()->type === 'admin'){
+//                return redirect()->route('dashboard.index');
+//        }else{
             return $next($request);
-        }
+//        }
     }
 }

@@ -4,11 +4,10 @@
     <div class="link"><a href="{{ route('team.index') }}"><div class="text">مدیریت تیم ها</div></a></div>
     <div class="link"><a href="{{ route('event.create') }}"><div class="text">مدیریت درخواست ها</div></a></div>
     <div class="link"><a href="{{ route('event.my') }}"><div class="text">برنامه های من</div></a></div>
-    <div class="link"><a href="{{ route('event.create') }}"><div class="text">کیف پول ورزشکاری</div></a></div>
-    <div class="link"><a href="{{ route('event.create') }}"><div class="text">کیف پول مربی</div></a></div>
-    <div class="link"><a href="{{ route('event.create') }}"><div class="text">کیف پول تیم</div></a></div>
+    <div class="link"><a href="{{ route('transaction.index') }}"><div class="text">کیف پول</div></a></div>
     <div class="link"><a href="{{ route('event.create') }}"><div class="text">پروفایل</div></a></div>
     <div class="link"><a href="{{ route('event.create') }}"><div class="text">ايجاد پروفايل مربيگري</div></a></div>
     <div class="link"><a href="{{ route('event.create') }}"><div class="text">ارتباط با پشتیبانی</div></a></div>
     <div class="link"><a href="{{ route('dashboard-logout') }}"><div class="text">خروج از اکانت</div></a></div>
+    <div class="link"><a href="{{ route('category.index') }}"><div class="text">مدیریت دسته بندیها</div></a></div>
 </div>

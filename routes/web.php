@@ -34,7 +34,10 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::resource('team', 'TeamController');
     Route::get('team/delete/{id}', 'TeamController@destroy')->name('team.delete');
 
+    Route::resource('category', 'CategoryController');
+    Route::get('category/delete/{id}', 'CategoryController@destroy')->name('category.delete');
 
+    Route::resource('transaction', 'TransactionController');
 
 });
 
