@@ -23,7 +23,7 @@
                 @foreach ($events as $event)
                     <div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 football">
                         <p class="number" style="display:none;">1632873600</p>
-                        <a href="#">
+                        <a href="{{ Route('app.details') }}">
                             <div class="ova_thumbnail">
                                 <img alt="" src="{{ asset("/files/$event->picture") }}">
                                 <div class="date">
