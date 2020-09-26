@@ -608,7 +608,7 @@ html.boxed .nav-secondary.sticky-active {
 	vertical-align: .155em;
 }
 
-/* Colors */
+/* Colors 
 .btn-primary {
 	background-color: #CCC;
 	border-color: #CCC #CCC #b3b3b3;
@@ -634,7 +634,7 @@ html.boxed .nav-secondary.sticky-active {
 	background-color: #b9b9b9;
 	background-image: none;
 	border-color: #b3b3b3 #b3b3b3 #999999;
-}
+}*/
 
 .btn-outline.btn-primary {
 	color: #CCC;

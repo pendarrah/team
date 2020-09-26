@@ -8,7 +8,10 @@ $(document).ready(function(){
        $('.loginModalTeamofit').show(); 
        $('.registerModalTeamofit').hide(); 
        $('.modal-title').html('ثبت نام در تیموفیت')
-    });
+	});
+	
+	
+
 });
 
 // Thumb Gallery
