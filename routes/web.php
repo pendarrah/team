@@ -47,6 +47,10 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
 
     Route::resource('transaction', 'TransactionController');
 
+
+    Route::post('/payment/', 'PaymentController@payment')->name('payment');
+    Route::any('/paid/{amount}/{userId}','PaymentController@paid');
+
 });
 
 

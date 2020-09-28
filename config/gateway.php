@@ -12,13 +12,13 @@ return [
     // Zarinpal gateway
     //--------------------------------
     'zarinpal' => [
-        'merchant-id'  => 'd55454f8-a58e-11e9-87aa-000c29344814',
+        'merchant-id'  => 'd03a7813-39da-4921-8860-d4872b551130',
         'type'         => 'zarin-gate',             // Types: [zarin-gate || normal]
         'callback-url' => '/paid',
         'server'       => 'germany',                // Servers: [germany || iran || test]
-        'email'        => 'info@snappcast.ir',
-        'mobile'       => '09390427226',
-        'description'  => 'SnappCast.Ir',
+        'email'        => 'info@teamofit.com',
+        'mobile'       => '09121010111',
+        'description'  => 'TeamoFit.Com',
     ],
 
     //--------------------------------

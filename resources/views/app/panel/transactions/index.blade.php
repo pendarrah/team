@@ -43,20 +43,25 @@
                                                     <div class="modal-body">
                                                         <p style="direction: rtl; text-align: right">جهت واریز وجه و شارژ کیف پول، مقدار وجه مورد نظر خودرا وارد کرده و برروی گزینه پرداخت کلیک نمایید.</p>
 
-                                                        <div class="form-row teamofitMarginTop">
-                                                            <div style=" direction: rtl; text-align: right;" class="col">
-                                                                <label style="color: black; display: inline" for="">مبلغ مورد نظر را به ریال وارد نمایید:</label>
-                                                                <input style="width: 150px;display: inline" type="text" class="form-control" id="name" value="{{ old('amount') }}" placeholder="مثال: 1500000" name="amount">
+                                                        <form method="post" action="{{ route('payment') }}">
+                                                            @csrf
+                                                            <div class="form-row teamofitMarginTop">
+                                                                <div style=" direction: rtl; text-align: right;" class="col">
+                                                                    <label style="color: black; display: inline" for="">مبلغ مورد نظر را به ریال وارد نمایید:</label>
+                                                                    <input style="width: 150px;display: inline" type="text" class="form-control" id="name" value="{{ old('amount') }}" placeholder="مثال: 1500000" name="amount">
+                                                                </div>
                                                             </div>
+
                                                         </div>
 
-                                                    </div>
 
+                                                            <div class="modal-footer">
+                                                                <p style="text-align: right; display: inline; float: right"><button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button></p>
+                                                                <button type="submit" class="btn btn-success">پرداخت</button>
+                                                            </div>
 
-                                                    <div class="modal-footer">
-                                                        <p style="text-align: right; display: inline; float: right"><button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button></p>
-                                                        <button type="button" class="btn btn-success">پرداخت</button>
-                                                    </div>
+                                                    </form>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -70,6 +75,7 @@
                                                     <th>شناسه</th>
                                                     <th>نوع</th>
                                                     <th>بابت</th>
+                                                    <th>مبلغ</th>
                                                     <th>توضیحات</th>
                                                     <th>تاریخ و ساعت</th>
                                                 </tr>
@@ -80,6 +86,7 @@
                                                         <td>{{ $transaction->id }}</td>
                                                         <td>{{ $transaction->type }}</td>
                                                         <td>{{ $transaction->for }}</td>
+                                                        <td>{{ $transaction->amount }}</td>
                                                         <td>{{ $transaction->description }}</td>
                                                         <td>{{ jdate($transaction->created_at) }}</td>
                                                     </tr>

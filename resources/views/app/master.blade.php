@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>teamofit masha</title>
+    <title>teamofit</title>
 
     <meta name="keywords" content="" />
     <meta name="description" content="">
@@ -136,7 +136,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="nav-link" data-toggle="modal" data-target="#registerModal">
+                                            <a class="nav-link" href="/login">
                                                 ورود / عضویت
                                             </a>
                                         </li>
@@ -270,7 +270,7 @@
                 <div class="row">
                     <div class="col-lg-6 text-center text-md-left">
 								<span class="copyright-text">
-									© Copyright 2020. All Rights Reserved.
+									© تمامی حقوق محفوظ است.
 									<ul class="social-icons custom-social-icons-style-1 _colored">
 										<li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook-square"></i></a></li>
 										<li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter-square"></i></a></li>
@@ -351,7 +351,11 @@
 
 <script src="{{ asset('datatables/datatables.bundle.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('datatables/datatables.bundle.rtl.css') }}"/>
-
+<!---start GOFTINO code--->
+<script type="text/javascript">
+    !function(){var a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/Hqa6DI",l=localStorage.getItem("goftino");g.type="text/javascript",g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+</script>
+<!---end GOFTINO code--->
 @yield('footerScripts')
 
 <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.

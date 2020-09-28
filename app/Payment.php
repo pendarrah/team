@@ -9,9 +9,9 @@ class Payment extends Model
 {
     use SoftDeletes;
 
-    public function course()
+    public function user()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(User::class);
     }
 
     protected $guarded = ['id'];

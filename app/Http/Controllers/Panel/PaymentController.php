@@ -1,28 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
 use App\Course;
+use App\Event;
 use App\Payment;
+use App\Transaction;
 use Illuminate\Http\Request;
 
-class PaymentController extends Controller
+class PaymentController extends \App\Http\Controllers\Controller
 {
-    public function payment($amount, $courseId, $userId)
+    public function payment(Request $request)
     {
-        $course = Course::findOrFail($courseId);
-        if ($course->type == 'free'){
-
-            $course->users()->attach($userId);
-            alert()->success("شما با موفقیت عضو شدید", "انجام شد");
-            return redirect()->route('courses.id', $courseId);
-
-        }
-
         try {
+            $user = \Auth::user();
             $gateway = \Gateway::ZARINPAL();
-            $gateway->setCallback(url("/paid/$amount/$courseId/$userId"));
-            $gateway->price($amount)->ready();
+            $gateway->setCallback(url("/paid/$request->amount/$user->id"));
+            $gateway->price($request->amount)->ready();
             $refId = $gateway->refId();
             $transID = $gateway->transactionId();
             return $gateway->redirect();
@@ -32,7 +26,7 @@ class PaymentController extends Controller
     }
 
 
-    public function paid($amount, $courseId, $userId)
+    public function paid($amount, $userId)
     {
         try {
             $gateway = \Gateway::verify();
@@ -40,18 +34,10 @@ class PaymentController extends Controller
             $refId = $gateway->refId();
             $cardNumber = $gateway->cardNumber();
 
-            $course = Course::findOrFail($courseId);
-
-            if($course->price == (int)mb_substr($amount, 0, -4)){
-                $payment = Payment::create(['trackingCode' => $trackingCode, 'refId' => $refId, 'cardNumber' => $cardNumber, 'amount' => $amount, 'user_id' => $userId, 'course_id' => $courseId, 'ostadUser_id' => $course->user_id ]);
-                $course->users()->attach($userId);
+                $payment = Payment::create(['trackingCode' => $trackingCode, 'refId' => $refId, 'cardNumber' => $cardNumber, 'amount' => $amount, 'user_id' => $userId ]);
+                $transAction = Transaction::create(['type' => 'واریز', 'for' => 'واریز به کیف پول', 'amount' => $amount , 'description' => " کد پیگیری: $trackingCode "]);
                 alert()->success("$trackingCode", "کد پیگیری شما:");
-                return redirect()->route('courses.id', $courseId);
-            }else{
-                alert()->error("$trackingCode", "کد پیگیری شما:");
-                return redirect()->route('courses.id', $courseId);
-            }
-
+                return redirect()->route('panel.index');
 
         } catch (Exception $e) {
             echo $e->getMessage();

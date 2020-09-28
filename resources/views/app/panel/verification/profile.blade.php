@@ -36,11 +36,11 @@
 
                                                     <div class="form-row teamofitMarginTop">
                                                         <div class="col">
-                                                            <input type="text" class="form-control" id="title" value="{{ old('fName') }}" placeholder="نام" name="fName">
+                                                            <input type="text" class="form-control" id="title" value="{{ old('fName', \Auth::user()->fName) }}" placeholder="نام" name="fName">
                                                         </div>
 
                                                         <div class="col">
-                                                            <input type="text" class="form-control" id="title" value="{{ old('lName') }}" placeholder="نام خانوادگی" name="lName">
+                                                            <input type="text" class="form-control" id="title" value="{{ old('lName', \Auth::user()->fName) }}" placeholder="نام خانوادگی" name="lName">
                                                         </div>
                                                     </div>
 
@@ -48,45 +48,69 @@
                                                         <div class="col">
                                                             <select class="form-control" name="type">
                                                                 <option disabled >لطفا نوع حساب کاربری را انتخاب نمایید ...</option>
-                                                                <option {{ old('type') == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
-                                                                <option {{ old('type') == 'coach' ? 'selected' : '' }} value="coach" >مربی</option>
+                                                                <option {{ \Auth::user()->type == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
+                                                                <option {{ \Auth::user()->type == 'coach' ? 'selected' : '' }} value="coach" >مربی</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="col">
-                                                            <input type="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="آدرس ایمیل" name="email">
+                                                            <input type="email" class="form-control" id="email" value="{{ old('email', \Auth::user()->email) }}" placeholder="آدرس ایمیل" name="email">
                                                         </div>
                                                     </div>
 
 
                                                     <div class="form-row teamofitMarginTop">
-                                                        <div class="col">
-                                                            <input type="text" class="form-control" id="title" value="{{ old('fName') }}" placeholder="نام" name="fName">
-                                                        </div>
 
                                                         <div class="col">
-                                                            <input type="text" class="form-control" id="title" value="{{ old('lName') }}" placeholder="نام خانوادگی" name="lName">
+                                                            <select class="form-control" name="category_id">
+                                                                <option disabled selected value> -- رشته انتخاب نمایید -- </option>
+                                                                @foreach (\App\Category::all() as $category)
+                                                                    <option {{ \Auth::user()->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+
+
+
+                                                        <div class="col">
+                                                            <select class="form-control" name="city_id">
+                                                                <option disabled selected value> -- شهر را انتخاب نمایید -- </option>
+                                                                @foreach (\App\City::all() as $city)
+                                                                    <option {{ \Auth::user()->city_id == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
 
 
 
                                                     <div class="form-row teamofitMarginTop teamofitTextAlignRight">
+
                                                         <div class="col">
                                                             <label style="color: black" for="">تصویر پروفایل انتخاب نمایید:</label>
                                                             <input type="file" name="avatar" class="btn btn-warning" value="آپلود تصویر">
                                                         </div>
-                                                    </div>
 
-                                                    <div class="form-row teamofitMarginTop teamofitTextAlignRight">
                                                         <div class="col">
-                                                            <input type="submit" class="btn btn-success form-control" value="آپلود اطلاعات">
+                                                            <span style="direction: rtl; text-align: right"> تاریخ تولد:</span>
+
+                                                            <input class="form-control dp2" >
+                                                            <input type="hidden" placeholder="تاریخ تولد" name="birthday" class="observer2" >
                                                         </div>
+
+
                                                     </div>
+
+
+
+
+                                            <div class="form-row teamofitMarginTop teamofitTextAlignRight">
+                                                <div class="col">
+                                                    <input type="submit" class="btn btn-success form-control" value="آپلود اطلاعات">
+                                                </div>
+                                            </div>
                                                 </form>
-
-
-
                                         </div>
                                     </div>
 
