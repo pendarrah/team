@@ -21,6 +21,14 @@ class CreateTeamsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
+
+        Schema::create('team_user', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('team_id');
+            $table->timestamps();
+        });
+
     }
 
     /**

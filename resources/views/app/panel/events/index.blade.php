@@ -36,7 +36,7 @@
                                                 @foreach ($events as $event)
                                                     <tr>
                                                         <td>{{ $event->title }}</td>
-                                                        <td>{{ $event->category }}</td>
+                                                        <td>{{ $event->category->title }}</td>
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>
                                                         <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>

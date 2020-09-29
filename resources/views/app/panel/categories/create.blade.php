@@ -34,6 +34,10 @@
                                                 <input type="text" class="form-control" id="title" value="{{ old('title') }}" placeholder="عنوان دسته بندی" name="title">
                                             </div>
 
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="title" value="{{ old('english') }}" placeholder="نام انگلیسی (بدون فاصله - مثال: football)" name="english">
+                                            </div>
+
                                         </div>
 
 

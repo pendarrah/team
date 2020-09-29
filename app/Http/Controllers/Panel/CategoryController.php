@@ -39,9 +39,10 @@ class CategoryController extends \App\Http\Controllers\Controller
 
         $request->validate([
             'title' => 'required',
+            'english' => 'required',
         ]);
 
-        Category::create(['title' => $request->title]);
+        Category::create(['title' => $request->title, 'engligh' => $request->engligh]);
 
         alert()->success('دسته بندی با موفقیت اضافه شد', 'اضافه شد');
         return redirect()->route('category.index');
@@ -81,9 +82,10 @@ class CategoryController extends \App\Http\Controllers\Controller
     {
         $request->validate([
             'title' => 'required',
+            'english' => 'required',
         ]);
 
-        $category->update(['title' => $request->title]);
+        $category->update(['title' => $request->title, 'english' => $request->english]);
         alert()->success('دسته بندی با موفقیت ویرایش شد', 'ویرایش شد');
         return redirect()->route('category.index');
 

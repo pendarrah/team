@@ -125,7 +125,7 @@
                                         </li>
 
                                         <li>
-                                            <a class="nav-link" href="{{ Route('app.events') }}">
+                                            <a class="nav-link" href="{{ Route('app.events.index') }}">
                                                رخدادهای ورزشی
                                             </a>
                                         </li>

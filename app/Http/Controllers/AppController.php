@@ -16,11 +16,12 @@ class AppController extends Controller
     public function events()
     {
         $events = Event::all();
-        return view('app.events', compact('events'));
+        return view('app.events.index', compact('events'));
     }
-    public function details()
+    public function eventShow(Request $request)
     {
-        return view('app.details');    
+        $event = Event::find($request->id);
+        return view('app.events.show', compact('event'));
     }
     public function coaches()
     {

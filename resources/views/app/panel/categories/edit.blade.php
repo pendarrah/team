@@ -35,6 +35,12 @@
                                                 <input type="text" class="form-control" id="title" value="{{ old('title', $category->title) }}" placeholder="عنوان دسته بندی" name="title">
                                             </div>
 
+                                            <div class="col">
+                                                <input type="text" class="form-control" id="title" value="{{ old('english', $category->english) }}" placeholder="نام انگلیسی (بدون فاصله - مثال: football)" name="english">
+                                            </div>
+
+
+
                                         </div>
 
                                         <div class="form-row teamofitMarginTop teamofitTextAlignRight">

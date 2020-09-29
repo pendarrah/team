@@ -37,10 +37,9 @@
                                             <div class="col">
                                                 <select class="form-control" name="category">
                                                     <option disabled >لطفا دسته بندی رویداد را وارد فرمایید ...</option>
-                                                    <option {{ $event->category == 'فوتبال' ? 'selected' : '' }}>فوتبال</option>
-                                                    <option {{ $event->category == 'فوتسال' ? 'selected' : '' }} >فوتسال</option>
-                                                    <option {{ $event->category == 'بسکتبال' ? 'selected' : '' }} >بسکتبال</option>
-                                                    <option {{ $event->category == 'والیبال' ? 'selected' : '' }} >والیبال</option>
+                                                    @foreach (\App\Category::all() as $category)
+                                                        <option {{ $event->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

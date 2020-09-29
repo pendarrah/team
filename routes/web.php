@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'AppController@index')->name('app.index');
-Route::get('/events', 'AppController@events')->name('app.events');
-Route::get('/events/details', 'AppController@details')->name('app.details');
+
+
+Route::get('/events', 'AppController@events')->name('app.events.index');
+Route::get('/events/{id}', 'AppController@eventShow')->name('app.events.show');
+
+
 Route::get('/coaches', 'AppController@coaches')->name('app.coaches');
 
 

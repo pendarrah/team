@@ -25,6 +25,7 @@
                                                 <tr>
                                                     <th>شناسه</th>
                                                     <th>عنوان</th>
+                                                    <th>نام انگلیسی</th>
                                                     <th>ویرایش</th>
                                                 </tr>
                                                 </thead>
@@ -33,6 +34,7 @@
                                                     <tr>
                                                         <td>{{ $category->id }}</td>
                                                         <td>{{ $category->title }}</td>
+                                                        <td>{{ $category->english }}</td>
                                                         <td style=""><a href="{{ route('category.edit', $category->id) }}">ویرایش</a></td>
                                                     </tr>
                                                 @endforeach

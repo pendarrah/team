@@ -14,7 +14,7 @@
                     <span class="text-color-light font-weight-semibold">متن تست</span>
                     <h1 class="text-color-light">نرم افزار موبایل</h1>
                     <span class="text-color-light font-weight-semibold mb-5 sliderText">متن تست</span>
-                    <a href="{{ Route('app.events') }}" class="btn custom-btn-style-1 text-color-light mb-5" data-hash>رخدادهای ورزشی</a>
+                    <a href="{{ Route('app.events.index') }}" class="btn custom-btn-style-1 text-color-light mb-5" data-hash>رخدادهای ورزشی</a>
                     <a href="#key-features" class="btn btn-primary custom-btn-style-1 _borders text-color-light ml-2 mb-5" data-hash data-hash-offset="62">راهنما</a>
                     
                 </div>
@@ -58,20 +58,18 @@
         <div class="select_cat_mobile_btn">
         <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
                 <li class="nav-item" data-option-value="*"><a class="nav-link active" href="#">نمایش همه</a></li>
-                <li class="nav-item" data-option-value=".football"><a class="nav-link" href="#">فوتبلا</a></li>
-                <li class="nav-item" data-option-value=".volleyball"><a class="nav-link" href="#">والیبال</a></li>
-                <li class="nav-item" data-option-value=".futsal"><a class="nav-link" href="#">فوتسال</a></li>
-                <li class="nav-item" data-option-value=".basketball"><a class="nav-link" href="#">بستکتبال</a></li>
-            </ul>
+                @foreach (\App\Category::all() as $category)
+                    <li class="nav-item" data-option-value=".{{ $category->english }}"><a class="nav-link" href="#">{{ $category->title }}</a></li>
+                @endforeach
+        </ul>
         </div>
     </div>
     <div class="ovaem_events_filter_content">
         <div class="sort-destination-loader sort-destination-loader-showing">
             <div class="row image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}">
                 @foreach ($events as $event)
-                    <div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 football">
-                        <p class="number" style="display:none;">1632873600</p>
-                        <a href="#">
+                    <div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 {{ $event->category->english }}">
+                        <a href="{{ route('app.events.show', $event->id) }}">
                             <div class="ova_thumbnail">
                                 <img alt="" src="{{ asset("/files/$event->picture") }}">
                                 <div class="date">
@@ -94,7 +92,7 @@
                         </a>
                         <div class="wrap_content">
                             <h2 class="title">
-                                <a href="#">{{ $event->title }}</a>
+                                <a href="{{ route('app.events.show', $event->id) }}">{{ $event->title }}</a>
                             </h2>
                             <div class="venue_mobile">
                                             <span>
@@ -106,12 +104,12 @@
                                 {{ $event->description }}
                             </div>
                             <div class="more_detail">
-                                <a class="btn_link" href="#">
+                                <a class="btn_link" href="{{ route('app.events.show', $event->id) }}">
                                     جزئیات بیشتر<i class="arrow_right"></i>
                                 </a>
                             </div>
                             <div class="status">
-                                <a href="#">
+                                <a href="{{ route('app.events.show', $event->id) }}">
                                     <span class="upcoming">ثبت نام</span>
                                 </a>
                             </div>

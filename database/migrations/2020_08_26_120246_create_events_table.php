@@ -27,6 +27,17 @@ class CreateEventsTable extends Migration
             $table->text('picture');
             $table->timestamps();
         });
+
+        Schema::create('event_user', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('team_id');
+            $table->enum('payment', ['notPaid', 'paid'])->default('notPaid');
+            $table->timestamps();
+        });
+
+
     }
 
     /**
