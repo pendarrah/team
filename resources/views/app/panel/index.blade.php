@@ -18,15 +18,38 @@
                                         <div class="col-md-12">
                                             <div class="navbar-panel">
                                                 <div class="navbar-panel-left">
-                                                    <div class="notif-icon">
-                                                        <i class="fa fa-envelope"></i>
-                                                    </div>
-                                                    <div class="notif-icon">
-                                                        <i class="fa fa-bell"></i>
-                                                    </div>
-                                                    <div class="notif-icon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="اطلاعیه ها">
+                                                            <div class="notif-icon">
+                                                                    <i class="fa fa-envelope"></i>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="رویدادها">
+                                                            <div class="notif-icon">
+                                                                <i class="fa fa-bell"></i>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="درخواست ها">
+                                                            <div class="notif-icon">
+                                                                <i class="fa fa-users"></i>
+                                                            </div>
+                                                        </a>
+                                                </div>
+                                                <div class="navbar-panel-right" style="margin-right: auto;">
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="پروفایل">
+                                                            <div class="notif-icon">
+                                                                <i class="fa fa-sign-out"></i>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="تنظیمات">
+                                                            <div class="notif-icon">
+                                                                <i class="fa fa-cog"></i>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="خروج">
+                                                            <div class="notif-icon">
+                                                                <i class="fa fa-user"></i>
+                                                            </div>
+                                                        </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,6 +210,40 @@
                                                     <div class="dashboard-box-btn">
                                                         <a class="dashboard-btn"> مشاهده کامل </a>
                                                     </div>
+                                                </div>
+                                                <div class="scroll-box">
+                                                    <ul>
+                                                        <li> 
+                                                            <div class="indicator indicator-events"></div>
+                                                            <div class="widget-heading">  </div>
+                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                        </li>
+                                                        <li> 
+                                                            <div class="indicator indicator-events"></div>
+                                                            <div class="widget-heading"> مدیریت سایت : </div>
+                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                        </li>
+                                                        <li> 
+                                                            <div class="indicator indicator-events"></div>
+                                                            <div class="widget-heading"> مدیریت سایت : </div>
+                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                        </li>
+                                                        <li> 
+                                                            <div class="indicator indicator-events"></div>
+                                                            <div class="widget-heading"> مدیریت سایت : </div>
+                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                        </li>
+                                                        <li> 
+                                                            <div class="indicator indicator-events"></div>
+                                                            <div class="widget-heading"> مدیریت سایت : </div>
+                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                        </li>
+                                                        <li> 
+                                                            <div class="indicator indicator-events"></div>
+                                                            <div class="widget-heading"> مدیریت سایت : </div>
+                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>

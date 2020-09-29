@@ -837,6 +837,15 @@ html .background-color-primary {
   .navbar-panel-left{
 	  display: flex;
   }
-  .notif-icon:first-child{
+  .notif-icon a:first-child{
 	  margin-right: 0px;
+  }
+  .navbar-panel-right{
+	  display: flex;
+  }
+  .navbar-panel-right > .notif-icon{
+	  border-radius: 1px;
+  }
+  .indicator-events{
+	  background-color: #3f6ad8 !important;
   }
