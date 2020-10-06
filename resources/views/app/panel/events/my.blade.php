@@ -25,26 +25,49 @@
                                                     <th>عنوان</th>
                                                     <th>نوع</th>
                                                     <th>قیمت (ریال)</th>
-                                                    <th>تعداد اعضا</th>
+                                                    <th>ظرفیت</th>
+                                                    <th>عضو</th>
+                                                    <th>باقیمانده</th>
+                                                    <th>وضعیت درخواست</th>
+                                                    <th>مالی</th>
                                                     <th>شروع</th>
                                                     <th>پایان</th>
-                                                    <th>تغییرات</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($events as $event)
+                                                @foreach ($requests as $request)
+                                                    @php
+                                                        $event = \App\Event::where('id',$request->event_id )->first();
+                                                    @endphp
                                                     <tr>
-                                                        <td>{{ $event->title }}</td>
-                                                        <td>{{ $event->category }}</td>
+                                                        <td>{{ $event->title  }}</td>
+                                                        <td>{{ $event->category->title }}</td>
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>
+                                                        <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
+                                                        <td>{{ $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->count() }}</td>
+                                                        <td>
+                                                            @if ($request->status == 'accept')
+                                                                تایید شده
+                                                            @endif
+                                                            @if ($request->status == 'reject')
+                                                                رد شده
+                                                            @endif
+                                                            @if ($request->status == 'pending')
+                                                                بررسی نشده
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($request->payment == 'paid')
+                                                                پرداخت شده
+                                                            @endif
+                                                            @if ($request->payment == 'notPaid')
+                                                                پرداخت نشده
+                                                            @endif
+                                                        </td>
                                                         <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>
                                                         <td style="direction: ltr">{{ jdate($event->timeFinish) }}</td>
-                                                        <td>
-                                                            <a href="{{ route('event.edit', $event->id) }}">ویرایش</a>
-                                                            |
-                                                            <a href="{{ route('event.delete', $event->id) }}">حذف</a>
-                                                        </td>
+
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

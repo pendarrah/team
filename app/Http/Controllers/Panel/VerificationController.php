@@ -61,7 +61,7 @@ class VerificationController extends \App\Http\Controllers\Controller
             'fName' => 'required',
             'lName' => 'required',
             'email' => 'required|email',
-            'type' => 'required|in:coach,user',
+            'type' => 'required|in:supervisor,user',
             'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
 
             'category_id' => 'required',

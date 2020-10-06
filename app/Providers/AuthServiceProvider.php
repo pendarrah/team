@@ -25,6 +25,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        \Gate::define('user', function(){
+            return \Auth::user()->type == 'user';
+        });
+
+        \Gate::define('supervisor', function(){
+            return \Auth::user()->type == 'supervisor';
+        });
+
+        \Gate::define('admin', function(){
+            return \Auth::user()->type == 'admin';
+        });
+
+
     }
 }

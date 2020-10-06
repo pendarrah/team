@@ -2870,7 +2870,7 @@ html.boxed section.video > div:first-child video {
 
 @media (min-width: 576px) {
 	.modal-dialog {
-		max-width: 600px;
+		max-width: 800px;
 	}
 }
 

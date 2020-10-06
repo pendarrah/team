@@ -20,6 +20,9 @@
         <div class="sort-destination-loader sort-destination-loader-showing">
             <div class="row image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}">
                 @foreach ($events as $event)
+                    @php
+                       $zarfiat = $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count();
+                    @endphp
                     <div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 {{ $event->category->english }}">
                         <a href="{{ route('app.events.show', $event->id) }}">
                             <div class="ova_thumbnail">
@@ -56,15 +59,13 @@
                                 {{ $event->description }}
                             </div>
                             <div class="more_detail">
-                                <a class="btn_link" href="{{ route('app.events.show', $event->id) }}">
-                                    جزئیات بیشتر<i class="arrow_right"></i>
-                                </a>
+                                @if ($zarfiat != 0)
+                                    <a class="btn_link" href="{{ route('app.events.show', $event->id) }}">ثبت نام<i class="arrow_right"></i></a>
+                                @else
+                                    <a class="btn_link" href="">ظرفیت تکمیل است<i class="arrow_right"></i></a>
+                                @endif
                             </div>
-                            <div class="status">
-                                <a href="{{ route('app.events.show', $event->id) }}">
-                                    <span class="upcoming">ثبت نام</span>
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 @endforeach

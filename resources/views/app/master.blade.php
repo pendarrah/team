@@ -6,11 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>teamofit</title>
-
-    <meta name="keywords" content="" />
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {!! SEO::generate() !!}
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />

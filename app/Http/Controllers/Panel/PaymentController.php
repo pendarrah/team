@@ -6,6 +6,7 @@ use App\Course;
 use App\Event;
 use App\Payment;
 use App\Transaction;
+use App\User;
 use Illuminate\Http\Request;
 
 class PaymentController extends \App\Http\Controllers\Controller
@@ -33,11 +34,14 @@ class PaymentController extends \App\Http\Controllers\Controller
             $trackingCode = $gateway->trackingCode();
             $refId = $gateway->refId();
             $cardNumber = $gateway->cardNumber();
-
-                $payment = Payment::create(['trackingCode' => $trackingCode, 'refId' => $refId, 'cardNumber' => $cardNumber, 'amount' => $amount, 'user_id' => $userId ]);
-                $transAction = Transaction::create(['type' => 'واریز', 'for' => 'واریز به کیف پول', 'amount' => $amount , 'description' => " کد پیگیری: $trackingCode "]);
-                alert()->success("$trackingCode", "کد پیگیری شما:");
-                return redirect()->route('panel.index');
+            $user = User::where('id', $userId)->first();
+            $amount = $user->amount;
+            $newAmount = $amount += $amount;
+            $payment = Payment::create(['trackingCode' => $trackingCode, 'refId' => $refId, 'cardNumber' => $cardNumber, 'amount' => $amount, 'user_id' => $userId ]);
+            $transAction = Transaction::create(['type' => 'واریز', 'for' => 'شارژ کیف پول', 'amount' => $amount , 'description' => " کد پیگیری: $trackingCode ", 'user_id' => $userId]);
+            $user->update(['amount' => $newAmount]);
+            alert()->success("$trackingCode", "کد پیگیری شما:");
+            return redirect()->route('panel.index');
 
         } catch (Exception $e) {
             echo $e->getMessage();

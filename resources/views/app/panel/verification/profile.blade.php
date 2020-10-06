@@ -49,7 +49,7 @@
                                                             <select class="form-control" name="type">
                                                                 <option disabled >لطفا نوع حساب کاربری را انتخاب نمایید ...</option>
                                                                 <option {{ \Auth::user()->type == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
-                                                                <option {{ \Auth::user()->type == 'coach' ? 'selected' : '' }} value="coach" >مربی</option>
+                                                                <option {{ \Auth::user()->type == 'supervisor' ? 'selected' : '' }} value="supervisor" >سرپرست</option>
                                                             </select>
                                                         </div>
 

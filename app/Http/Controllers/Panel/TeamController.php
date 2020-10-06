@@ -14,7 +14,15 @@ class TeamController extends \App\Http\Controllers\Controller
      */
     public function index()
     {
-        $teams = Team::all();
+        if (\Auth::user()->type == 'admin'){
+            $teams = Team::all();
+        }elseif (\Auth::user()->type == 'supervisor'){
+            $teams = Team::where('user_id', \Auth::user()->id)->get();
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
         return view('app.panel.teams.index', compact('teams'));
     }
 
@@ -25,7 +33,14 @@ class TeamController extends \App\Http\Controllers\Controller
      */
     public function create()
     {
-        return view('app.panel.teams.create');
+        if( \Gate::allows('admin') OR \Gate::allows('supervisor')  ) {
+            $categories = Category::all();
+            return view('app.panel.teams.create');
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
     }
 
     /**
@@ -71,7 +86,15 @@ class TeamController extends \App\Http\Controllers\Controller
      */
     public function edit(Team $team)
     {
-        return view('app.panel.teams.edit', compact('team'));
+        if (\Gate::allows('admin')) {
+            return view('app.panel.teams.edit', compact('team'));
+        } else if (\Gate::allows('supervisor') && $team->user_id == \Auth::user()->id) {
+            return view('app.panel.teams.edit', compact('team'));
+        } else {
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
     }
 
     /**

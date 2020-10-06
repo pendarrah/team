@@ -22,6 +22,8 @@ Route::get('/', 'AppController@index')->name('app.index');
 Route::get('/events', 'AppController@events')->name('app.events.index');
 Route::get('/events/{id}', 'AppController@eventShow')->name('app.events.show');
 
+Route::get('/events/request/{id}', 'AppController@eventRequest')->name('app.events.request');
+
 
 Route::get('/coaches', 'AppController@coaches')->name('app.coaches');
 
@@ -39,9 +41,19 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
 
     Route::get('/', 'PanelController@index')->name('panel.index');
 
+    Route::get('event/request/accept/{id}', 'EventController@requestAccept')->name('event.requestAccept');
+    Route::get('event/request/reject/{id}', 'EventController@requestReject')->name('event.requestReject');
+
+
     Route::get('event/my', 'EventController@my')->name('event.my');
     Route::resource('event', 'EventController');
     Route::get('event/delete/{id}', 'EventController@destroy')->name('event.delete');
+    Route::get('event/wallet/{id}', 'EventController@wallet')->name('event.wallet');
+    Route::get('event/wallet/offlinePayemnt/{id}', 'EventController@offlinePayment')->name('event.offlinePayment');
+
+    Route::get('requests/index', 'ReqController@index')->name('requests.index');
+    Route::get('requests/payFromWallet/{id}', 'ReqController@payFromWallet')->name('requests.payFromWallet');
+
 
     Route::resource('team', 'TeamController');
     Route::get('team/delete/{id}', 'TeamController@destroy')->name('team.delete');
@@ -53,7 +65,7 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
 
 
     Route::post('/payment/', 'PaymentController@payment')->name('payment');
-    Route::any('/paid/{amount}/{userId}','PaymentController@paid');
+    Route::any('/paid/{amount}/{userId}/{transaction_id}/{_token}/{Authority}/{Status}','PaymentController@paid');
 
 });
 

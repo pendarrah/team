@@ -10,10 +10,12 @@ class Event extends Model
     protected $guarded = ['id'];
     use SoftDeletes;
 
-    public function user()
+
+    public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User');
     }
+
 
     public function category()
     {

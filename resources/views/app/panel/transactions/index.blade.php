@@ -21,7 +21,7 @@
                                     <div class="card">
                                         <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست تراکنش ها
 
-                                            <a href="{{ route('transaction.create') }}"><button class="btn btn-dark mr-3">موجودی: {{ \Auth::user()->amount }} ریال</button></a>
+                                            <a href="{{ route('transaction.create') }}"><button class="btn btn-dark mr-3">موجودی: {{ number_format(\Auth::user()->amount) }} ریال</button></a>
                                             <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#exampleModal">شارژ کیف پول</button>
 
                                         </h5>
@@ -86,7 +86,7 @@
                                                         <td>{{ $transaction->id }}</td>
                                                         <td>{{ $transaction->type }}</td>
                                                         <td>{{ $transaction->for }}</td>
-                                                        <td>{{ $transaction->amount }}</td>
+                                                        <td>{{ number_format($transaction->amount) }}</td>
                                                         <td>{{ $transaction->description }}</td>
                                                         <td>{{ jdate($transaction->created_at) }}</td>
                                                     </tr>

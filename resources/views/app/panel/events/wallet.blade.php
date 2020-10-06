@@ -17,40 +17,53 @@
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویداد </p>
 
                                     <div class="card">
-                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست رویداد ها<a href="{{ route('event.create') }}"><button class="btn btn-success mr-3">ایجاد رویداد</button></a></h5>
-
+                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">کیف پول رویداد</h5>
                                         <div class="card-body">
                                             <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>عنوان</th>
-                                                    <th>نوع</th>
-                                                    <th>قیمت (ریال)</th>
-                                                    <th>ظرفیت</th>
-                                                    <th>عضو</th>
-                                                    <th>باقیمانده</th>
-                                                    <th>شروع</th>
-                                                    <th>پایان</th>
-                                                    <th>کیف پول</th>
-                                                    <th>تغییرات</th>
+                                                    <th>کد</th>
+                                                    <th>ورزشکار</th>
+                                                    <th>وضعیت</th>
+                                                    <th>روش پرداخت</th>
+                                                    <th>پرداخت آفلاین</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($events as $event)
+                                                @foreach ($reqs as $req)
                                                     <tr>
-                                                        <td>{{ $event->title }}</td>
-                                                        <td>{{ $event->category->title }}</td>
-                                                        <td>{{ number_format($event->price) }}</td>
-                                                        <td>{{ $event->membersCount }}</td>
-                                                        <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
-                                                        <td>{{ $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
-                                                        <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>
-                                                        <td style="direction: ltr">{{ jdate($event->timeFinish) }}</td>
-                                                        <td><a href="{{ route('event.wallet', $event->id) }}">مشاهده</a></td>
+                                                        <td>{{ $req->id }}</td>
+                                                        <td>{{ \App\User::where('id', $req->user_id )->first()->fName . ' ' . \App\User::where('id', $req->user_id )->first()->lName }}</td>
                                                         <td>
-                                                            <a href="{{ route('event.edit', $event->id) }}">ویرایش</a>
-                                                            |
-                                                            <a href="{{ route('event.delete', $event->id) }}">حذف</a>
+                                                            @if ($req->payment == 'notPaid')
+                                                                <button class="btn btn-warning mr-3">پرداخت نشده</button>
+                                                            @endif
+
+                                                            @if ($req->payment == 'paid')
+                                                                    <button class="btn btn-success mr-3">پرداخت شده</button>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($req->method == null)
+                                                                -
+                                                            @endif
+
+                                                            @if ($req->method == 'online')
+                                                                آنلاین
+                                                            @endif
+
+                                                                @if ($req->method == 'offline')
+                                                                    آفلاین
+                                                                @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($req->payment == 'notPaid')
+                                                                <a href="{{ route('event.offlinePayment', $req->id) }}"><button class="btn btn-success mr-3">پرداخت</button></a>                                                            @endif
+
+                                                            @if ($req->payment == 'paid')
+                                                                <button class="btn btn-success mr-3">پرداخت شده</button>
+                                                            @endif
+
                                                         </td>
                                                     </tr>
                                                 @endforeach

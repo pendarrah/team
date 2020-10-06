@@ -55,50 +55,7 @@
                                         </div>
                                     </div>
                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="dashboard-box">
-                                                <div class="dashboard-box-header">
-                                                    <div>اطلاعیه ها</div>
-                                                    <div class="dashboard-box-btn">
-                                                        <a class="dashboard-btn"> مشاهده کامل </a>
-                                                    </div>
-                                                </div>
-                                                <div class="scroll-box">
-                                                    <ul>
-                                                        <li> 
-                                                            <div class="indicator"></div>
-                                                            <div class="widget-heading"> مدیریت سایت : </div>
-                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="indicator"></div>
-                                                            <div class="widget-heading"> مدیریت سایت : </div>
-                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="indicator"></div>
-                                                            <div class="widget-heading"> مدیریت سایت : </div>
-                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="indicator"></div>
-                                                            <div class="widget-heading"> مدیریت سایت : </div>
-                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="indicator"></div>
-                                                            <div class="widget-heading"> مدیریت سایت : </div>
-                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="indicator"></div>
-                                                            <div class="widget-heading"> مدیریت سایت : </div>
-                                                            <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="col-md-6">
                                             <div class="dashboard-box">
                                                 <div class="dashboard-box-header">
@@ -109,100 +66,74 @@
                                                 </div>
                                                 <div class="scroll-box">
                                                     <ul>
-                                                        <li> 
-                                                            <div class="bg-req">
-                                                                <div class="img-req">
-                                                                    <img src="/img/profile.jpg" width="42" alt="">
+                                                        @forelse (\DB::table('event_user')->where('owner_id', \Auth::user()->id)->where('status', 'pending')->get() as $request)
+                                                            <li>
+                                                                <div class="bg-req">
+                                                                    <div class="img-req">
+                                                                        <img src="{{ \App\User::where('id',$request->user_id )->first()->avatar }}" width="42" alt="">
+                                                                    </div>
+                                                                    <div class="title-req">
+                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
+                                                                        <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                    </div>
+                                                                    <div class="btn-req">
+                                                                        <a href="{{ route('event.requestAccept', $request->id) }}" class="btn btn-success"> پذیرفتن </a>
+                                                                        <a href="{{ route('event.requestReject', $request->id) }}" class="btn btn-warning"> رد کردن </a>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="title-req">
-                                                                    <div class="widget-heading"> محمدعلی مشاعی </div>
-                                                                    <div class="widget-subheading"> درخواست عضویت در تیم . </div>
-                                                                </div>
-                                                                <div class="btn-req">
-                                                                    <a href="#" class="btn btn-success"> پذیرفتن </a>
-                                                                    <a href="#" class="btn btn-warning"> رد کردن </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="bg-req">
-                                                                <div class="img-req">
-                                                                    <img src="/img/profile.jpg" width="42" alt="">
-                                                                </div>
-                                                                <div class="title-req">
-                                                                    <div class="widget-heading"> محمدعلی مشاعی </div>
-                                                                    <div class="widget-subheading"> درخواست عضویت در تیم . </div>
-                                                                </div>
-                                                                <div class="btn-req">
-                                                                    <a href="#" class="btn btn-success"> پذیرفتن </a>
-                                                                    <a href="#" class="btn btn-warning"> رد کردن </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="bg-req">
-                                                                <div class="img-req">
-                                                                    <img src="/img/profile.jpg" width="42" alt="">
-                                                                </div>
-                                                                <div class="title-req">
-                                                                    <div class="widget-heading"> محمدعلی مشاعی </div>
-                                                                    <div class="widget-subheading"> درخواست عضویت در تیم . </div>
-                                                                </div>
-                                                                <div class="btn-req">
-                                                                    <a href="#" class="btn btn-success"> پذیرفتن </a>
-                                                                    <a href="#" class="btn btn-warning"> رد کردن </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="bg-req">
-                                                                <div class="img-req">
-                                                                    <img src="/img/profile.jpg" width="42" alt="">
-                                                                </div>
-                                                                <div class="title-req">
-                                                                    <div class="widget-heading"> محمدعلی مشاعی </div>
-                                                                    <div class="widget-subheading"> درخواست عضویت در تیم . </div>
-                                                                </div>
-                                                                <div class="btn-req">
-                                                                    <a href="#" class="btn btn-success"> پذیرفتن </a>
-                                                                    <a href="#" class="btn btn-warning"> رد کردن </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="bg-req">
-                                                                <div class="img-req">
-                                                                    <img src="/img/profile.jpg" width="42" alt="">
-                                                                </div>
-                                                                <div class="title-req">
-                                                                    <div class="widget-heading"> محمدعلی مشاعی </div>
-                                                                    <div class="widget-subheading"> درخواست عضویت در تیم . </div>
-                                                                </div>
-                                                                <div class="btn-req">
-                                                                    <a href="#" class="btn btn-success"> پذیرفتن </a>
-                                                                    <a href="#" class="btn btn-warning"> رد کردن </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li> 
-                                                            <div class="bg-req">
-                                                                <div class="img-req">
-                                                                    <img src="/img/profile.jpg" width="42" alt="">
-                                                                </div>
-                                                                <div class="title-req">
-                                                                    <div class="widget-heading"> محمدعلی مشاعی </div>
-                                                                    <div class="widget-subheading"> درخواست عضویت در تیم . </div>
-                                                                </div>
-                                                                <div class="btn-req">
-                                                                    <a href="#" class="btn btn-success"> پذیرفتن </a>
-                                                                    <a href="#" class="btn btn-warning"> رد کردن </a>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+                                                            </li>
+                                                            @empty
+                                                            <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
+                                                        @endforelse
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
+                                       <div class="col-md-6">
+                                           <div class="dashboard-box">
+                                               <div class="dashboard-box-header">
+                                                   <div>اطلاعیه ها</div>
+                                                   <div class="dashboard-box-btn">
+                                                       <a class="dashboard-btn"> مشاهده کامل </a>
+                                                   </div>
+                                               </div>
+                                               <div class="scroll-box">
+                                                   <ul>
+                                                       <li>
+                                                           <div class="indicator"></div>
+                                                           <div class="widget-heading"> مدیریت سایت : </div>
+                                                           <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                       </li>
+                                                       <li>
+                                                           <div class="indicator"></div>
+                                                           <div class="widget-heading"> مدیریت سایت : </div>
+                                                           <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                       </li>
+                                                       <li>
+                                                           <div class="indicator"></div>
+                                                           <div class="widget-heading"> مدیریت سایت : </div>
+                                                           <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                       </li>
+                                                       <li>
+                                                           <div class="indicator"></div>
+                                                           <div class="widget-heading"> مدیریت سایت : </div>
+                                                           <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                       </li>
+                                                       <li>
+                                                           <div class="indicator"></div>
+                                                           <div class="widget-heading"> مدیریت سایت : </div>
+                                                           <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                       </li>
+                                                       <li>
+                                                           <div class="indicator"></div>
+                                                           <div class="widget-heading"> مدیریت سایت : </div>
+                                                           <div class="widget-subheading"> لطفا به هنگام پرداخت دقت لازم را انجام دهید . </div>
+                                                       </li>
+                                                   </ul>
+                                               </div>
+                                           </div>
+                                       </div>
+
                                         <div class="col-md-12" style="margin-top: 50px;">
                                             <div class="dashboard-box">
                                                 <div class="dashboard-box-header">

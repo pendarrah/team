@@ -14,8 +14,14 @@ class CategoryController extends \App\Http\Controllers\Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('app.panel.categories.index', compact('categories'));
+        if( \Gate::allows('admin')) {
+            $categories = Category::all();
+            return view('app.panel.categories.index', compact('categories'));
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
     }
 
     /**
@@ -25,7 +31,14 @@ class CategoryController extends \App\Http\Controllers\Controller
      */
     public function create()
     {
-        return view('app.panel.categories.create');
+        if( \Gate::allows('admin')) {
+            $categories = Category::all();
+            return view('app.panel.categories.create');
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
     }
 
     /**
@@ -42,7 +55,7 @@ class CategoryController extends \App\Http\Controllers\Controller
             'english' => 'required',
         ]);
 
-        Category::create(['title' => $request->title, 'engligh' => $request->engligh]);
+        Category::create(['title' => $request->title, 'english' => $request->english]);
 
         alert()->success('دسته بندی با موفقیت اضافه شد', 'اضافه شد');
         return redirect()->route('category.index');
@@ -68,7 +81,14 @@ class CategoryController extends \App\Http\Controllers\Controller
      */
     public function edit(Category $category)
     {
-        return view('app.panel.categories.edit', compact('category'));
+        if( \Gate::allows('admin')) {
+            $categories = Category::all();
+            return view('app.panel.categories.edit', compact('category'));
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
     }
 
     /**
@@ -107,7 +127,7 @@ class CategoryController extends \App\Http\Controllers\Controller
             return redirect()->back();
         }else{
             alert()->warning('عدم دسترسی');
-            return redirect()->back();
+            return redirect()->route('panel.index');
         }
 
     }
