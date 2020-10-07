@@ -67,6 +67,9 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::post('/payment/', 'PaymentController@payment')->name('payment');
     Route::any('/paid/{amount}/{userId}/{transaction_id}/{_token}/{Authority}/{Status}','PaymentController@paid');
 
+    Route::resource('users', 'UserController');
+    Route::get('user/ban/{id}', 'UserController@ban')->name('user.ban');
+
 });
 
 

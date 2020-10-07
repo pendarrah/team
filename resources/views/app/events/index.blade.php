@@ -14,9 +14,42 @@
                 <li class="nav-item" data-option-value=".{{ $category->english }}"><a class="nav-link" href="#">{{ $category->title }}</a></li>
             @endforeach
             </ul>
+
+
+
+
         </div>
+
     </div>
+
+
     <div class="ovaem_events_filter_content">
+
+
+        <div class="form-group row">
+            <label class="col-md-2 control-label text-md-right ">انتخاب شهر</label>
+            <div class="col-md-2">
+                <select class="form-control ">
+                    @foreach (\App\City::orderBy('order')->get() as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <label class="col-md-2 control-label text-md-right ">جنسیت</label>
+            <div class="col-md-2">
+                <select class="form-control ">
+                    <option>آقایان</option>
+                    <option>بانوان</option>
+                </select>
+            </div>
+
+
+
+
+        </div>
+
+
         <div class="sort-destination-loader sort-destination-loader-showing">
             <div class="row image-gallery sort-destination lightbox" data-sort-id="portfolio" data-plugin-options="{'delegate': 'a.lightbox-portfolio', 'type': 'image', 'gallery': {'enabled': true}}">
                 @foreach ($events as $event)
@@ -39,9 +72,7 @@
                                     <span data-toggle="tooltip" data-placement="bottom" title="عضویت" class="fa fa-sign-in"></span>
                                 </div>
                                 <div class="time">
-                                                <span class="price">
-                                                    <span>{{ number_format($event->price) }} ریال</span>
-                                                </span>
+                                     <span class="price"><span>{{ number_format($event->price) }} ریال</span></span>
                                 </div>
                             </div>
                         </a>
@@ -56,7 +87,8 @@
                                 {{ $event->title }}
                             </div>
                             <div class="except">
-                                {{ $event->description }}
+                                محله:
+                                {{ $event->address }}
                             </div>
                             <div class="more_detail">
                                 @if ($zarfiat != 0)

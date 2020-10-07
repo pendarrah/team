@@ -97,28 +97,12 @@
                                                 <i class="fa fa-home"></i>
                                             </a>
                                         </li>
-                                        <li class="dropdown dropdown-primary">
-                                            <a class="dropdown-toggle nav-link" href="#">
-                                                منو 1
-                                                <i class="fa fa-caret-down"></i></a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        زیر منو 1
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        زیر منو 2
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        زیر منو 3
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+
+                                    <li>
+                                        <a class="nav-link" href="/login">
+                                            ورود / عضویت
+                                        </a>
+                                    </li>
 
                                         <li>
                                             <a class="nav-link" href="{{ Route('app.events.index') }}">
@@ -126,16 +110,18 @@
                                             </a>
                                         </li>
 
+                                    <li>
+                                        <a class="nav-link" href="{{ Route('app.events.index') }}">
+                                            لیست تیم ها
+                                        </a>
+                                    </li>
+
                                         <li>
                                             <a class="nav-link" href="#">
-                                                منو چهارم
+                                                تماس باما
                                             </a>
                                         </li>
-                                        <li>
-                                            <a class="nav-link" href="/login">
-                                                ورود / عضویت
-                                            </a>
-                                        </li>
+
                                     </ul>
                                 </nav>
                             </div>

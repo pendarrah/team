@@ -20,6 +20,7 @@
         <div class="link"><a href="{{ route('event.index') }}"><div class="text"> رویداد ها</div></a></div>
         <div class="link"><a href="{{ route('team.index') }}"><div class="text"> تیم ها</div></a></div>
         <div class="link"><a href="{{ route('requests.index') }}"><div class="text"> درخواست ها</div></a></div>
+        <div class="link"><a href="{{ route('users.index') }}"><div class="text"> مدیریت کاربران</div></a></div>
     @endcan
 
     <div class="link"><a href="{{ route('panel.verification.profile') }}"><div class="text">پروفایل</div></a></div>

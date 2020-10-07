@@ -113,8 +113,8 @@
 												<td>
 													<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 													<ul class="social-network social-circle">
-														<li style="margin-bottom: 10px"><a href="whatsapp://send?text={{  url()->current()  }}" data-action="share/whatsapp/share" target="_blank" class="icoRss" title="Rss"><i style="font-size: 20px;" class="fa fa-whatsapp"></i>  واتس اپ  </a></li>
-														<li><a href="tg://msg_url?url={{ url()->current() }}&text='Teamofit.com'" class="icoTwitter" title="Rss"><i style="font-size: 20px;" class="fa fa-telegram"></i>  تلگرام  </a></li>
+														<li style="margin-bottom: 10px"><a href="whatsapp://send?text={{  url()->current()  }} شما از طرف دوستتان به این بازی دوستانه دعوت شده اید، جهت اطلاعات بیشتر برروی این لینک کنیک کنید:" data-action="share/whatsapp/share" target="_blank" class="icoRss" title="Rss"><i style="font-size: 20px;" class="fa fa-whatsapp"></i>  واتس اپ  </a></li>
+														<li><a href="tg://msg_url?url={{ url()->current() }}&text='شما از طرف دوستتان به این بازی دوستانه دعوت شده اید، جهت اطلاعات بیشتر برروی این لینک کنیک کنید:'" class="icoTwitter" title="Rss"><i style="font-size: 20px;" class="fa fa-telegram"></i>  تلگرام  </a></li>
 													</ul>
 
 												</td>
@@ -220,15 +220,15 @@
 							<aside class="sidebar">
 								<div class="agents text-color-light text-center">
 									<h4 class="text-light pt-5 m-0"> اعضای رویداد </h4>
-									<div class="owl-carousel owl-theme nav-bottom rounded-nav pl-1 pr-1 pt-3 m-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': false, 'nav': true}">
+									<div style="padding: 20px!important;" class="owl-carousel owl-theme nav-bottom rounded-nav pl-1 pr-1 pt-3 m-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': false, 'nav': true}">
 
-										@forelse ($event->users as $member)
-											<div class="pr-2 pl-2 mb-5"">
+										@forelse ($eventMembers as $member)
+											<div class="pr-2 pl-2 mb-5">
 												<span class="agent-thumb">
-													<img class="img-fluid rounded-circle" src="{{ $member->avatar ? $member->avatar : '/img/team-11.jpg' }}" alt />
+													<img class="img-fluid rounded-circle" src="{{ \App\User::where('id', $member)->first()->avatar ? \App\User::where('id', $member)->first()->avatar : '/img/team-11.jpg' }}" alt />
 												</span>
 													<span class="agent-infos text-light pt-3">
-													<strong class="text-uppercase font-weight-bold ">{{ $member->fName . ' ' . $member->lName }}</strong>
+													<strong class="text-uppercase font-weight-bold ">{{ \App\User::where('id', $member)->first()->fName . ' ' . \App\User::where('id', $member)->first()->lName }}</strong>
 												</span>
 
 											</div>

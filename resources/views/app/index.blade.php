@@ -76,7 +76,7 @@
                             <div class="ova_thumbnail">
                                 <img alt="" src="{{ asset("/files/$event->picture") }}">
                                 <div class="date">
-                                    <span class="month">{{ jdate($event->timeStart)->format('d F Y') }}</span>
+                                    <span class="month">{{ jdate($event->timeStart)->format('d F Y') }} ساعت {{ jdate($event->timeStart)->format(' H:i') }}</span>
                                 </div>
                                 <div class="venue">
                                     ساعت {{ jdate($event->timeStart)->format('G:H') }} الی {{ jdate($event->timeFinish)->format('G:H') }}
@@ -104,7 +104,8 @@
                                 {{ $event->title }}
                             </div>
                             <div class="except">
-                                {{ $event->description }}
+                                محله:
+                                {{ $event->address }}
                             </div>
                             <div class="more_detail">
                                 @if ($zarfiat != 0)

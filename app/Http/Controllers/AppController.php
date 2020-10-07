@@ -34,7 +34,8 @@ class AppController extends Controller
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
         $event = Event::find($request->id);
-        return view('app.events.show', compact('event'));
+        $eventMembers = \DB::table('event_user')->where('status', 'accept')->where('payment', 'paid')->pluck('user_id');
+        return view('app.events.show', compact('event', 'eventMembers'));
     }
     public function coaches()
     {
