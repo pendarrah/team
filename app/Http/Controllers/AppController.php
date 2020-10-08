@@ -51,6 +51,13 @@ class AppController extends Controller
 
         return view('app.teams');    
     }
+    public function teamsdetails()
+    {
+        $this->seo()->setTitle('صفحه اصلی');
+        $this->seo()->setDescription('پلتفرم تیموفیت');
+
+        return view('app.teams-details');    
+    }
 
     public function eventRequest(Request $request)
     {
