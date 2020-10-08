@@ -28,6 +28,7 @@ Route::get('/events/request/{id}', 'AppController@eventRequest')->name('app.even
 Route::get('/coaches', 'AppController@coaches')->name('app.coaches');
 Route::get('/teams', 'AppController@teams')->name('app.teams');
 Route::get('/teams-details', 'AppController@teamsdetails')->name('app.teams-details');
+Route::get('/teams-events', 'AppController@teamsevents')->name('app.teams-events');
 
 
 
