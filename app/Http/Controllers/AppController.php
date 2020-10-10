@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Team;
 use App\User;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
@@ -16,7 +17,7 @@ class AppController extends Controller
         $this->seo()->setTitle('صفحه اصلی');
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
-        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->get();
+        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->take(9)->get();
         return view('app.index', compact('events'));
     }
 
@@ -25,9 +26,31 @@ class AppController extends Controller
         $this->seo()->setTitle('صفحه اصلی');
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
-        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->get();
+        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->paginate(15);
         return view('app.events.index', compact('events'));
     }
+
+    public function eventsSearch(Request $request)
+    {
+        $this->seo()->setTitle('صفحه اصلی');
+        $this->seo()->setDescription('پلتفرم تیموفیت');
+
+
+        if ($request->gender == 'همه' && $request->city == 'همه'){
+            $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->paginate(15);
+        }
+
+        if ($request->gender == 'همه'){
+            $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->where('city_id', $request->city)->get();
+        }
+
+        if ($request->gender != 'همه' && $request->city != 'همه'){
+            $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->where('gender', $request->gender)->where('city_id', $request->city)->get();
+        }
+
+        return view('app.events.index', compact('events'));
+    }
+
     public function eventShow(Request $request)
     {
         $this->seo()->setTitle('صفحه اصلی');
@@ -49,14 +72,19 @@ class AppController extends Controller
         $this->seo()->setTitle('صفحه اصلی');
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
-        return view('app.teams');    
+        $teams = Team::paginate(15);
+        return view('app.teams.index', compact('teams'));
+
     }
-    public function teamsdetails()
+    public function teamShow(Request $request)
     {
         $this->seo()->setTitle('صفحه اصلی');
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
-        return view('app.teams-details');    
+        $team = Team::find($request->id);
+//        $teamMembers = \DB::table('event_user')->where('status', 'accept')->where('payment', 'paid')->pluck('user_id');
+
+        return view('app.teams.show', compact('team'));
     }
     public function teamsevents()
     {

@@ -16,8 +16,8 @@
 												<div>
 													<a href="{{ asset("/files/$event->picture") }}">
 														<span style="direction: rtl!important; text-align: right!important;margin-top: 10px;margin-bottom: 10px;" class="thumb-info thumb-info-centered-info thumb-info-no-borders text-4">
-															<span style=" ">وضعیت:</span>
-															<span class="thumb-info-wrapper text-4">
+															<span style="padding: 10px">وضعیت: {{ $event->status }}</span>
+															<span style="padding: 10px" class="thumb-info-wrapper text-4">
 																<img alt="Property Detail" src="{{ asset("/files/$event->picture") }}" class="img-fluid">
 																<span class="thumb-info-title text-4">
 																	<span class="thumb-info-inner text-4"><i class="icon-magnifier icons text-4"></i></span>
@@ -39,6 +39,25 @@
 										</div>
 									</div>
 
+									<div class="agents text-color-light text-center">
+										<h4 class="text-light pt-5 m-0"> مربی رویداد </h4>
+										<div style="padding: 20px!important;" class="owl-carousel owl-theme nav-bottom rounded-nav pl-1 pr-1 pt-3 m-0" data-plugin-options="{'items': 1, 'loop': false, 'dots': false, 'nav': true}">
+
+												<div class="pr-2 pl-2 mb-5">
+												<span class="agent-thumb">
+													<img class="img-fluid rounded-circle" src="{{ $event->user->avatar ? "/files/" . $event->user->avatar : '/img/team-11.jpg' }}" alt />
+												</span>
+													<span class="agent-infos text-light pt-3">
+													<strong class="text-uppercase font-weight-bold ">{{ $event->user->fName . ' ' . $event->user->lName }}</strong>
+												</span>
+
+												</div>
+
+
+
+										</div>
+									</div>
+
 								</div>
 								<div class="col-lg-5">
 									
@@ -49,12 +68,19 @@
 										</colgroup>
 										<tbody>
 
-										<tr>
+										   <tr>
 												<td class="background-color-primary text-light align-middle">عنوان رویداد: </td>
 												<td class="text-4 font-weight-bold align-middle background-color-primary text-light">
 													{{ $event->title }}
 												</td>
 											</tr>
+
+										   <tr>
+											   <td class="background-color-primary text-light align-middle">نام تیم: </td>
+											   <td class="text-4 font-weight-bold align-middle background-color-primary text-light">
+												   {{ $event->team->name }}
+											   </td>
+										   </tr>
 
 											<tr>
 												<td>مبلغ:</td>
@@ -225,10 +251,15 @@
 										@forelse ($eventMembers as $member)
 											<div class="pr-2 pl-2 mb-5">
 												<span class="agent-thumb">
-													<img class="img-fluid rounded-circle" src="{{ \App\User::where('id', $member)->first()->avatar ? \App\User::where('id', $member)->first()->avatar : '/img/team-11.jpg' }}" alt />
+													<img class="img-fluid rounded-circle" src="{{ \App\User::where('id', $member)->first()->avatar ? "/files/" . \App\User::where('id', $member)->first()->avatar : '/img/team-11.jpg' }}" alt />
 												</span>
 													<span class="agent-infos text-light pt-3">
 													<strong class="text-uppercase font-weight-bold ">{{ \App\User::where('id', $member)->first()->fName . ' ' . \App\User::where('id', $member)->first()->lName }}</strong>
+													<br><br>
+													<strong class="text-uppercase font-weight-bold ">
+														نحوه پرداخت:
+														{{ \DB::table('event_user')->where('user_id', $member)->where('event_id', $event->id)->first()->method == 'online' ? 'آنلاین' : 'آفلاین'}}
+													</strong>
 												</span>
 
 											</div>

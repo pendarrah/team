@@ -139,12 +139,29 @@
                                         <div class="form-row teamofitMarginTop">
 
                                             <div class="col">
+                                                <select class="form-control" name="team_id">
+                                                    @foreach (\App\Team::where('user_id', \Auth::user()->id)->get() as $team)
+                                                        <option {{ $event->team_id == $team->id ? 'selected' : '' }} value="{{ $team->id }}">{{ $team->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-control" name="gender">
+                                                    <option {{ $event->gender == 'آقایان' ? 'selected' : '' }} value="آقایان">آقایان</option>
+                                                    <option {{ $event->gender == 'بانوان' ? 'selected' : '' }} value="بانوان">بانوان</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row teamofitMarginTop">
+
+                                            <div class="col">
                                                 <input type="text" class="form-control" id="title" value="{{ old('title', $event->title) }}" placeholder="عنوان رویداد" name="title">
                                             </div>
                                             <div class="col">
                                                 <select class="form-control" name="category_id">
                                                     @foreach (\App\Category::all() as $category)
-                                                        <option {{ old('category_id') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                                        <option {{ $event->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -194,6 +211,16 @@
                                         <div class="form-row teamofitMarginTop">
                                             <div class="col">
                                                 <textarea name="description" class="form-control" placeholder="توضیحات رویداد ...">{{ old('description', $event->description) }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-row teamofitMarginTop">
+                                            <div class="col">
+                                                <select class="form-control" name="status">
+                                                    <option {{ old('status', $event->status) == "در حال برگزاری" ? 'selected' : '' }} value="در حال برگزاری">در حال برگزاری</option>
+                                                    <option {{ old('status', $event->status) == "لیست بسته شده" ? 'selected' : '' }} value="لیست بسته شده">لیست بسته شده</option>
+                                                    <option {{ old('status', $event->status) == "برگزار شده" ? 'selected' : '' }} value="برگزار شده">برگزار شده</option>
+                                                    <option {{ old('status', $event->status) == "لغو شده" ? 'selected' : '' }} value="لغو شده">لغو شده</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-row teamofitMarginTop teamofitTextAlignRight">

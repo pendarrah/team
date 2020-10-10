@@ -100,7 +100,13 @@
 
                                     <li>
                                         <a class="nav-link" href="/login">
-                                            ورود / عضویت
+                                            @guest()
+                                                ورود / عضویت
+                                            @endguest()
+
+                                            @auth()
+                                              مشاهده پنل کاربری
+                                            @endauth()
                                         </a>
                                     </li>
 
@@ -111,7 +117,7 @@
                                         </li>
 
                                     <li>
-                                        <a class="nav-link" href="{{ Route('app.events.index') }}">
+                                        <a class="nav-link" href="{{ Route('app.teams.index') }}">
                                             لیست تیم ها
                                         </a>
                                     </li>

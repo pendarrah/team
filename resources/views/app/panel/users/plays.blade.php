@@ -17,53 +17,49 @@
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندی </p>
 
                                     <div class="card">
-                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست  کاربران</h5>
+                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست  بازی ها/درخواست ها</h5>
 
                                         <div class="card-body">
                                             <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>نام</th>
-                                                    <th>نام خانوادگی</th>
-                                                    <th>نوع</th>
-                                                    <th>موبایل</th>
+                                                    <th>شناسه درخواست</th>
+                                                    <th>رویداد</th>
+                                                    <th>سرپرست</th>
                                                     <th>وضعیت</th>
-                                                    <th>موجودی</th>
-                                                    <th>شهر</th>
-                                                    <th>بازی ها</th>
-                                                    <th>تراکنش ها</th>
-                                                    <th>ویرایش</th>
+                                                    <th>پرداخت</th>
+                                                    <th>روش</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($users as $user)
+                                                @foreach ($requests as $request)
                                                     <tr>
-                                                        <td>{{ $user->fName }}</td>
-                                                        <td>{{ $user->lName }}</td>
+                                                        <td>{{ $request->id }}</td>
+                                                        <td>{{ \App\Event::where('id', $request->event_id)->first()->title }}</td>
+                                                        <td>{{ \App\Event::where('id', $request->event_id)->first()->user->fName . ' ' .  \App\Event::where('id', $request->event_id)->first()->user->lName }}</td>
                                                         <td>
-                                                            @if ($user->type == 'admin')
-                                                                مدیر
-                                                             @elseif($user->type == 'coach')
-                                                                مربی
-                                                            @elseif($user->type == 'user')
-                                                                ورزشکار
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $user->mobile }}</td>
-                                                        <td>
-                                                            @if ($user->status == 1)
-                                                                تایید نشده
-                                                            @elseif($user->status == 2)
+                                                            @if ($request->status == 'pending')
+                                                                بررسی نشده
+                                                             @elseif($request->status == 'reject')
+                                                                رد شده
+                                                            @elseif($request->status == 'accept')
                                                                 تایید شده
-                                                            @elseif($user->status == 13)
-                                                                مسدود
                                                             @endif
                                                         </td>
-                                                        <td>{{ number_format($user->amount) }}</td>
-                                                        <td>{{ $user->city->name }}</td>
-                                                        <td><a href="{{ route('users.plays', $user->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td><a href="{{ route('users.transactions', $user->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td style=""><a href="{{ route('users.edit', $user->id) }}">ویرایش</a></td>
+                                                        <td>
+                                                            @if ($request->payment == 'notPaid')
+                                                                پرداخت نشده
+                                                            @elseif($request->payment == 'paid')
+                                                                پرداخت شده
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($request->method == 'online')
+                                                                آنلاین
+                                                            @elseif($request->method == 'offline')
+                                                                آفلاین
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

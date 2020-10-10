@@ -17,7 +17,7 @@
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویداد </p>
 
                                     <div class="card">
-                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">کیف پول رویداد</h5>
+                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">کیف پول رویداد<a href="{{ route('checkout.request', ['event_id' => $reqs->first()->event_id]) }}"><button class="btn btn-success mr-3">ثبت درخواست تسویه</button></a></h5>
                                         <div class="card-body">
                                             <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">
                                                 <thead>

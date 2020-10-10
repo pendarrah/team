@@ -20,16 +20,18 @@ Route::get('/', 'AppController@index')->name('app.index');
 
 
 Route::get('/events', 'AppController@events')->name('app.events.index');
+Route::get('/eventsSearch/{city_id?}/{gender?}/', 'AppController@eventsSearch')->name('app.events.search');
 Route::get('/events/{id}', 'AppController@eventShow')->name('app.events.show');
 
 Route::get('/events/request/{id}', 'AppController@eventRequest')->name('app.events.request');
 
 
 Route::get('/coaches', 'AppController@coaches')->name('app.coaches');
-Route::get('/teams', 'AppController@teams')->name('app.teams');
-Route::get('/teams-details', 'AppController@teamsdetails')->name('app.teams-details');
 Route::get('/teams-events', 'AppController@teamsevents')->name('app.teams-events');
 
+Route::get('/teams', 'AppController@teams')->name('app.teams.index');
+Route::get('/teamsSearch/{city_id?}/{gender?}/', 'AppController@teamsSearch')->name('app.teams.search');
+Route::get('/teams/{id}', 'AppController@teamShow')->name('app.teams.show');
 
 
 // Add middleware auth
@@ -64,6 +66,9 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::resource('category', 'CategoryController');
     Route::get('category/delete/{id}', 'CategoryController@destroy')->name('category.delete');
 
+    Route::resource('checkout', 'CheckoutController');
+    Route::get('checkout/request/{event_id}', 'CheckoutController@request')->name('checkout.request');
+
     Route::resource('transaction', 'TransactionController');
 
 
@@ -71,6 +76,8 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::any('/paid/{amount}/{userId}/{transaction_id}/{_token}/{Authority}/{Status}','PaymentController@paid');
 
     Route::resource('users', 'UserController');
+    Route::get('user/{id}/plays', 'UserController@plays')->name('users.plays');
+    Route::get('user/{id}/transactions', 'UserController@transactions')->name('users.transactions');
     Route::get('user/ban/{id}', 'UserController@ban')->name('user.ban');
 
 });

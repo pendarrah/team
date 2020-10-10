@@ -16,10 +16,19 @@ class Event extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo('App\Team');
     }
 
 }

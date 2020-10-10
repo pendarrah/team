@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panel;
 
+use App\Category;
 use App\Team;
 use Illuminate\Http\Request;
 

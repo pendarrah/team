@@ -17,53 +17,29 @@
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندی </p>
 
                                     <div class="card">
-                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست  کاربران</h5>
+                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست  واریزی/برداشت های {{ $user->fName . ' ' . $user->lName }}</h5>
 
                                         <div class="card-body">
                                             <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>نام</th>
-                                                    <th>نام خانوادگی</th>
+                                                    <th>شناسه</th>
                                                     <th>نوع</th>
-                                                    <th>موبایل</th>
-                                                    <th>وضعیت</th>
-                                                    <th>موجودی</th>
-                                                    <th>شهر</th>
-                                                    <th>بازی ها</th>
-                                                    <th>تراکنش ها</th>
-                                                    <th>ویرایش</th>
+                                                    <th>بابت</th>
+                                                    <th>مبلغ</th>
+                                                    <th>توضیحات</th>
+                                                    <th>تاریخ و ساعت</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($users as $user)
+                                                @foreach ($transactions as $transaction)
                                                     <tr>
-                                                        <td>{{ $user->fName }}</td>
-                                                        <td>{{ $user->lName }}</td>
-                                                        <td>
-                                                            @if ($user->type == 'admin')
-                                                                مدیر
-                                                             @elseif($user->type == 'coach')
-                                                                مربی
-                                                            @elseif($user->type == 'user')
-                                                                ورزشکار
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $user->mobile }}</td>
-                                                        <td>
-                                                            @if ($user->status == 1)
-                                                                تایید نشده
-                                                            @elseif($user->status == 2)
-                                                                تایید شده
-                                                            @elseif($user->status == 13)
-                                                                مسدود
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ number_format($user->amount) }}</td>
-                                                        <td>{{ $user->city->name }}</td>
-                                                        <td><a href="{{ route('users.plays', $user->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td><a href="{{ route('users.transactions', $user->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td style=""><a href="{{ route('users.edit', $user->id) }}">ویرایش</a></td>
+                                                        <td>{{ $transaction->id }}</td>
+                                                        <td>{{ $transaction->type }}</td>
+                                                        <td>{{ $transaction->for }}</td>
+                                                        <td>{{ number_format($transaction->amount) }}</td>
+                                                        <td>{{ $transaction->description }}</td>
+                                                        <td>{{ jdate($transaction->created_at) }}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

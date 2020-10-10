@@ -40,7 +40,7 @@
                                                         </div>
 
                                                         <div class="col">
-                                                            <input type="text" class="form-control" id="title" value="{{ old('lName', \Auth::user()->fName) }}" placeholder="نام خانوادگی" name="lName">
+                                                            <input type="text" class="form-control" id="title" value="{{ old('lName', \Auth::user()->lName) }}" placeholder="نام خانوادگی" name="lName">
                                                         </div>
                                                     </div>
 
@@ -95,8 +95,8 @@
                                                         <div class="col">
                                                             <span style="direction: rtl; text-align: right"> تاریخ تولد:</span>
 
-                                                            <input class="form-control dp2" >
-                                                            <input type="hidden" placeholder="تاریخ تولد" name="birthday" class="observer2" >
+                                                            <input value="{{ \Auth::user()->birthday }}" class="form-control dp2" >
+                                                            <input type="hidden"  value="{{ \Auth::user()->birthday }}" placeholder="تاریخ تولد" name="birthday" class="observer2" >
                                                         </div>
 
 

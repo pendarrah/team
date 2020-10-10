@@ -1,12 +1,11 @@
 @extends('app.master')
 
 @section('content')
-<section class="parallax section section-text-light section-parallax section-center mt-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="/img/team-details.jpg" style="min-height: 560px; margin:0px;">
+<section class="parallax section section-text-light section-parallax section-center mt-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="/files/{{ $team->banner }}" style="min-height: 560px; margin:0px;">
 					<div class="container">
 						<div class="row justify-content-center mt-5">
 							<div class="col-lg-8 mt-5">
-								<h1 class="mt-5 pt-5 font-weight-semibold text-uppercase">تیم سلاطین</h1>
-								<p class="mb-0 lead">توضیحاتی کوتاه در رابطه با تیم ما</p>
+								<h1 class="mt-5 pt-5 font-weight-semibold text-uppercase">تیم {{ $team->name }}</h1>
 							</div>
 						</div>
 					</div>
@@ -39,24 +38,6 @@
 							<div class="col-md-6 col-lg-6 teamofit-direction-rtl textAlginRightTeamofit">
 								<h2 class="font-weight-bold text-color-dark">- درباره تیم سلاطین</h2>
 								<p class="pl-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus urna tincidunt, auctor ullamcorper risus luctus. Nunc et feugiat arcu, in placerat risus. Phasellus condimentum sapien vitae.</p>
-								<div class="pl-4">
-									<div class="row">
-										<div class="col-lg-6">
-											<ul class="list list-icons list-icons-style-3 list-tertiary">
-												<li><i class="fa fa-chevron-left"></i> تهران</li>
-												<li><i class="fa fa-chevron-left"></i> فوتبال</li>
-												<li><i class="fa fa-chevron-left"></i> Real Estate Professionals</li>
-											</ul>	
-										</div>
-										<div class="col-lg-6">
-											<ul class="list list-icons list-icons-style-3 list-tertiary">
-												<li><i class="fa fa-chevron-left"></i> Nobel Laureate Economists</li>
-												<li><i class="fa fa-chevron-left"></i> Former Political Leaders</li>
-												<li><i class="fa fa-chevron-left"></i> Chartered Financial Analysts</li>
-											</ul>
-										</div>
-									</div>
-								</div>
 							</div>
 							<div class="col-md-6 col-lg-6">
 								<div class="content-grid custom-content-grid mt-5 mb-4">
@@ -97,17 +78,11 @@
 								<div class="row">
 									<div class="col-sm-8 col-lg-5">
 										<div class="blog-post-image-wrapper teamofitTextAlignRight">
-											<img src="/img/blog-1.jpg" alt class="img-fluid mb-4" />
-											<span class="blog-post-date background-color-primary text-color-light font-weight-bold">
-												25
-												<span class="month-year font-weight-light">
-													خرداد-77
-												</span>
-											</span>
+											<img src="/files/{{ $team->user->avatar }}" alt class="img-fluid mb-4" />
 										</div>
 									</div>
 									<div class="col-sm-12 col-lg-7">
-										<h2 class="teamofitTextAlignRight teamofit-direction-rtl"> محمدعلی مشاعی</h2>
+										<h2 class="teamofitTextAlignRight teamofit-direction-rtl"> {{ $team->user->fName . ' ' .  $team->user->lName }}</h2>
 										<p class="teamofitTextAlignRight teamofit-direction-rtl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus urna tincidunt, auctor ullamcorper risus luctus. Nunc et feugiat arcu, in placerat risus. Phasellus condimentum sapien vi.</p>
 										<hr class="solid">
 										<div class="post-infos d-flex">

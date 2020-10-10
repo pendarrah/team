@@ -17,53 +17,35 @@
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندی </p>
 
                                     <div class="card">
-                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست  کاربران</h5>
+                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست درخواست های تسویه</h5>
 
                                         <div class="card-body">
                                             <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>نام</th>
-                                                    <th>نام خانوادگی</th>
-                                                    <th>نوع</th>
-                                                    <th>موبایل</th>
+                                                    <th>شناسه</th>
+                                                    <th>کاربر</th>
+                                                    <th>رویداد</th>
+                                                    <th>مقدار</th>
                                                     <th>وضعیت</th>
-                                                    <th>موجودی</th>
-                                                    <th>شهر</th>
-                                                    <th>بازی ها</th>
-                                                    <th>تراکنش ها</th>
-                                                    <th>ویرایش</th>
+                                                    <th>کد رهگیری</th>
+                                                    @if (\Auth::user()->type == 'admin')
+                                                        <th>ویرایش</th>
+                                                    @endif
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($users as $user)
+                                                @foreach ($checkouts as $checkout)
                                                     <tr>
-                                                        <td>{{ $user->fName }}</td>
-                                                        <td>{{ $user->lName }}</td>
-                                                        <td>
-                                                            @if ($user->type == 'admin')
-                                                                مدیر
-                                                             @elseif($user->type == 'coach')
-                                                                مربی
-                                                            @elseif($user->type == 'user')
-                                                                ورزشکار
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $user->mobile }}</td>
-                                                        <td>
-                                                            @if ($user->status == 1)
-                                                                تایید نشده
-                                                            @elseif($user->status == 2)
-                                                                تایید شده
-                                                            @elseif($user->status == 13)
-                                                                مسدود
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ number_format($user->amount) }}</td>
-                                                        <td>{{ $user->city->name }}</td>
-                                                        <td><a href="{{ route('users.plays', $user->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td><a href="{{ route('users.transactions', $user->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td style=""><a href="{{ route('users.edit', $user->id) }}">ویرایش</a></td>
+                                                        <td>{{ $checkout->id }}</td>
+                                                        <td>{{ $checkout->user->fName . ' ' . $checkout->user->lName }}</td>
+                                                        <td>{{ $checkout->event->title }}</td>
+                                                        <td>{{ $checkout->event->amount }}</td>
+                                                        <td>{{ $checkout->status == 'notPaid' ? 'پرداخت نشده' : 'پرداخت شده'}}</td>
+                                                        <td>{{ $checkout->trackingCode }}</td>
+                                                        @if (\Auth::user()->type == 'admin')
+                                                            <td style=""><a href="{{ route('checkout.edit', $checkout->id) }}">ویرایش</a></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

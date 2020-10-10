@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -45,6 +46,14 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
+    protected function authenticated(Request $request)
+    {
+        if (\Auth::user()->status == 13){
+            \Auth::logout();
+            alert()->warning('حساب کاربری شما مسدود است.');
+            return redirect()->route('app.index');
+        }
+    }
 
     public function __construct()
     {

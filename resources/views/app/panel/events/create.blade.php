@@ -125,6 +125,25 @@
                                         <div class="form-row teamofitMarginTop">
 
                                             <div class="col">
+                                                <select class="form-control" name="team_id">
+                                                    <option disabled selected value >لطفا تیم را انتخاب فرمایید ...</option>
+                                                    @foreach (\App\Team::where('user_id', \Auth::user()->id)->get() as $team)
+                                                        <option {{ old('team_id') == $team->id ? 'selected' : '' }} value="{{ $team->id }}">{{ $team->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-control" name="gender">
+                                                    <option disabled selected value >لطفا جنسیت را انتخاب فرمایید ...</option>
+                                                        <option {{ old('gender') == 'آقایان' ? 'selected' : '' }} value="آقایان">آقایان</option>
+                                                        <option {{ old('gender') == 'بانوان' ? 'selected' : '' }} value="بانوان">بانوان</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row teamofitMarginTop">
+
+                                            <div class="col">
                                                 <input type="text" class="form-control" id="title" value="{{ old('title') }}" placeholder="عنوان رویداد" name="title">
                                             </div>
                                             <div class="col">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\City;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -30,10 +31,10 @@ class UserController extends \App\Http\Controllers\Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\category  $category
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(User $user)
     {
         if( \Gate::allows('admin')) {
             $cities = City::all();
@@ -45,23 +46,64 @@ class UserController extends \App\Http\Controllers\Controller
         }
     }
 
+    public function plays(Request $request)
+    {
+        if( \Gate::allows('admin')) {
+            $user = User::where('id', $request->id)->first();
+            $requests = \DB::table('event_user')->where('user_id', $request->id)->get();
+            return view('app.panel.users.plays', compact( 'user', 'requests'));
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
+    }
+
+    public function transactions(Request $request)
+    {
+        if( \Gate::allows('admin')) {
+            $transactions = Transaction::where('user_id', $request->id)->get();
+            $user = User::where('id', $request->id)->first();
+            return view('app.panel.users.transactions', compact( 'transactions', 'user'));
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\category  $category
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, User $user)
     {
         $request->validate([
-            'title' => 'required',
-            'english' => 'required',
+            'fName' => 'required',
+            'lName' => 'required',
+            'type' => 'required',
+            'email' => 'required',
+            'category_id' => 'required',
+            'city_id' => 'required',
+            'mobile' => 'required',
+            'status' => 'required',
         ]);
 
-        $category->update(['title' => $request->title, 'english' => $request->english]);
-        alert()->success('دسته بندی با موفقیت ویرایش شد', 'ویرایش شد');
-        return redirect()->route('category.index');
+        $user->update([
+            'fName' => $request->fName,
+            'lName' => $request->lName,
+            'type' => $request->type,
+            'email' => $request->email,
+            'category_id' => $request->category_id,
+            'city_id' => $request->city_id,
+            'mobile' => $request->mobile,
+            'status' => $request->status,
+        ]);
+        alert()->success('کاربر با موفقیت ویرایش شد', 'ویرایش شد');
+        return redirect()->route('users.index');
 
 
     }
@@ -76,8 +118,8 @@ class UserController extends \App\Http\Controllers\Controller
     {
         $user = User::find($request->id);
         if (\Auth::user()->type === 'admin'){
-            $category->update(['title' => $request->title, 'english' => $request->english]);
-            alert()->success('دسته بندی با موفقیت حذف شد', 'حذف شد');
+            $user->update(['status' => 13]);
+            alert()->success('کاربر با موفقیت مسدود شد', 'مسدود شد');
             return redirect()->back();
         }else{
             alert()->warning('عدم دسترسی');

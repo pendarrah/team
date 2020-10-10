@@ -73,11 +73,12 @@ class VerificationController extends \App\Http\Controllers\Controller
         $date = substr($request->birthday, 0, 10);
         $birthday = date('Y-m-d H:i:s', (int) $date);
 
+
         if ($request->file('avatar')){
             $attachmentFile = $request->file('avatar');
             $attachmentFileName = time() . "_" . $attachmentFile->getClientOriginalName();
             $attachmentFile->move('files', $attachmentFileName);
-            $attachmentFileName = '/files/' . $attachmentFileName;
+            $attachmentFileName = $attachmentFileName;
 
             \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id]);
 
