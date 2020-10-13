@@ -37,7 +37,7 @@
 						<div class="row">
 							<div class="col-md-6 col-lg-6 teamofit-direction-rtl textAlginRightTeamofit">
 								<h2 class="font-weight-bold text-color-dark">- درباره تیم سلاطین</h2>
-								<p class="pl-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus urna tincidunt, auctor ullamcorper risus luctus. Nunc et feugiat arcu, in placerat risus. Phasellus condimentum sapien vitae.</p>
+								<p class="pl-4">توضیحات</p>
 							</div>
 							<div class="col-md-6 col-lg-6">
 								<div class="content-grid custom-content-grid mt-5 mb-4">
@@ -46,7 +46,7 @@
 											<div class="counters">
 												<div class="counter custom-sm-counter-style">
 													<img class="counter-icon" src="img/demos/business-consulting/icons/icon-1.png" alt />
-													<strong class="text-color-primary custom-primary-font" data-to="15" data-append="+">0</strong>
+													<strong class="text-color-primary custom-primary-font" data-to="{{ \DB::table('team_user')->where('team_id', $team->id)->where('status', 'accept')->count() }}" >0</strong>
 													<label>تعداد بازیکن</label>
 												</div>
 											</div>	
@@ -55,8 +55,8 @@
 											<div class="counters">
 												<div class="counter margin-style-2 custom-sm-counter-style">
 													<img class="counter-icon" src="img/demos/business-consulting/icons/icon-2.png" alt />
-													<strong class="text-color-primary custom-primary-font" data-to="2000" data-append="+">0</strong>
-													<label>تعداد بازی انجام شده</label>
+													<strong class="text-color-primary custom-primary-font" data-to="{{ \App\Event::where('team_id', $team->id)->count() }}" >0</strong>
+													<label>تعداد بازی ها</label>
 												</div>
 											</div>	
 										</div>
@@ -78,34 +78,13 @@
 								<div class="row">
 									<div class="col-sm-8 col-lg-5">
 										<div class="blog-post-image-wrapper teamofitTextAlignRight">
-											<img src="/files/{{ $team->user->avatar }}" alt class="img-fluid mb-4" />
+											<img src="/files/{{ $team->user->avatar }}" alt class="img-fluid" />
 										</div>
 									</div>
 									<div class="col-sm-12 col-lg-7">
 										<h2 class="teamofitTextAlignRight teamofit-direction-rtl"> {{ $team->user->fName . ' ' .  $team->user->lName }}</h2>
-										<p class="teamofitTextAlignRight teamofit-direction-rtl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus urna tincidunt, auctor ullamcorper risus luctus. Nunc et feugiat arcu, in placerat risus. Phasellus condimentum sapien vi.</p>
+										<p class="teamofitTextAlignRight teamofit-direction-rtl">توضیحات</p>
 										<hr class="solid">
-										<div class="post-infos d-flex">
-											<span class="info posted-by">
-												Posted by:
-												<span class="post-author font-weight-semibold text-color-dark">
-													John Doe
-												</span>
-											</span>
-											<span class="info comments mr-5">
-												Comments:
-												<span class="comments-number text-color-primary font-weight-semibold">
-													15
-												</span>
-											</span>
-											<span class="info like mr-5">
-												Like:
-												<span class="like-number font-weight-semibold custom-color-red">
-													38
-												</span>
-											</span>
-										</div>
-										<a class="btn btn-outline custom-border-width btn-primary custom-border-radius font-weight-semibold text-uppercase mt-5" href="#" title="Read More">صفحه سرپرست</a>
 									</div>
 								</div>
 							</article>
@@ -123,121 +102,32 @@
 						<div class="row">
 							<div class="col">
 								<div class="owl-carousel show-nav-title custom-dots-style-1 custom-dots-position custom-xs-arrows-style-2 mb-0" data-plugin-options="{'items': 4, 'margin': 20, 'autoHeight': true, 'loop': false, 'nav': false, 'dots': true}">
-									<div>
-										<div class="team-item p-0">
-											<a href="#" class="text-decoration-none">
+
+									@forelse ($teamMembers as $member)
+										<div>
+											<div class="team-item p-0">
+												<a href="#" class="text-decoration-none">
 												<span class="image-wrapper">
-													<img src="/img/team-1.jpg" alt="" class="img-fluid" />
+													<img src="{{ \App\User::where('id', $member)->first()->avatar ? "/files/" . \App\User::where('id', $member)->first()->avatar : '/img/team-11.jpg' }}" alt="" class="img-fluid" />
 												</span>
-											</a>
-											<div class="team-infos">
-												<div class="share">
-													<i class="fa fa-share-alt"></i>
-													<div class="share-icons background-color-light-teams-details">
-														<a href="#" class="text-decoration-none" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Instagram"><i class="fa fa-instagram"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Linkedin"><i class="fa fa-linkedin"></i></a>
-													</div>
-												</div>
-												<a href="#" class="text-decoration-none textAlginRightTeamofit">
-													<p class="team-member-name text-color-dark font-weight-semibold text-4">John Doe</p>
-													<span class="team-member-desc font-weight-light">CEO</span>
 												</a>
+												<div class="team-infos">
+
+													<a href="#" class="text-decoration-none textAlginRightTeamofit">
+														<p class="team-member-name text-color-dark font-weight-semibold text-4">{{ \App\User::where('id', $member)->first()->fName . ' ' . \App\User::where('id', $member)->first()->lName }}</p>
+													</a>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div>
-										<div class="team-item p-0">
-											<a href="#" class="text-decoration-none">
-												<span class="image-wrapper">
-													<img src="/img/team-1.jpg" alt="" class="img-fluid" />
-												</span>
-											</a>
-											<div class="team-infos">
-												<div class="share">
-													<i class="fa fa-share-alt"></i>
-													<div class="share-icons background-color-light-teams-details">
-														<a href="#" class="text-decoration-none" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Instagram"><i class="fa fa-instagram"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Linkedin"><i class="fa fa-linkedin"></i></a>
-													</div>
-												</div>
-												<a href="demo-business-consulting-team-detail.html" class="text-decoration-none textAlginRightTeamofit">
-													<p class="team-member-name text-color-dark font-weight-semibold text-4">Joyce Doe</p>
-													<span class="team-member-desc font-weight-light">Finance Expert</span>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div>
-										<div class="team-item p-0">
-											<a href="#" class="text-decoration-none">
-												<span class="image-wrapper">
-													<img src="/img/team-1.jpg" alt="" class="img-fluid" />
-												</span>
-											</a>
-											<div class="team-infos">
-												<div class="share">
-													<i class="fa fa-share-alt"></i>
-													<div class="share-icons background-color-light-teams-details">
-														<a href="#" class="text-decoration-none" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Instagram"><i class="fa fa-instagram"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Linkedin"><i class="fa fa-linkedin"></i></a>
-													</div>
-												</div>
-												<a href="demo-business-consulting-team-detail.html" class="text-decoration-none textAlginRightTeamofit">
-													<p class="team-member-name text-color-dark font-weight-semibold text-4">Donald Doe</p>
-													<span class="team-member-desc font-weight-light">Manufacturing</span>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div>
-										<div class="team-item p-0">
-											<a href="#" class="text-decoration-none">
-												<span class="image-wrapper">
-													<img src="/img/team-1.jpg" alt="" class="img-fluid" />
-												</span>
-											</a>
-											<div class="team-infos">
-												<div class="share">
-													<i class="fa fa-share-alt"></i>
-													<div class="share-icons background-color-light-teams-details">
-														<a href="#" class="text-decoration-none" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Instagram"><i class="fa fa-instagram"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Linkedin"><i class="fa fa-linkedin"></i></a>
-													</div>
-												</div>
-												<a href="demo-business-consulting-team-detail.html" class="text-decoration-none textAlginRightTeamofit">
-													<p class="team-member-name text-color-dark font-weight-semibold text-4">Jerry Doe</p>
-													<span class="team-member-desc font-weight-light">Project Manager</span>
-												</a>
-											</div>
-										</div>
-									</div>
-									<div>
-										<div class="team-item p-0">
-											<a href="#" class="text-decoration-none">
-												<span class="image-wrapper">
-													<img src="/img/team-1.jpg" alt="" class="img-fluid" />
-												</span>
-											</a>
-											<div class="team-infos">
-												<div class="share">
-													<i class="fa fa-share-alt"></i>
-													<div class="share-icons background-color-light-teams-details">
-														<a href="#" class="text-decoration-none" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Instagram"><i class="fa fa-instagram"></i></a>
-														<a href="#" class="text-decoration-none" title="Share on Linkedin"><i class="fa fa-linkedin"></i></a>
-													</div>
-												</div>
-												<a href="demo-business-consulting-team-detail.html" class="text-decoration-none textAlginRightTeamofit">
-													<p class="team-member-name text-color-dark font-weight-semibold text-4">Tom Doe</p>
-													<span class="team-member-desc font-weight-light">Business Development</span>
-												</a>
-											</div>
-										</div>
-									</div>
+
+									@empty
+
+									@endforelse
+
+
+
+
+
 								</div>
 							</div>
 						</div>

@@ -71,6 +71,8 @@
                                                     <th>آواتار</th>
                                                     <th>بنر</th>
                                                     <th>سرپرست</th>
+                                                    <th>اعضا</th>
+                                                    <th>رویداد ها</th>
                                                     <th>تاریخ ایجاد</th>
                                                     <th>تغییرات</th>
                                                 </tr>
@@ -82,6 +84,8 @@
                                                         <td><a target="_blank" href="{{ $team->avatar }}"><img style="max-width: 100px" src="{{ $team->avatar }}" alt=""></a></td>
                                                         <td><a target="_blank" href="{{ $team->banner }}"><img style="max-width: 100px" src="{{ $team->banner }}" alt=""></a></td>
                                                         <td>{{ $team->user->fName . ' ' . $team->user->lName }}</td>
+                                                        <td><a href="{{ route('team.users', $team->id) }}"><i class="fa fa-list"></i></a></td>
+                                                        <td><a href="{{ route('team.events', $team->id) }}"><i class="fa fa-list"></i></a></td>
                                                         <td style="direction: ltr">{{ jdate($team->created_at) }}</td>
                                                         <td>
                                                             <a href="{{ route('team.edit', $team->id) }}">ویرایش</a>

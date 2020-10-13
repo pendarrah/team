@@ -154,4 +154,31 @@ class TeamController extends \App\Http\Controllers\Controller
         }
 
     }
+
+    public function users(Request $request)
+    {
+        if( \Gate::allows('admin') OR \Gate::allows('supervisor') ) {
+            $team = Team::where('id', $request->id)->first();
+            $users = $team->users;
+            return view('app.panel.teams.users', compact( 'team', 'users'));
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
+    }
+
+    public function events(Request $request)
+    {
+        if( \Gate::allows('admin') OR \Gate::allows('supervisor') ) {
+            $team = Team::where('id', $request->id)->first();
+            $events = $team->events;
+            return view('app.panel.teams.events', compact( 'team', 'events'));
+        }else{
+            alert()->warning('عدم دسترسی');
+            return redirect()->route('panel.index');
+            exit;
+        }
+    }
+
 }

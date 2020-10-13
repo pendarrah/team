@@ -82,9 +82,9 @@ class AppController extends Controller
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
         $team = Team::find($request->id);
-//        $teamMembers = \DB::table('event_user')->where('status', 'accept')->where('payment', 'paid')->pluck('user_id');
+        $teamMembers = \DB::table('team_user')->where('status', 'accept')->pluck('user_id');
 
-        return view('app.teams.show', compact('team'));
+        return view('app.teams.show', compact('team', 'teamMembers'));
     }
     public function teamsevents()
     {
