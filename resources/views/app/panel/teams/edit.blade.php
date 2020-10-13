@@ -33,7 +33,42 @@
                                             <div class="col">
                                                 <input style="width: 450px" type="text" class="form-control" id="name" value="{{ old('name', $team->name) }}" placeholder="نام تیم" name="name">
                                             </div>
+
+                                            <div class="col">
+                                                <select class="form-control" name="city_id">
+                                                    <option disabled selected value> -- شهر را انتخاب نمایید -- </option>
+                                                    @foreach (\App\City::all() as $city)
+                                                        <option {{ $team->city_id == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
+
+                                        <div class="form-row teamofitMarginTop">
+                                            <div class="col">
+                                                <select class="form-control" name="category_id">
+                                                    <option disabled selected value >لطفا دسته بندی رویداد را وارد فرمایید ...</option>
+                                                    @foreach (\App\Category::all() as $category)
+                                                        <option {{ $team->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="col">
+                                                <select class="form-control" name="gender">
+                                                    <option disabled selected value >لطفا جنسیت را انتخاب فرمایید ...</option>
+                                                    <option {{ $team->gender == 'آقایان' ? 'selected' : '' }} value="آقایان">آقایان</option>
+                                                    <option {{ $team->gender == 'بانوان' ? 'selected' : '' }} value="بانوان">بانوان</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row teamofitMarginTop">
+                                            <div class="col">
+                                                <textarea name="description" class="form-control" id="" placeholder="توضیحات تیم" cols="30" rows="10">{{ old('description', $team->description) }}</textarea>
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-row teamofitMarginTop">
                                             <div style=" direction: rtl; text-align: right;" class="col">

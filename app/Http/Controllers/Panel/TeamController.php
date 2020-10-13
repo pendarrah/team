@@ -57,11 +57,17 @@ class TeamController extends \App\Http\Controllers\Controller
             'name' => 'required',
             'avatar' => 'required',
             'banner' => 'required',
+            'description' => 'required',
+            'gender' => 'required',
+            'city_id' => 'required',
+            'category_id' => 'required',
+
         ]);
+
 
             $avatar = $this->uploadFile($request->file('avatar'));
             $banner = $this->uploadFile($request->file('banner'));
-            Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'avatar' => $avatar, 'banner' => $banner]);
+            Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id,'description' => $request->description, 'avatar' => $avatar, 'banner' => $banner]);
 
             alert()->success('تیم با موفقیت اضافه شد', 'اضافه شد');
             return redirect()->route('team.index');
@@ -110,25 +116,29 @@ class TeamController extends \App\Http\Controllers\Controller
         $request->validate([
             'name' => 'required',
             'banner' => 'nullable',
+            'description' => 'required',
             'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
+            'gender' => 'required',
+            'city_id' => 'required',
+            'category_id' => 'required',
         ]);
 
         if ($request->has('avatar') AND $request->has('banner')) {
             $avatar = $this->uploadFile($request->file('avatar'));
             $banner = $this->uploadFile($request->file('banner'));
-            $team->update( ['name' => $request->name, 'avatar' => $avatar, 'banner' => $banner]);
+            $team->update( ['name' => $request->name, 'avatar' => $avatar, 'banner' => $banner,  'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
             alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
             return redirect()->route('team.index');
 
         } else if($request->has('avatar')) {
 
             $avatar = $this->uploadFile($request->file('avatar'));
-            $team->update(['name' => $request->name, 'avatar' => $avatar]);
+            $team->update(['name' => $request->name, 'avatar' => $avatar,  'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
             alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
             return redirect()->route('team.index');
 
         } else if($request->has('name')) {
-            $team->update(['name' => $request->name]);
+            $team->update(['name' => $request->name,  'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
             alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
             return redirect()->route('team.index');
         }

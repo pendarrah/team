@@ -26,6 +26,7 @@
                                                     <th>شناسه</th>
                                                     <th>کاربر</th>
                                                     <th>رویداد</th>
+                                                    <th>شماره کارت</th>
                                                     <th>مقدار</th>
                                                     <th>وضعیت</th>
                                                     <th>کد رهگیری</th>
@@ -40,6 +41,7 @@
                                                         <td>{{ $checkout->id }}</td>
                                                         <td>{{ $checkout->user->fName . ' ' . $checkout->user->lName }}</td>
                                                         <td>{{ $checkout->event->title }}</td>
+                                                        <td>{{ \Auth::user()->card }}</td>
                                                         <td>{{ $checkout->event->amount }}</td>
                                                         <td>{{ $checkout->status == 'notPaid' ? 'پرداخت نشده' : 'پرداخت شده'}}</td>
                                                         <td>{{ $checkout->trackingCode }}</td>

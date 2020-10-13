@@ -6,7 +6,7 @@
 <div class="container marginBottomTeamofit" >
 
     <h2 class="custom-bar _left text-color-dark eventsMarginTop">رویدادها</h2>
-    <div class="events_filter_show_nav">
+    <div style="display: none;" class="events_filter_show_nav">
         <div style="float:right;" class="select_cat_mobile_btn">
         <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter">
                 <li class="nav-item" data-option-value="*"><a class="nav-link active" href="#">نمایش همه</a></li>
@@ -14,7 +14,7 @@
                 <li class="nav-item" data-option-value=".{{ $category->english }}"><a class="nav-link" href="#">{{ $category->title }}</a></li>
             @endforeach
             </ul>
-            
+
         </div>
 
     </div>
@@ -22,30 +22,42 @@
 
     <div class="ovaem_events_filter_content">
 
+        @if (Route::currentRouteName() != 'app.teams.events')
+            <form action="{{ route('app.events.search') }}" method="get">
+                <div class="form-group row">
 
-        <form action="{{ route('app.events.search') }}" method="get">
-            <div class="form-group row">
-                <label class="col-md-2 control-label text-md-right ">انتخاب شهر:</label>
-                <div class="col-md-2">
-                    <select name="city" class="form-control">
-                        <option {{ request()->gender == 'همه' ? 'selected' : '' }} value="همه">همه</option>
-                    @foreach (\App\City::orderBy('order')->get() as $city)
-                            <option {{ request()->city == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                    <label class="col-md-1 control-label text-md-right ">نوع:</label>
+                    <div class="col-md-2">
+                        <select name="type" class="form-control">
+                            <option {{ request()->type == 'همه' ? 'selected' : '' }} value="همه">همه</option>
+                            @foreach (\App\Category::all() as $category)
+                                <option {{ request()->type == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                <label class="col-md-2 control-label text-md-right ">جنسیت:</label>
-                <div class="col-md-2">
-                    <select name="gender" class="form-control">
-                        <option value="همه" {{ request()->gender == 'همه' ? 'selected' : '' }} >همه</option>
-                        <option value="آقایان" {{ request()->gender == 'آقایان' ? 'selected' : '' }} >آقایان</option>
-                        <option value="بانوان" {{ request()->gender == 'بانوان' ? 'selected' : '' }} >بانوان</option>
-                    </select>
+                    <label class="col-md-1 control-label text-md-right "> شهر:</label>
+                    <div class="col-md-2">
+                        <select name="city" class="form-control">
+                            <option {{ request()->city == 'همه' ? 'selected' : '' }} value="همه">همه</option>
+                        @foreach (\App\City::orderBy('order')->get() as $city)
+                                <option {{ request()->city == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <label class="col-md-1 control-label text-md-right ">جنسیت:</label>
+                    <div class="col-md-2">
+                        <select name="gender" class="form-control">
+                            <option value="همه" {{ request()->gender == 'همه' ? 'selected' : '' }} >همه</option>
+                            <option value="آقایان" {{ request()->gender == 'آقایان' ? 'selected' : '' }} >آقایان</option>
+                            <option value="بانوان" {{ request()->gender == 'بانوان' ? 'selected' : '' }} >بانوان</option>
+                        </select>
+                    </div>
+                    <button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">جستجو</button>
                 </div>
-                <button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">جستجو</button>
-            </div>
-        </form>
+            </form>
+        @endif
 
 
 
@@ -101,7 +113,7 @@
                     </div>
                 @endforeach
             </div>
-            <p> {{ $events->links() }} </p>
+{{--            <p> {{ $events->links() }} </p>--}}
 
         </div>
 

@@ -14,7 +14,7 @@
 					<div class="container">
 						<div class="row justify-content-end">
 							<div class="col-lg-6 text-center custom-xs-border-bottom p-0">
-								<a data-hash href="#say-hello" class="text-decoration-none">
+								<a data-hash href="{{ route('app.teams.events', $team->id) }}" class="text-decoration-none">
 									<span class="custom-nav-button text-color-dark" style="color:#75abac;">
 										لیست بازی تیم	
 										<i class="fa fa-list icons text-color-primary"></i>
@@ -37,7 +37,7 @@
 						<div class="row">
 							<div class="col-md-6 col-lg-6 teamofit-direction-rtl textAlginRightTeamofit">
 								<h2 class="font-weight-bold text-color-dark">- درباره تیم سلاطین</h2>
-								<p class="pl-4">توضیحات</p>
+								<p class="pl-4">{{ $team->description }}</p>
 							</div>
 							<div class="col-md-6 col-lg-6">
 								<div class="content-grid custom-content-grid mt-5 mb-4">
@@ -78,12 +78,11 @@
 								<div class="row">
 									<div class="col-sm-8 col-lg-5">
 										<div class="blog-post-image-wrapper teamofitTextAlignRight">
-											<img src="/files/{{ $team->user->avatar }}" alt class="img-fluid" />
+											<img style="border-radius: 50%;" src="/files/{{ $team->user->avatar }}" alt class="img-circle" />
 										</div>
 									</div>
 									<div class="col-sm-12 col-lg-7">
 										<h2 class="teamofitTextAlignRight teamofit-direction-rtl"> {{ $team->user->fName . ' ' .  $team->user->lName }}</h2>
-										<p class="teamofitTextAlignRight teamofit-direction-rtl">توضیحات</p>
 										<hr class="solid">
 									</div>
 								</div>

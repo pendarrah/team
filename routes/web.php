@@ -32,6 +32,7 @@ Route::get('/teams-events', 'AppController@teamsevents')->name('app.teams-events
 Route::get('/teams', 'AppController@teams')->name('app.teams.index');
 Route::get('/teamsSearch/{city_id?}/{gender?}/', 'AppController@teamsSearch')->name('app.teams.search');
 Route::get('/teams/{id}', 'AppController@teamShow')->name('app.teams.show');
+Route::get('/teams/{id}/events', 'AppController@teamEvents')->name('app.teams.events');
 
 
 // Add middleware auth
@@ -75,7 +76,7 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
 
 
     Route::post('/payment/', 'PaymentController@payment')->name('payment');
-    Route::any('/paid/{amount}/{userId}/{transaction_id}/{_token}/{Authority}/{Status}','PaymentController@paid');
+    Route::any('/paid/{amount}/{userId}/','PaymentController@paid');
 
     Route::resource('users', 'UserController');
     Route::get('user/{id}/plays', 'UserController@plays')->name('users.plays');

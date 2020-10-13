@@ -50,6 +50,7 @@
                                                                 <option disabled >لطفا نوع حساب کاربری را انتخاب نمایید ...</option>
                                                                 <option {{ \Auth::user()->type == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
                                                                 <option {{ \Auth::user()->type == 'supervisor' ? 'selected' : '' }} value="supervisor" >سرپرست</option>
+                                                                <option {{ \Auth::user()->type == 'coach' ? 'selected' : '' }} value="coach" >مربی</option>
                                                             </select>
                                                         </div>
 
@@ -100,6 +101,15 @@
                                                         </div>
 
 
+                                                    </div>
+
+                                                    <div class="form-row teamofitMarginTop teamofitTextAlignRight">
+                                                        <div class="col">
+                                                            <input type="number" class="form-control" id="card" value="{{ old('card', \Auth::user()->card) }}" placeholder="شماره کارت ۱۶ رقمی" name="card">
+                                                        </div>
+
+                                                        <div class="col">
+                                                        </div>
                                                     </div>
 
 

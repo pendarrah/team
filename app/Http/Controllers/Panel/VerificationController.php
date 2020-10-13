@@ -61,6 +61,7 @@ class VerificationController extends \App\Http\Controllers\Controller
             'fName' => 'required',
             'lName' => 'required',
             'email' => 'required|email',
+            'card' => 'required|numeric|digits:16',
             'type' => 'required|in:supervisor,user',
             'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
 
@@ -80,10 +81,10 @@ class VerificationController extends \App\Http\Controllers\Controller
             $attachmentFile->move('files', $attachmentFileName);
             $attachmentFileName = $attachmentFileName;
 
-            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id]);
+            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id, 'card' => $request->card]);
 
         }else{
-            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id]);
+            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id, 'card' => $request->card]);
         }
 
 

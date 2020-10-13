@@ -35,18 +35,11 @@ class AppController extends Controller
         $this->seo()->setTitle('صفحه اصلی');
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
+        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->get();
+        $request->gender !== 'همه' ? $events = $events->where('gender', $request->gender) : '';
+        $request->city !== 'همه' ? $events = $events->where('city_id', $request->city) : '';
+        $request->type !== 'همه' ? $events = $events->where('category_id', $request->type) : '';
 
-        if ($request->gender == 'همه' && $request->city == 'همه'){
-            $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->paginate(15);
-        }
-
-        if ($request->gender == 'همه'){
-            $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->where('city_id', $request->city)->get();
-        }
-
-        if ($request->gender != 'همه' && $request->city != 'همه'){
-            $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->where('gender', $request->gender)->where('city_id', $request->city)->get();
-        }
 
         return view('app.events.index', compact('events'));
     }
@@ -76,6 +69,21 @@ class AppController extends Controller
         return view('app.teams.index', compact('teams'));
 
     }
+
+    public function teamsSearch(Request $request)
+    {
+        $this->seo()->setTitle('صفحه اصلی');
+        $this->seo()->setDescription('پلتفرم تیموفیت');
+
+        $teams = Team::all();
+        $request->gender !== 'همه' ? $teams = $teams->where('gender', $request->gender) : '';
+        $request->city !== 'همه' ? $teams = $teams->where('city_id', $request->city) : '';
+        $request->type !== 'همه' ? $teams = $teams->where('category_id', $request->type) : '';
+
+        return view('app.teams.index', compact('teams'));
+
+    }
+
     public function teamShow(Request $request)
     {
         $this->seo()->setTitle('صفحه اصلی');
@@ -114,6 +122,12 @@ class AppController extends Controller
         }
 
 
+    }
+
+    public function teamEvents(Request $request)
+    {
+        $events = Event::paginate(15);
+        return view('app.events.index', compact('events'));
     }
 
 }

@@ -21,7 +21,7 @@
                                     <div class="card">
                                         <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست تراکنش ها
 
-                                            <a href="{{ route('transaction.create') }}"><button class="btn btn-dark mr-3">موجودی: {{ number_format(\Auth::user()->amount) }} ریال</button></a>
+                                            <button class="btn btn-dark mr-3">موجودی: {{ number_format(\Auth::user()->amount) }} ریال</button>
                                             <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#exampleModal">شارژ کیف پول</button>
 
                                         </h5>
@@ -124,6 +124,7 @@
 
                         scrollY:"",scrollX:!0,scrollCollapse:!0,
                         responsive: !0,
+                    "order": [[ 0, "desc" ]],
 
                         buttons: ["print", "copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
                     }
