@@ -79,10 +79,82 @@
             <div class="header-row">
                 <div class="header-column">
                     <div class="header-row">
-                        <div class="header-logo">
-                            <a href="/">
-                                <img alt="teamofit"  width="50" src="/img/logo.png">
-                            </a>
+                        <div class="header-btn-lg pr-0" >
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                <img class="rounded-circle" src="/img/profile.jpg" alt="" width="42">
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right" style="">
+                                                <div class="dropdown-menu-header">
+                                                    <div class="dropdown-menu-header-inner bg-info">
+                                                        <div class="menu-header-image opacity-2" style="background-image: url('/img/city3.jpg');"></div>
+                                                        <div class="menu-header-content text-left">
+                                                            <div class="widget-content p-0">
+                                                                <div class="widget-content-wrapper">
+                                                                    <div class="widget-content-left mr-3">
+                                                                        <img class="rounded-circle" src="/img/profile.jpg" alt="" width="42">
+                                                                    </div>
+                                                                    <div class="widget-content-left">
+                                                                        <div class="widget-heading">محمدعلی مشاعی</div>
+                                                                        <div class="widget-subheading opacity-8">بازیکن تیموفیت</div>
+                                                                    </div>
+                                                                    <div class="widget-content-right mr-2">
+                                                                        <button class="btn-pill btn-shadow btn-shine btn btn-focus">خروج</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item-divider mb-0 nav-item" style="margin:0px;"></li>
+                                                </ul>
+                                                <div class="grid-menu grid-menu-2col">
+                                                    <div class="no-gutters row">
+                                                        <div class="col-sm-6">
+                                                            <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
+                                                                <i class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i> تعویض اکانت
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
+                                                                <i class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
+                                                                <b>ویرایش حساب کاربری</b>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item-divider nav-item">
+                                                    </li>
+                                                    <li class="nav-item-btn text-center nav-item">
+                                                        <button class="btn-wide btn btn-primary btn-sm"> ارتباط با پشتیبانی </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info hide-on-mobile" style="direction:rtl; text-align:right; border-right: 1px solid #fff; padding-right:12px;">
+                                        <div class="widget-heading"> محمدعلی مشاعی </div>
+                                        <div class="widget-subheading"> بازیکن تیموفیت </div>
+                                    </div>
+                                    <div class="widget-content-right header-user-info ml-3">
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                        </button>
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-bell pr-1 pl-1"></i>
+                                        </button>
+                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                            <i class="fa text-white fa-credit-card pr-1 pl-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,14 +194,13 @@
                                         </a>
                                     </li>
 
-                                        <li>
-                                            <a class="nav-link" href="#">
-                                                تماس باما
-                                            </a>
-                                        </li>
-
                                     </ul>
                                 </nav>
+                                <div class="header-logo hide-on-mobile">
+                                    <a href="{{ Route('app.index') }}">
+                                        <img alt="teamofit"  width="50" src="/img/logo.png">
+                                    </a>
+                                </div>
                             </div>
                             <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
                                 <i class="fa fa-bars"></i>

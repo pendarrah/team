@@ -8,13 +8,13 @@
 
                 <div class="featured-boxes" style="margin-top:40px;margin-bottom:100px;">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-12">
                             @include('app.panel.menu')
                         </div>
                         <div class="col-md-10">
                             <div class="container-body">
                                 <div class="container teamofitMarginTop">
-                                    <div class="row">
+                                    <!--<div class="row">
                                         <div class="col-md-12">
                                             <div class="navbar-panel">
                                                 <div class="navbar-panel-left">
@@ -53,7 +53,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                    <div class="row">
 
                                         <div class="col-md-6">
