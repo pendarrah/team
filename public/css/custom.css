@@ -127,7 +127,7 @@ html{
 }
 .ovaem_events_filter_content .ova-item.style3:hover .ova_thumbnail::after {
 	border-radius: 0;
-	background-color: rgba(0, 0, 0, 0.8);
+	/*background-color: rgba(0, 0, 0, 0.8);*/
 }
 .ovaem_events_filter_content .ova-item:hover .ova_thumbnail::after {
 	-webkit-transition: all .3s ease-in-out;
@@ -137,11 +137,11 @@ html{
 	transition: all .3s ease-in-out;
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
-	background-color: rgba(0, 0, 0, 0.6);
+	/*background-color: rgb(47 27 27 / 0%);;*/
 }
 .ovaem_events_filter_content .ova-item.style3:hover .ova_thumbnail .time {
-	display: none;
-	visibility: hidden;
+	/*display: none;*/
+	/*visibility: hidden;*/
 }
 .ovaem_events_filter_content .ova-item.style3 .ova_thumbnail .venue {
 	bottom: 90px;

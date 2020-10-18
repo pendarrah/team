@@ -31,7 +31,7 @@
                                                     <th>وضعیت درخواست</th>
                                                     <th>مالی</th>
                                                     <th>شروع</th>
-                                                    <th>پایان</th>
+                                                    <th>مدت زمان</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -66,7 +66,7 @@
                                                             @endif
                                                         </td>
                                                         <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>
-                                                        <td style="direction: ltr">{{ jdate($event->timeFinish) }}</td>
+                                                        <td style="direction: ltr">{{ jdate($event->duration) }}</td>
 
                                                     </tr>
                                                 @endforeach

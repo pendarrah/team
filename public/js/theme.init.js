@@ -505,15 +505,15 @@
 
 		});
 
-		$(".dp2").pDatepicker({
-			altField: '.observer2',
+
+		$(".dp3").pDatepicker({
+			altField: '.observer3',
 			timePicker: {
-				enabled: true,
+				enabled: false,
 				meridiem: {
 					enabled: true
 				}
 			}
-
 		});
 
 

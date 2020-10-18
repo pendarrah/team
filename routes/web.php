@@ -26,8 +26,6 @@ Route::get('/events/{id}', 'AppController@eventShow')->name('app.events.show');
 Route::get('/events/request/{id}', 'AppController@eventRequest')->name('app.events.request');
 
 
-Route::get('/coaches', 'AppController@coaches')->name('app.coaches');
-Route::get('/teams-events', 'AppController@teamsevents')->name('app.teams-events');
 
 Route::get('/teams', 'AppController@teams')->name('app.teams.index');
 Route::get('/teamsSearch/{city_id?}/{gender?}/', 'AppController@teamsSearch')->name('app.teams.search');
@@ -65,6 +63,8 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::get('team/delete/{id}', 'TeamController@destroy')->name('team.delete');
     Route::get('team/{id}/users', 'TeamController@users')->name('team.users');
     Route::get('team/{id}/events', 'TeamController@events')->name('team.events');
+    Route::post('team/invite', 'TeamController@invite')->name('team.invite');
+    Route::get('team/remove/{team_id}/{user_id}', 'TeamController@remove')->name('team.remove');
 
     Route::resource('category', 'CategoryController');
     Route::get('category/delete/{id}', 'CategoryController@destroy')->name('category.delete');
@@ -82,6 +82,10 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::get('user/{id}/plays', 'UserController@plays')->name('users.plays');
     Route::get('user/{id}/transactions', 'UserController@transactions')->name('users.transactions');
     Route::get('user/ban/{id}', 'UserController@ban')->name('user.ban');
+
+
+    Route::get('user/profile', 'UserController@profileShow')->name('panel.profile');
+    Route::post('user/profile/store', 'UserController@profileStore')->name('panel.profile.store');
 
 });
 

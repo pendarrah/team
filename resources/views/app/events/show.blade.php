@@ -3,9 +3,94 @@
 @section('content')
 <div class="container">
 
+
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">عضویت در تیموفیت</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+
+				<div style="direction: rtl; text-align: right" class="modal-body">
+
+						<form method="POST" action="{{ route('register') }}">
+							@csrf
+
+							@if ($errors->any())
+								<div style="direction: rtl!important; text-align: right" class="alert alert-danger">
+									<ul style="direction: rtl!important; text-align: right" >
+										@foreach ($errors->all() as $error)
+											<li>{{ $error }}</li>
+										@endforeach
+									</ul>
+								</div>
+							@endif
+
+							<div class="form-row">
+								<div class="form-group col">
+									<label>شماره موبایل</label>
+									<input type="text" name="mobile" class="form-control form-control-lg">
+									@error('mobile')
+									<span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+									@enderror
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-lg-6">
+									<label>کلمه عبور</label>
+									<input type="password" name="password" class="form-control form-control-lg">
+								</div>
+								<div class="form-group col-lg-6">
+									<label>تکرار کلمه عبور</label>
+									<input type="password" name="password_confirmation" class="form-control form-control-lg">
+									@error('password')
+									<span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+									@enderror
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col">
+									<input type="submit" value="ثبت نام" class="btn btn-primary float-right mb-5" data-loading-text="Loading...">
+								</div>
+							</div>
+						</form>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	@if ($errors->any())
+		<div style="direction: rtl!important; text-align: right ; margin: 20px" class="alert alert-danger">
+			<ul style="direction: rtl!important; text-align: right" >
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+
+
+
+
 					<div class="row pb-5 pt-3 teamofit-direction-ltr">
 						<div class="col-lg-9">
-									
+
 							<div class="row">
 								<div class="col-lg-7">
 
@@ -16,7 +101,16 @@
 												<div>
 													<a href="{{ asset("/files/$event->picture") }}">
 														<span style="direction: rtl!important; text-align: right!important;margin-top: 10px;margin-bottom: 10px;" class="thumb-info thumb-info-centered-info thumb-info-no-borders text-4">
-															<span style="padding: 10px">وضعیت: {{ $event->status }}</span>
+															<span style="padding: 10px">
+																وضعیت:
+																@if ($event->timeStart <= \Carbon\Carbon::now())
+																    برگزار شده
+																	@elseif ($event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() === 0)
+																	لیست تکمیل شده
+																	@else
+																	درحال برگزاری
+																@endif
+															</span>
 															<span style="padding: 10px" class="thumb-info-wrapper text-4">
 																<img alt="Property Detail" src="{{ asset("/files/$event->picture") }}" class="img-fluid">
 																<span class="thumb-info-title text-4">
@@ -60,7 +154,7 @@
 
 								</div>
 								<div class="col-lg-5">
-									
+
 									<table class="table table-striped textAlginRightTeamofit teamofit-direction-rtl">
 										<colgroup>
 											<col width="35%">
@@ -78,7 +172,7 @@
 										   <tr>
 											   <td class="background-color-primary text-light align-middle">نام تیم: </td>
 											   <td class="text-4 font-weight-bold align-middle background-color-primary text-light">
-												   {{ $event->team->name }}
+												   <a href="{{ route('app.teams.show', $event->team_id) }}">{{ $event->team->name }}</a>
 											   </td>
 										   </tr>
 
@@ -90,9 +184,9 @@
 											</tr>
 
 											<tr>
-												<td>محله:</td>
+												<td>منطقه:</td>
 												<td>
-													{{ $event->address }}  <a style="" href="#map" class="text-2" data-hash data-hash-offset="100">مشاهده در نقشه</a>
+													{{ $event->region }}
 												</td>
 											</tr>
 
@@ -129,7 +223,7 @@
 
 											<tr>
 												<td>مدت (دقیقه):</td>
-												<td style="direction: ltr">{{ \Carbon\Carbon::parse($event->timeFinish)->diffInMinutes(\Carbon\Carbon::parse($event->timeStart), true) }}</td>
+												<td style="direction: ltr">{{ $event->duration }}</td>
 											</tr>
 
 											<tr>
@@ -143,6 +237,17 @@
 														<li><a href="tg://msg_url?url={{ url()->current() }}&text='شما از طرف دوستتان به این بازی دوستانه دعوت شده اید، جهت اطلاعات بیشتر برروی این لینک کنیک کنید:'" class="icoTwitter" title="Rss"><i style="font-size: 20px;" class="fa fa-telegram"></i>  تلگرام  </a></li>
 													</ul>
 
+												</td>
+
+
+											</tr>
+
+										   <tr>
+												<td>
+													آدرس
+												</td>
+												<td>
+													{{ $event->address  }} <a style="" href="#map" class="text-2" data-hash data-hash-offset="100">مشاهده در نقشه</a>
 												</td>
 
 
@@ -199,7 +304,13 @@
 
 												<script>
 													mapboxgl.accessToken = 'pk.eyJ1IjoiYWxpaW5qZWN0b3IiLCJhIjoiY2tlcjNxM3ppNDl0dDJ5bHRseGZhazI2NCJ9.dtI471dfmQYQMkBa_j1sCw';
-													var loadingCoordinates = document.getElementById('loadingCoordinates');
+                                                    mapboxgl.setRTLTextPlugin(
+                                                        'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js',
+                                                        null,
+                                                        true // Lazy load the plugin
+                                                    );
+
+                                                    var loadingCoordinates = document.getElementById('loadingCoordinates');
 													var loadingMap = new mapboxgl.Map({
 														container: 'loadingMap',
 														style: 'mapbox://styles/mapbox/streets-v11',
@@ -256,10 +367,13 @@
 													<span class="agent-infos text-light pt-3">
 													<strong class="text-uppercase font-weight-bold ">{{ \App\User::where('id', $member)->first()->fName . ' ' . \App\User::where('id', $member)->first()->lName }}</strong>
 													<br><br>
-													<strong class="text-uppercase font-weight-bold ">
+														@if (\DB::table('event_user')->where('user_id', $member)->where('event_id', $event->id)->first())
+															<strong class="text-uppercase font-weight-bold ">
 														نحوه پرداخت:
 														{{ \DB::table('event_user')->where('user_id', $member)->where('event_id', $event->id)->first()->method == 'online' ? 'آنلاین' : 'آفلاین'}}
 													</strong>
+														@endif
+
 												</span>
 
 											</div>
@@ -269,26 +383,31 @@
 
 									@endforelse
 
-										
-										
+
+
 									</div>
 								</div>
+								
+								@if ($event->timeStart >= \Carbon\Carbon::now())
+									<h4 class="pt-4 mb-3 text-color-dark textAlginRightTeamofit teamofit-direction-rtl"> پیوستن به رویداد </h4>
 
-								<h4 class="pt-4 mb-3 text-color-dark textAlginRightTeamofit teamofit-direction-rtl"> پیوستن به رویداد </h4>
-
-								@guest()
+									@guest()
 										<p class="textAlginRightTeamofit teamofit-direction-rtl">جهت پیوستن به رویداد ، ابتدا ثبت نام کنید</p>
-					     				<a href="{{ route('login') }}"><p style="text-align: center"><button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">عضویت</button></p></a>
-								@endguest
+										<a data-toggle="modal" data-target="#exampleModal"><p style="text-align: center"><button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">عضویت</button></p></a>
 
-								@auth()
-									@if ($event->membersCount > \DB::table('event_user')->where('event_id', $event->id)->count())
-						    			<p style="text-align: center"><a href="{{ route('app.events.request', $event->id) }}"><button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">ارسال درخواست</button></a></p>
-							    	@elseif ($event->membersCount <= \DB::table('event_user')->where('event_id', $event->id)->count())
-								<p style="text-align: center"><button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">ظرفیت تکمیل میباشد</button></p>
+									@endguest
 
+									@auth()
+										@if ($event->membersCount > \DB::table('event_user')->where('event_id', $event->id)->count())
+											<p style="text-align: center"><a href="{{ route('app.events.request', $event->id) }}"><button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">ارسال درخواست</button></a></p>
+										@elseif ($event->membersCount <= \DB::table('event_user')->where('event_id', $event->id)->count())
+											<p style="text-align: center"><button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">ظرفیت تکمیل میباشد</button></p>
+
+										@endif
+									@endauth
 								@endif
-						     	@endauth
+
+
 
 
 							</aside>

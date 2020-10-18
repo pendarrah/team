@@ -30,7 +30,7 @@
                                                     <th>عضو</th>
                                                     <th>باقیمانده</th>
                                                     <th>شروع</th>
-                                                    <th>پایان</th>
+                                                    <th>مدت زمان</th>
                                                     <th>کیف پول</th>
                                                     <th>تغییرات</th>
                                                 </tr>
@@ -45,7 +45,7 @@
                                                         <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
                                                         <td>{{ $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
                                                         <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>
-                                                        <td style="direction: ltr">{{ jdate($event->timeFinish) }}</td>
+                                                        <td style="direction: ltr">{{ jdate($event->duration) }}</td>
                                                         <td><a href="{{ route('event.wallet', $event->id) }}">مشاهده</a></td>
                                                         <td>
                                                             <a href="{{ route('event.edit', $event->id) }}">ویرایش</a>

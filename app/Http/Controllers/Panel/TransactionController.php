@@ -14,7 +14,7 @@ class TransactionController extends \App\Http\Controllers\Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::where('user_id', \Auth::user()->id)->get();
         return view('app.panel.transactions.index', compact('transactions'));
     }
 

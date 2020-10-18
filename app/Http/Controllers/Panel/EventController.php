@@ -68,7 +68,8 @@ class EventController extends \App\Http\Controllers\Controller
             'price' => 'required',
             'membersCount' => 'required',
             'timeStart' => 'required',
-            'timeFinish' => 'required',
+            'duration' => 'required',
+            'region' => 'required',
             'address' => 'required',
             'description' => 'nullable',
             'picture' => 'nullable',
@@ -84,21 +85,19 @@ class EventController extends \App\Http\Controllers\Controller
         $date = substr($request->timeStart, 0, 10);
         $timeStart = date('Y-m-d H:i:s', (int)$date);
 
-        $date = substr($request->timeFinish, 0, 10);
-        $timeFinish = date('Y-m-d H:i:s', (int)$date);
 
 
         if ($request->file('picture')) {
             $attachmentFile = $request->file('picture');
             $attachmentFileName = time() . "_" . $attachmentFile->getClientOriginalName();
             $attachmentFile->move('files', $attachmentFileName);
-            Event::create(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'address' => $request->address, 'description' => $request->description, 'picture' => $attachmentFileName, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'team_id' => $request->team_id, 'gender' => $request->gender]);
+            Event::create(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'duration' => $request->duration, 'address' => $request->address, 'description' => $request->description, 'picture' => $attachmentFileName, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'team_id' => $request->team_id, 'gender' => $request->gender, 'region' => $request->region]);
 
             alert()->success('رویداد با موفقیت اضافه شد', 'اضافه شد');
             return redirect()->route('event.index');
         } else {
             $attachmentFileName = "Nothing";
-            Event::create(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'address' => $request->address, 'description' => $request->description, 'picture' => $attachmentFileName, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'team_id' => $request->team_id, 'gender' => $request->gender]);
+            Event::create(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'duration' => $request->duration, 'address' => $request->address, 'description' => $request->description, 'picture' => $attachmentFileName, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'team_id' => $request->team_id, 'gender' => $request->gender, 'region' => $request->region]);
 
             alert()->success('رویداد با موفقیت اضافه شد', 'اضافه شد');
             return redirect()->route('event.index');
@@ -151,7 +150,8 @@ class EventController extends \App\Http\Controllers\Controller
             'price' => 'required',
             'membersCount' => 'required',
             'timeStart' => 'required',
-            'timeFinish' => 'required',
+            'duration' => 'required',
+            'region' => 'required',
             'address' => 'required',
             'type' => 'required',
             'description' => 'required',
@@ -169,20 +169,17 @@ class EventController extends \App\Http\Controllers\Controller
         $date = substr($request->timeStart, 0, 10);
         $timeStart = date('Y-m-d H:i:s', (int)$date);
 
-        $date = substr($request->timeFinish, 0, 10);
-        $timeFinish = date('Y-m-d H:i:s', (int)$date);
-
 
         if ($request->file('picture')) {
             $attachmentFile = $request->file('picture');
             $attachmentFileName = time() . "_" . $attachmentFile->getClientOriginalName();
             $attachmentFile->move('files', $attachmentFileName);
-            $event->update(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'address' => $request->address, 'description' => $request->description, 'picture' => $attachmentFileName, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'status' => $request->status, 'team_id' => $request->team_id, 'gender' => $request->gender]);
+            $event->update(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'duration' => $request->duration, 'address' => $request->address, 'description' => $request->description, 'picture' => $attachmentFileName, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'status' => $request->status, 'team_id' => $request->team_id, 'gender' => $request->gender, 'region' => $request->region]);
 
             alert()->success('رویداد با موفقیت اضافه شد', 'اضافه شد');
             return redirect()->back();
         } else {
-            $event->update(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'timeFinish' => $timeFinish, 'address' => $request->address, 'description' => $request->description, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'status' => $request->status, 'team_id' => $request->team_id, 'gender' => $request->gender]);
+            $event->update(['user_id' => \Auth::user()->id, 'title' => $request->title, 'price' => $request->price, 'membersCount' => $request->membersCount, 'timeStart' => $timeStart, 'duration' => $request->duration, 'address' => $request->address, 'description' => $request->description, 'type' => $request->type, 'city_id' => $request->city_id, 'category_id' => $request->category_id, 'lat' => $request->lat, 'long' => $request->long, 'status' => $request->status, 'team_id' => $request->team_id, 'gender' => $request->gender, 'region' => $request->region]);
 
             alert()->success('رویداد با موفقیت ویرایش شد', 'ویرایش شد');
             return redirect()->back();

@@ -7,6 +7,7 @@
             <div class="col">
 
 
+
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -19,14 +20,45 @@
 
 
                             <div class="modal-body">
-                                <p style="direction: rtl; text-align: right">جهت ارسال لینک دعوت تیم، خواهشمند است شماره موبایل های مورد نظر جهت دعوت را وارد نمایید. درصورت نیاز به ارسال پیامک به افراد مختلف، شماره هارا با کاما جدا نمایید.</p>
+                                <p style="direction: rtl; text-align: right">جهت ارسال لینک دعوت تیم، خواهشمند است شماره موبایل و اطلاعات فرد مورد نظر جهت دعوت را وارد نمایید.</p>
 
-                                <form method="post" action="">
+
+                                @if ($errors->any())
+                                    <div style="direction: rtl!important; text-align: right" class="alert alert-danger">
+                                        <ul style="direction: rtl!important; text-align: right" >
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+
+                                <form method="post" action="{{ route('team.invite') }}">
                                     @csrf
                                     <div class="form-row teamofitMarginTop">
-                                        <div style=" direction: rtl; text-align: right;" class="col">
-                                            <label style="color: black; display: inline" for="">شماره های موبایل:</label>
-                                            <input style="width: 350px;display: inline; direction: ltr; text-align: left    " type="text" class="form-control" id="phone" value="{{ old('phone') }}" placeholder="Ex: 09127259562,09201010328" name="phone">
+                                        <div class="col">
+                                            <select class="form-control" name="team_id">
+                                                <option disabled selected value >لطفا تیم را انتخاب فرمایید ...</option>
+                                                @foreach (\App\Team::where('user_id', \Auth::user()->id)->get() as $team)
+                                                    <option {{ old('team_id') == $team->id ? 'selected' : '' }} value="{{ $team->id }}">{{ $team->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col">
+                                            <input  type="text" class="form-control" placeholder="شماره موبایل" id="mobile" value="{{ old('mobile') }}" name="mobile">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row teamofitMarginTop">
+                                        <div class="col">
+                                            <input  type="text" class="form-control" placeholder="نام" id="fName" value="{{ old('fName') }}" name="fName">
+                                        </div>
+
+                                        <div class="col">
+                                            <input type="text" class="form-control" placeholder="نام خانوادگی" id="lName" value="{{ old('lName') }}" name="lName">
                                         </div>
                                     </div>
 
@@ -55,6 +87,16 @@
                             <div class="container-body">
                                 <div class="container teamofitMarginTop">
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویداد </p>
+
+                                    @if ($errors->any())
+                                        <div style="direction: rtl!important; text-align: right; " class="alert alert-danger">
+                                            <ul style="direction: rtl!important; text-align: right" >
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
 
                                     <div class="card">
                                         <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست تیم ها

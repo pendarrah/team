@@ -198,12 +198,39 @@
                                                 <input type="hidden" name="timeStart" value="{{ $event->timeStart }}" placeholder="زمان شروع رویداد" class="observer" >
                                             </div>
                                             <div class="col">
-                                                <input value="{{ $event->timeFinish }}" class="form-control dp2" >
-                                                <input value="{{ $event->timeFinish }}" type="hidden" placeholder="زمان پایان رویداد" name="timeFinish" class="observer2" >
-
+                                                <input type="number" class="form-control" id="duration" value="{{ old('duration', $event->duration) }}" placeholder="مدت زمان (دقیقه)" name="duration">
                                             </div>
                                         </div>
                                         <div class="form-row teamofitMarginTop">
+
+                                            <div class="col">
+                                                <select class="form-control" name="region">
+                                                    <option disabled selected value> -- منطقه را انتخاب نمایید -- </option>
+                                                    <option {{ $event->region == 'منطقه 1' ? 'selected' : '' }} value="منطقه 1">منطقه 1</option>
+                                                    <option {{ $event->region == 'منطقه 2' ? 'selected' : '' }} value="منطقه 2">منطقه 2</option>
+                                                    <option {{ $event->region == 'منطقه 3' ? 'selected' : '' }} value="منطقه 3">منطقه 3</option>
+                                                    <option {{ $event->region == 'منطقه 4' ? 'selected' : '' }} value="منطقه 4">منطقه 4</option>
+                                                    <option {{ $event->region == 'منطقه 5' ? 'selected' : '' }} value="منطقه 5">منطقه 5</option>
+                                                    <option {{ $event->region == 'منطقه 6' ? 'selected' : '' }} value="منطقه 6">منطقه 6</option>
+                                                    <option {{ $event->region == 'منطقه 7' ? 'selected' : '' }} value="منطقه 7">منطقه 7</option>
+                                                    <option {{ $event->region == 'منطقه 8' ? 'selected' : '' }} value="منطقه 8">منطقه 8</option>
+                                                    <option {{ $event->region == 'منطقه 9' ? 'selected' : '' }} value="منطقه 9">منطقه 9</option>
+                                                    <option {{ $event->region == 'منطقه 10' ? 'selected' : '' }} value="منطقه 10">منطقه 10</option>
+                                                    <option {{ $event->region == 'منطقه 11' ? 'selected' : '' }} value="منطقه 11">منطقه 11</option>
+                                                    <option {{ $event->region == 'منطقه 12' ? 'selected' : '' }} value="منطقه 12">منطقه 12</option>
+                                                    <option {{ $event->region == 'منطقه 13' ? 'selected' : '' }} value="منطقه 13">منطقه 13</option>
+                                                    <option {{ $event->region == 'منطقه 14' ? 'selected' : '' }} value="منطقه 14">منطقه 14</option>
+                                                    <option {{ $event->region == 'منطقه 15' ? 'selected' : '' }} value="منطقه 15">منطقه 15</option>
+                                                    <option {{ $event->region == 'منطقه 16' ? 'selected' : '' }} value="منطقه 16">منطقه 16</option>
+                                                    <option {{ $event->region == 'منطقه 17' ? 'selected' : '' }} value="منطقه 17">منطقه 17</option>
+                                                    <option {{ $event->region == 'منطقه 18' ? 'selected' : '' }} value="منطقه 18">منطقه 18</option>
+                                                    <option {{ $event->region == 'منطقه 19' ? 'selected' : '' }} value="منطقه 19">منطقه 19</option>
+                                                    <option {{ $event->region == 'منطقه 20' ? 'selected' : '' }} value="منطقه 20">منطقه 20</option>
+                                                    <option {{ $event->region == 'منطقه 21' ? 'selected' : '' }} value="منطقه 21">منطقه 21</option>
+                                                    <option {{ $event->region == 'منطقه 22' ? 'selected' : '' }} value="منطقه 22">منطقه 22</option>
+                                                </select>
+                                            </div>
+                                            
                                             <div class="col">
                                                 <input type="text" class="form-control" id="address" placeholder="آدرس" value="{{ old('address', $event->address) }}" name="address">
                                             </div>

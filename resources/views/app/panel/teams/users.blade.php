@@ -34,7 +34,8 @@
                                                     <th>نام خانوادگی</th>
                                                     <th>موبایل</th>
                                                     <th>موجودی</th>
-                                                    <th>شهر</th>
+                                                    <th>سن</th>
+                                                    <th>اخراج از تیم</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -44,7 +45,8 @@
                                                         <td>{{ $user->lName }}</td>
                                                         <td>{{ $user->mobile }}</td>
                                                         <td>{{ number_format($user->amount) }}</td>
-                                                        <td>{{ $user->city->name }}</td>
+                                                        <td>{{ jdate($user->birthday)->ago() }}</td>
+                                                        <td><a href="{{ route('team.remove', ['user_id' => $user->id, 'team_id' => $team->id]) }}">اخراج</a></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

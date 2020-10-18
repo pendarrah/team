@@ -60,33 +60,14 @@ class VerificationController extends \App\Http\Controllers\Controller
         $request->validate([
             'fName' => 'required',
             'lName' => 'required',
-            'email' => 'required|email',
-            'card' => 'required|numeric|digits:16',
-            'type' => 'required|in:supervisor,user',
-            'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
-
-            'category_id' => 'required',
             'birthday' => 'required',
-            'city_id' => 'required',
 
         ]);
 
         $date = substr($request->birthday, 0, 10);
         $birthday = date('Y-m-d H:i:s', (int) $date);
 
-
-        if ($request->file('avatar')){
-            $attachmentFile = $request->file('avatar');
-            $attachmentFileName = time() . "_" . $attachmentFile->getClientOriginalName();
-            $attachmentFile->move('files', $attachmentFileName);
-            $attachmentFileName = $attachmentFileName;
-
-            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id, 'card' => $request->card]);
-
-        }else{
-            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id, 'card' => $request->card]);
-        }
-
+       \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'birthday' => $birthday]);
 
         alert()->success('حساب کاربری شما تایید شد.', 'تایید شد.')->autoclose(5000);
         return view('app.panel.index');

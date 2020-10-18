@@ -35,7 +35,7 @@ class AppController extends Controller
         $this->seo()->setTitle('صفحه اصلی');
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
-        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->get();
+        $events = Event::where('timeStart', '>=', \Carbon\Carbon::now()->toDateString())->where('timeStart', '<=',date('Y-m-d', strtotime("+7 days")))->where('type', 'public')->sortByDesc('timeStart')->get();
         $request->gender !== 'همه' ? $events = $events->where('gender', $request->gender) : '';
         $request->city !== 'همه' ? $events = $events->where('city_id', $request->city) : '';
         $request->type !== 'همه' ? $events = $events->where('category_id', $request->type) : '';
@@ -126,7 +126,7 @@ class AppController extends Controller
 
     public function teamEvents(Request $request)
     {
-        $events = Event::paginate(15);
+        $events = Event::where('team_id', $request->id)->paginate(15);
         return view('app.events.index', compact('events'));
     }
 

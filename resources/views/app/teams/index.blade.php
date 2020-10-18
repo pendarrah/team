@@ -68,12 +68,6 @@
 							<a href="{{ route('app.teams.show', $team->id) }}">
 								<div class="ova_thumbnail">
 									<img alt="" src="{{ asset("/files/$team->banner") }}">
-									<div class="venue eventsIcons">
-										<span data-toggle="tooltip" data-placement="bottom" title="اشتراک گذاری" class="fa fa-share-alt"></span>
-										<span data-toggle="tooltip" data-placement="bottom" title="جزئیات" class="fa fa-info-circle"></span>
-										<span data-toggle="tooltip" data-placement="bottom" title="عضویت" class="fa fa-sign-in"></span>
-									</div>
-
 								</div>
 							</a>
 							<div class="wrap_content">

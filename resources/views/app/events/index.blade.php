@@ -74,14 +74,7 @@
                                 <div class="date">
                                     <span class="month">{{ jdate($event->timeStart)->format('d F Y') }}</span>
                                 </div>
-                                <div class="venue">
-                                    ساعت {{ jdate($event->timeStart)->format('G:H') }} الی {{ jdate($event->timeFinish)->format('G:H') }}
-                                </div>
-                                <div class="venue eventsIcons">
-                                    <span data-toggle="tooltip" data-placement="bottom" title="اشتراک گذاری" class="fa fa-share-alt"></span>
-                                    <span data-toggle="tooltip" data-placement="bottom" title="جزئیات" class="fa fa-info-circle"></span>
-                                    <span data-toggle="tooltip" data-placement="bottom" title="عضویت" class="fa fa-sign-in"></span>
-                                </div>
+
                                 <div class="time">
                                      <span class="price"><span>{{ number_format($event->price) }} ریال</span></span>
                                 </div>
@@ -98,8 +91,7 @@
                                 {{ $event->title }}
                             </div>
                             <div class="except">
-                                محله:
-                                {{ $event->address }}
+                                {{ $event->region }} |  <span>زمان شروع: {{ jdate($event->timeFinish)->format('H:i') }}</span>
                             </div>
                             <div class="more_detail">
                                 @if ($zarfiat != 0)

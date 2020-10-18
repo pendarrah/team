@@ -22,7 +22,7 @@
                                         <div class="card-body">
 
 
-                                                <form method="post" enctype="multipart/form-data" action="{{ route('panel.verification.profile.store') }}" >
+                                                <form method="post" enctype="multipart/form-data" action="{{ route('panel.profile.store') }}" >
                                                     @csrf
                                                     @if ($errors->any())
                                                         <div style="direction: rtl!important; text-align: right" class="alert alert-danger">
@@ -44,21 +44,74 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="form-row teamofitMarginTop">
+                                                        <div class="col">
+                                                            <select class="form-control" name="type">
+                                                                <option disabled >لطفا نوع حساب کاربری را انتخاب نمایید ...</option>
+                                                                <option {{ \Auth::user()->type == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
+                                                                <option {{ \Auth::user()->type == 'supervisor' ? 'selected' : '' }} value="supervisor" >سرپرست</option>
+                                                                {{--<option {{ \Auth::user()->type == 'coach' ? 'selected' : '' }} value="coach" >مربی</option>--}}
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <input type="email" class="form-control" id="email" value="{{ old('email', \Auth::user()->email) }}" placeholder="آدرس ایمیل" name="email">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-row teamofitMarginTop">
+
+                                                        <div class="col">
+                                                            <select class="form-control" name="category_id">
+                                                                <option disabled selected value> -- رشته انتخاب نمایید -- </option>
+                                                                @foreach (\App\Category::all() as $category)
+                                                                    <option {{ \Auth::user()->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+
+
+
+                                                        <div class="col">
+                                                            <select class="form-control" name="city_id">
+                                                                <option disabled selected value> -- شهر را انتخاب نمایید -- </option>
+                                                                @foreach (\App\City::all() as $city)
+                                                                    <option {{ \Auth::user()->city_id == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
 
 
                                                     <div class="form-row teamofitMarginTop teamofitTextAlignRight">
 
+                                                        <div class="col">
+                                                            <label style="color: black" for="">تصویر پروفایل انتخاب نمایید:</label>
+                                                            <input type="file" name="avatar" class="btn btn-warning" value="آپلود تصویر">
+                                                        </div>
 
                                                         <div class="col">
                                                             <span style="direction: rtl; text-align: right"> تاریخ تولد:</span>
 
-                                                            <input  class="form-control dp" >
-                                                            <input type="hidden"  placeholder="تاریخ تولد" name="birthday" class="observer" >
+                                                            <input value="{{ \Auth::user()->birthday }}" class="form-control dp3" >
+                                                            <input type="hidden"  value="{{ \Auth::user()->birthday }}" placeholder="تاریخ تولد" name="birthday" class="observer3" >
                                                         </div>
 
 
                                                     </div>
+
+                                                    <div class="form-row teamofitMarginTop teamofitTextAlignRight">
+                                                        <div class="col">
+                                                            <input type="number" class="form-control" id="card" value="{{ old('card', \Auth::user()->card) }}" placeholder="شماره کارت ۱۶ رقمی" name="card">
+                                                        </div>
+
+                                                        <div class="col">
+                                                        </div>
+                                                    </div>
+
 
 
 
