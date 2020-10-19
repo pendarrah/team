@@ -1209,7 +1209,10 @@ article.blog-post .blog-post-image-wrapper img {
 		display: none;
 	}
 }
-
+#login-box-menu {
+	background: #f53f7b;
+	border-radius: 3px;
+}
 
 
 

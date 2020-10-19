@@ -187,7 +187,7 @@
                                             </a>
                                         </li>
 
-                                    <li>
+                                    <li id="login-box-menu">
                                         <a class="nav-link" href="/login">
                                             @guest()
                                                 ورود / عضویت
