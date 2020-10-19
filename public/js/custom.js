@@ -9,6 +9,31 @@ $(document).ready(function(){
        $('.registerModalTeamofit').hide(); 
        $('.modal-title').html('ثبت نام در تیموفیت')
 	});
+
+	var value = 0; 
+	var loadWindowWidth = $(window).width();
+	if(loadWindowWidth < 767){
+		value++;
+		$('.link').each(function(){
+			var links = "<li class='menu-mobile hide-on-desktop'>"+$(this).html()+"</li>";
+			  $(".menu-mobile > a").addClass('nav-link');
+			  $('#mainNav').append(links);
+		  });
+	}
+	$(window).resize(function(){
+		var windowResize =  $(window).width();
+		if(windowResize <767 ){
+			if(value == 0){
+				$('.link').each(function(){
+					var links = "<li class='menu-mobile hide-on-desktop'>"+$(this).html()+"</li>";
+					  $(".menu-mobile > a").addClass('nav-link');
+					  $('#mainNav').append(links);
+				  });
+				  
+			value++;
+			}
+		}
+	});
 	
 	
 

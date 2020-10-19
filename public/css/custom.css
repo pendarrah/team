@@ -1198,9 +1198,14 @@ article.blog-post .blog-post-image-wrapper img {
 .dropdown-menu .grid-menu [class*="col-"] {
 	padding: .65rem;
 }
-
+.hide-on-desktop{
+	display: none;
+}
 @media (max-width: 767px){
 	.hide-on-mobile{
+		display: none;
+	}
+	.hide-on-desktop{
 		display: none;
 	}
 }

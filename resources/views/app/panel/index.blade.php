@@ -8,10 +8,10 @@
 
                 <div class="featured-boxes" style="margin-top:40px;margin-bottom:100px;">
                     <div class="row">
-                        <div class="col-md-2 col-sm-12">
+                        <div class="col-md-2 hide-on-mobile">
                             @include('app.panel.menu')
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-10 col-sm-12">
                             <div class="container-body">
                                 <div class="container teamofitMarginTop">
                                     <!--<div class="row">

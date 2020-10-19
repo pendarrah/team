@@ -27,5 +27,5 @@
     @endcan
 
     <div class="link"><a href="{{ route('panel.profile') }}"><div class="text">پروفایل</div></a></div>
-    <div class="link"><a href="{{ route('dashboard-logout') }}"><div class="text">خروج از اکانت</div></a></div>
+    <div class="link"><a class="nav-link" style="display:block;" href="{{ route('dashboard-logout') }}"><div class="text">خروج از اکانت</div></a></div>
 </div>
