@@ -12,7 +12,10 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">عضویت در تیموفیت</h5>
+					<h5 class="modal-title" id="exampleModalLabel">عضویت در تیموفیت
+						<a href="{{ route('login') }}"><button class="btn btn-success mr-3">حساب کاربری دارید؟ ورود به سیستم</button></a>
+					</h5>
+
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -24,7 +27,10 @@
 						<form method="POST" action="{{ route('register') }}">
 							@csrf
 
-							@if ($errors->any())
+							<p style="margin: 10px">جهت ارسال درخواست عضویت، ثبت نام در تیموفیت الزامیست. درصورتی که حساب کاربری دارید باکلیک برروی گزینه سبز رنگ بالا، وارد شده و سپس درخواست عضویت را ارسال نمایید در غیر اینصورت پس از تکمیل فرم عضویت و احراز هویت، مجددا برروی گزینه عضویت در رویداد کلیک نمایید.</p>
+
+
+						@if ($errors->any())
 								<div style="direction: rtl!important; text-align: right" class="alert alert-danger">
 									<ul style="direction: rtl!important; text-align: right" >
 										@foreach ($errors->all() as $error)
@@ -75,7 +81,43 @@
 
 
 
-	@if ($errors->any())
+
+	<!-- Request Sent - Payment method -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">انتخاب روش پرداخت</h5>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+
+				<div style="direction: rtl; text-align: right" class="modal-body">
+
+						<div class="form-row">
+							<div class="form-group col">
+								<input type="submit" value="کسر از کیف پول" class="btn btn-primary float-right mb-5" data-loading-text="Loading...">
+							</div>
+
+							<div class="form-group col">
+								<input type="submit" value="ثبت نام" class="btn btn-primary float-right mb-5" data-loading-text="Loading...">
+							</div>
+
+						</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+@if ($errors->any())
 		<div style="direction: rtl!important; text-align: right ; margin: 20px" class="alert alert-danger">
 			<ul style="direction: rtl!important; text-align: right" >
 				@foreach ($errors->all() as $error)

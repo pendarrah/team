@@ -23,9 +23,7 @@ class TeamController extends \App\Http\Controllers\Controller
         }elseif (\Auth::user()->type == 'supervisor'){
             $teams = Team::where('user_id', \Auth::user()->id)->get();
         }else{
-            alert()->warning('عدم دسترسی');
-            return redirect()->route('panel.index');
-            exit;
+            $teams = \Auth::user()->teams;
         }
         return view('app.panel.teams.index', compact('teams'));
     }
@@ -299,6 +297,35 @@ https://teamofit.com/teams/$team->id
             return redirect()->back();
         }
 
+    }
+
+    public function exit(Request $request)
+    {
+        $team = Team::find($request->team_id);
+            \DB::table('team_user')->where('user_id', $request->user_id)->where('team_id', $team->id)->delete();
+            alert()->success('خروج از تیم انجام شد', 'انجام شد');
+            return redirect()->back();
+    }
+
+    public function requestAccept(Request $request)
+    {
+
+        $req = \DB::table('team_user')->where('id', $request->id)->first();
+        $team = Team::where('id', $req->team_id)->first();
+
+            \DB::table('team_user')->where('id', $request->id)->update(['status' => 'accept']);
+            alert()->success('کاربر عضو رویداد شد', 'عضو شد');
+            return redirect()->back();
+    }
+
+    public function requestReject(Request $request)
+    {
+        $req = \DB::table('team_user')->where('id', $request->id)->first();
+        $team = Team::where('id', $req->team_id)->first();
+
+        \DB::table('team_user')->where('id', $request->id)->update(['status' => 'reject']);
+        alert()->success('درخواست کاربر لغو شد', 'رد شد');
+        return redirect()->back();
     }
 
 

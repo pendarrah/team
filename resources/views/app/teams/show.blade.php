@@ -1,6 +1,80 @@
 @extends('app.master')
 
 @section('content')
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">عضویت در تیموفیت
+						<a href="{{ route('login') }}"><button class="btn btn-success mr-3">حساب کاربری دارید؟ ورود به سیستم</button></a>
+					</h5>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+
+				<div style="direction: rtl; text-align: right" class="modal-body">
+
+					<form method="POST" action="{{ route('register') }}">
+						@csrf
+
+						<p style="margin: 10px">جهت ارسال درخواست عضویت، ثبت نام در تیموفیت الزامیست. درصورتی که حساب کاربری دارید باکلیک برروی گزینه سبز رنگ بالا، وارد شده و سپس درخواست عضویت را ارسال نمایید در غیر اینصورت پس از تکمیل فرم عضویت و احراز هویت، مجددا برروی گزینه عضویت در تیم کلیک نمایید.</p>
+
+
+					@if ($errors->any())
+							<div style="direction: rtl!important; text-align: right" class="alert alert-danger">
+								<ul style="direction: rtl!important; text-align: right" >
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+						@endif
+
+						<div class="form-row">
+							<div class="form-group col">
+								<label>شماره موبایل</label>
+								<input type="text" name="mobile" class="form-control form-control-lg">
+								@error('mobile')
+								<span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+								@enderror
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-lg-6">
+								<label>کلمه عبور</label>
+								<input type="password" name="password" class="form-control form-control-lg">
+							</div>
+							<div class="form-group col-lg-6">
+								<label>تکرار کلمه عبور</label>
+								<input type="password" name="password_confirmation" class="form-control form-control-lg">
+								@error('password')
+								<span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+								@enderror
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col">
+								<input type="submit" value="ثبت نام" class="btn btn-primary float-right mb-5" data-loading-text="Loading...">
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
 <section class="parallax section section-text-light section-parallax section-center mt-0" data-plugin-parallax data-plugin-options="{'speed': 1.5}" data-image-src="/files/{{ $team->banner }}" style="min-height: 560px; margin:0px;">
 					<div class="container">
 						<div class="row justify-content-center mt-5">
@@ -22,12 +96,32 @@
 								</a>
 							</div>
 							<div class="col-lg-6 text-center custom-xs-border-bottom p-0" style="border-right: 1px solid #eee;">
-								<a data-hash href="#say-hello" class="text-decoration-none">
-									<span class="custom-nav-button custom-divisors text-color-dark" style="color:#75abac;">
-										<i class="fa fa-user-plus  icons text-color-primary"></i>
-										درخواست عضویت	
-									</span>
-								</a>
+
+								@guest()
+									<a data-toggle="modal" data-target="#exampleModal" class="text-decoration-none">
+										<span class="custom-nav-button custom-divisors text-color-dark" style="color:#75abac;">
+											<i class="fa fa-user-plus  icons text-color-primary"></i>
+											درخواست عضویت
+										</span>
+									</a>
+								@endguest
+
+								@auth()
+
+										<a href="{{ route('app.teams.request', $team->id) }}" class="text-decoration-none">
+											<span class="custom-nav-button custom-divisors text-color-dark" style="color:#75abac;">
+												<i class="fa fa-user-plus  icons text-color-primary"></i>
+												درخواست عضویت
+											</span>
+										</a>
+
+								@endauth
+
+
+
+
+
+
 							</div>
 						</div>
 					</div>

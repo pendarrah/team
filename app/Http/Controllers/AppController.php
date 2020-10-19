@@ -109,7 +109,7 @@ class AppController extends Controller
         $user = User::where('id', \Auth::user()->id)->first();
 
         if (\DB::table('event_user')->where('event_id', $event->id)->where('user_id', $user->id)->count() >= 1){
-            alert()->warning('شما عضو رویداد هستید!', 'عضو هستید');
+            alert()->warning('درخواست قبلا ارسال شده است!', 'خطا');
             return redirect()->back();
         }elseif (\DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->count() >= $event->membersCount){
             alert()->error('ظرفیت رویداد تکمیل شده است!', 'تکمیل ظرفیت');
@@ -117,7 +117,8 @@ class AppController extends Controller
         }else{
             $event->users()->attach($user->id, ['owner_id' => $event->user_id]);
             alert()->success('درخواست شما ارسال شد', 'ارسال شد');
-            return redirect()->back();
+            $sent = true;
+            return redirect()->back(compact('sent'));
 
         }
 
@@ -128,6 +129,25 @@ class AppController extends Controller
     {
         $events = Event::where('team_id', $request->id)->paginate(15);
         return view('app.events.index', compact('events'));
+    }
+
+
+    public function teamRequest(Request $request)
+    {
+        $team = Team::find($request->id);
+        $user = User::where('id', \Auth::user()->id)->first();
+
+        if (\DB::table('team_user')->where('team_id', $team->id)->where('user_id', $user->id)->count() >= 1){
+            alert()->warning('درخواست قبلا ارسال شده است!', 'خطا');
+            return redirect()->back();
+        }else{
+            $team->users()->attach($user->id, ['owner_id' => $team->user_id]);
+            alert()->success('درخواست شما ارسال شد', 'ارسال شد');
+            return redirect()->back();
+
+        }
+
+
     }
 
 }

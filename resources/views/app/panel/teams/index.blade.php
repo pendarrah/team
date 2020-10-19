@@ -100,8 +100,10 @@
 
                                     <div class="card">
                                         <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست تیم ها
-                                            <a href="{{ route('team.create') }}"><button class="btn btn-success mr-3">ایجاد تیم</button></a>
-                                            <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#exampleModal">دعوت به تیم</button>
+                                            @canany(['admin', 'supervisor'])
+                                                <a href="{{ route('team.create') }}"><button class="btn btn-success mr-3">ایجاد تیم</button></a>
+                                                <button type="button" class="btn btn-primary mr-3" data-toggle="modal" data-target="#exampleModal">دعوت به تیم</button>
+                                            @endcanany
 
                                         </h5>
 
@@ -113,8 +115,10 @@
                                                     <th>آواتار</th>
                                                     <th>بنر</th>
                                                     <th>سرپرست</th>
-                                                    <th>اعضا</th>
-                                                    <th>رویداد ها</th>
+                                                    @canany(['admin', 'supervisor'])
+                                                        <th>اعضا</th>
+                                                        <th>رویداد ها</th>
+                                                    @endcanany
                                                     <th>تاریخ ایجاد</th>
                                                     <th>تغییرات</th>
                                                 </tr>
@@ -126,13 +130,22 @@
                                                         <td><a target="_blank" href="{{ $team->avatar }}"><img style="max-width: 100px" src="{{ $team->avatar }}" alt=""></a></td>
                                                         <td><a target="_blank" href="{{ $team->banner }}"><img style="max-width: 100px" src="{{ $team->banner }}" alt=""></a></td>
                                                         <td>{{ $team->user->fName . ' ' . $team->user->lName }}</td>
-                                                        <td><a href="{{ route('team.users', $team->id) }}"><i class="fa fa-list"></i></a></td>
-                                                        <td><a href="{{ route('team.events', $team->id) }}"><i class="fa fa-list"></i></a></td>
+                                                        @canany(['admin', 'supervisor'])
+                                                            <td><a href="{{ route('team.users', $team->id) }}"><i class="fa fa-list"></i></a></td>
+                                                            <td><a href="{{ route('team.events', $team->id) }}"><i class="fa fa-list"></i></a></td>
+                                                        @endcanany
                                                         <td style="direction: ltr">{{ jdate($team->created_at) }}</td>
                                                         <td>
-                                                            <a href="{{ route('team.edit', $team->id) }}">ویرایش</a>
-                                                            |
-                                                            <a href="{{ route('team.delete', $team->id) }}">حذف</a>
+                                                        @canany(['admin', 'supervisor'])
+                                                                <a href="{{ route('team.edit', $team->id) }}">ویرایش</a>
+                                                                |
+                                                                <a href="{{ route('team.delete', $team->id) }}">حذف</a>
+                                                        @endcanany
+
+
+                                                        @can(['user'])
+                                                                <a href="{{ route('team.exit', ['user_id' => \Auth::user()->id, 'team_id' => $team->id]) }}">خروج از تیم</a>
+                                                        @endcan
                                                         </td>
                                                     </tr>
                                                 @endforeach

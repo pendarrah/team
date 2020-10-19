@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\City');
     }
 
+    public function teams()
+    {
+        return $this->belongsToMany('App\Team')->where('status', 'accept');
+    }
+
 
 
 

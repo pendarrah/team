@@ -45,7 +45,7 @@
                                                         <td>{{ $user->lName }}</td>
                                                         <td>{{ $user->mobile }}</td>
                                                         <td>{{ number_format($user->amount) }}</td>
-                                                        <td>{{ jdate($user->birthday)->ago() }}</td>
+                                                        <td>{{ $user->birthYear ?  jdate()->format('Y') - $user->birthYear : ''}}</td>
                                                         <td><a href="{{ route('team.remove', ['user_id' => $user->id, 'team_id' => $team->id]) }}">اخراج</a></td>
                                                     </tr>
                                                 @endforeach

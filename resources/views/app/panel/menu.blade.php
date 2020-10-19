@@ -12,6 +12,7 @@
 
     @can('user')
         <div class="link"><a href="{{ route('event.my') }}"><div class="text">سوابق</div></a></div>
+        <div class="link"><a href="{{ route('team.index') }}"><div class="text">تیم های من</div></a></div>
         <div class="link"><a href="{{ route('requests.index') }}"><div class="text"> درخواست ها</div></a></div>
         <div class="link"><a href="{{ route('transaction.index') }}"><div class="text">کیف پول</div></a></div>
     @endcan

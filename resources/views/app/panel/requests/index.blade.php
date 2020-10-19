@@ -30,13 +30,9 @@
                                                                     <div class="img-req">
                                                                         <img src="{{ \App\User::where('id',$request->user_id )->first()->avatar }}" width="42" alt="">
                                                                     </div>
-                                                                    @php
-                                                                        $dbDate = \Auth::user()->birthday;
-                                                                        $diffYears = \Carbon\Carbon::now()->diffInYears($dbDate);
-                                                                    @endphp
                                                                     <div class="title-req">
-                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن : {{ $diffYears }}</div>
-                                                                        <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }}  | سن : {{ \App\User::where('id',$request->user_id )->first()->birthYear ?  jdate()->format('Y') - \App\User::where('id',$request->user_id )->first()->birthYear : ''}}</div>
+                                                                        <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
                                                                     </div>
                                                                     <div class="btn-req">
                                                                         <a href="{{ route('event.requestAccept', $request->id) }}" class="btn btn-success"> پذیرفتن </a>
@@ -48,11 +44,38 @@
                                                             <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                         @endforelse
                                                     </ul>
+
+
+                                                    <ul>
+                                                        @forelse (\DB::table('team_user')->where('owner_id', \Auth::user()->id)->where('status', 'pending')->get() as $request)
+                                                            <li>
+                                                                <div class="bg-req">
+                                                                    <div class="img-req">
+                                                                        <img src="{{ \App\User::where('id',$request->user_id )->first()->avatar }}" width="42" alt="">
+                                                                    </div>
+                                                                    @php
+                                                                        $dbDate = \Auth::user()->birthday;
+                                                                        $diffYears = \Carbon\Carbon::now()->diffInYears($dbDate);
+                                                                    @endphp
+                                                                    <div class="title-req">
+                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن : {{ $diffYears }}</div>
+                                                                        <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">تیم</span> {{ \App\Team::where('id', $request->team_id )->first()->name }} </div>
+                                                                    </div>
+                                                                    <div class="btn-req">
+                                                                        <a href="{{ route('team.requestAccept', $request->id) }}" class="btn btn-success"> پذیرفتن </a>
+                                                                        <a href="{{ route('team.requestReject', $request->id) }}" class="btn btn-warning"> رد کردن </a>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        @empty
+                                                            <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
+                                                        @endforelse
+                                                    </ul>
                                                 @endif
 
                                                 @if (\Auth::user()->type == 'user')
                                                         <ul>
-                                                            @forelse (\DB::table('event_user')->where('owner_id', \Auth::user()->id)->where('status', 'pending')->get() as $request)
+                                                            @forelse (\DB::table('event_user')->where('owner_id', \Auth::user()->id)->get() as $request)
                                                                 <li>
                                                                     <div class="bg-req">
                                                                         <div class="img-req">
@@ -60,7 +83,7 @@
                                                                         </div>
                                                                         <div class="title-req">
                                                                             <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
-                                                                            <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                            <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important;; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
                                                                         </div>
                                                                         <div class="btn-req">
                                                                             <a href="" class="btn btn-primary"> وضعیت:
@@ -96,6 +119,40 @@
                                                             @endforelse
                                                         </ul>
 
+                                                        <ul>
+                                                            @forelse (\DB::table('team_user')->where('owner_id', \Auth::user()->id)->get() as $request)
+                                                                <li>
+                                                                    <div class="bg-req">
+                                                                        <div class="img-req">
+                                                                            <img src="{{ \App\User::where('id',$request->user_id )->first()->avatar }}" width="42" alt="">
+                                                                        </div>
+                                                                        <div class="title-req">
+                                                                            <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
+                                                                            <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important;; color: black">تیم</span> {{ \App\Team::where('id', $request->team_id )->first()->name }} </div>
+                                                                        </div>
+                                                                        <div class="btn-req">
+                                                                            <a href="" class="btn btn-primary"> وضعیت:
+                                                                                @if ($request->status == 'pending')
+                                                                                    بررسی نشده
+                                                                                @endif
+                                                                                @if ($request->status == 'accept')
+                                                                                    تایید شده
+                                                                                @endif
+                                                                                @if ($request->status == 'reject')
+                                                                                    رد شده
+                                                                                @endif
+
+
+                                                                            </a>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            @empty
+                                                                <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
+                                                            @endforelse
+                                                        </ul>
 
                                                 @endif
                                             </div>

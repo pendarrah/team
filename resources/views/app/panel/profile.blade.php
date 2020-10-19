@@ -89,23 +89,22 @@
                                                     <div class="form-row teamofitMarginTop teamofitTextAlignRight">
 
                                                         <div class="col">
-                                                            <label style="color: black" for="">تصویر پروفایل انتخاب نمایید:</label>
-                                                            <input type="file" name="avatar" class="btn btn-warning" value="آپلود تصویر">
+                                                            <input type="number" class="form-control" id="card" value="{{ old('card', \Auth::user()->card) }}" placeholder="شماره کارت ۱۶ رقمی" name="card">
                                                         </div>
 
-                                                        <div class="col">
-                                                            <span style="direction: rtl; text-align: right"> تاریخ تولد:</span>
 
-                                                            <input value="{{ \Auth::user()->birthday }}" class="form-control dp3" >
-                                                            <input type="hidden"  value="{{ \Auth::user()->birthday }}" placeholder="تاریخ تولد" name="birthday" class="observer3" >
+                                                        <div class="col">
+                                                            <input type="number" class="form-control" id="birthYear" value="{{ old('birthYear', \Auth::user()->birthYear) }}" placeholder="سال تولد، مثال: 1370" name="birthYear">
                                                         </div>
 
 
                                                     </div>
 
                                                     <div class="form-row teamofitMarginTop teamofitTextAlignRight">
+
                                                         <div class="col">
-                                                            <input type="number" class="form-control" id="card" value="{{ old('card', \Auth::user()->card) }}" placeholder="شماره کارت ۱۶ رقمی" name="card">
+                                                            <label style="color: black" for="">تصویر پروفایل انتخاب نمایید:</label>
+                                                            <input type="file" name="avatar" class="btn btn-warning" value="آپلود تصویر">
                                                         </div>
 
                                                         <div class="col">

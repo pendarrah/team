@@ -28,7 +28,7 @@
                                                     <th>قیمت (ریال)</th>
                                                     <th>ظرفیت</th>
                                                     <th>عضو</th>
-                                                    <th>باقیمانده</th>
+                                                    {{--<th>باقیمانده</th>--}}
                                                     <th>شروع</th>
                                                     <th>پایان</th>
                                                     <th>کیف پول</th>
@@ -43,9 +43,9 @@
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>
                                                         <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
-                                                        <td>{{ $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
+{{--                                                        <td>{{ $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>--}}
                                                         <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>
-                                                        <td style="direction: ltr">{{ jdate($event->timeFinish) }}</td>
+                                                        <td style="direction: ltr">{{ $event->duration }}</td>
                                                         <td><a href="{{ route('event.wallet', $event->id) }}">مشاهده</a></td>
                                                         <td>
                                                             <a href="{{ route('event.edit', $event->id) }}">ویرایش</a>

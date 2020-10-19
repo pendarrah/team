@@ -145,13 +145,11 @@ class UserController extends \App\Http\Controllers\Controller
             'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
 
             'category_id' => 'required',
-            'birthday' => 'required',
             'city_id' => 'required',
 
-        ]);
+            'birthYear' => 'required|integer|between:1340,1390',
 
-        $date = substr($request->birthday, 0, 10);
-        $birthday = date('Y-m-d H:i:s', (int) $date);
+        ]);
 
 
         if ($request->file('avatar')){
@@ -160,10 +158,10 @@ class UserController extends \App\Http\Controllers\Controller
             $attachmentFile->move('files', $attachmentFileName);
             $attachmentFileName = $attachmentFileName;
 
-            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id, 'card' => $request->card]);
+            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'avatar' => $attachmentFileName, 'category_id' => $request->category_id, 'birthYear' => $request->birthYear, 'city_id' => $request->city_id, 'card' => $request->card]);
 
         }else{
-            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'category_id' => $request->category_id, 'birthday' => $birthday, 'city_id' => $request->city_id, 'card' => $request->card]);
+            \Auth::user()->update(['status' => 2, 'fName' => $request->fName, 'lName' => $request->lName, 'email' => $request->email, 'type' => $request->type, 'category_id' => $request->category_id, 'birthYear' => $request->birthYear, 'city_id' => $request->city_id, 'card' => $request->card]);
         }
 
 

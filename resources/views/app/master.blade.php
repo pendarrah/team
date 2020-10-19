@@ -18,7 +18,7 @@
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css">
 
-    <!-- Filtering Css 
+    <!-- Filtering Css
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">-->
     <!-- Vendor CSS -->
@@ -54,7 +54,7 @@
 
     <!-- Head Libs -->
     <script src="{{ asset('vendor/modernizr/modernizr.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/persian-datepicker.min.css') }}"/>
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css"/>
 
     <style>
         .form-control{
@@ -81,79 +81,96 @@
                     <div class="header-row">
                         <div class="header-btn-lg pr-0" >
                             <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left">
-                                        <div class="btn-group">
-                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                                <img class="rounded-circle" src="/img/profile.jpg" alt="" width="42">
-                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                            </a>
-                                            <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right" style="">
-                                                <div class="dropdown-menu-header">
-                                                    <div class="dropdown-menu-header-inner bg-info">
-                                                        <div class="menu-header-image opacity-2" style="background-image: url('/img/city3.jpg');"></div>
-                                                        <div class="menu-header-content text-left">
-                                                            <div class="widget-content p-0">
-                                                                <div class="widget-content-wrapper">
-                                                                    <div class="widget-content-left mr-3">
-                                                                        <img class="rounded-circle" src="/img/profile.jpg" alt="" width="42">
-                                                                    </div>
-                                                                    <div class="widget-content-left">
-                                                                        <div class="widget-heading">محمدعلی مشاعی</div>
-                                                                        <div class="widget-subheading opacity-8">بازیکن تیموفیت</div>
-                                                                    </div>
-                                                                    <div class="widget-content-right mr-2">
-                                                                        <button class="btn-pill btn-shadow btn-shine btn btn-focus">خروج</button>
+                                @auth
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="btn-group">
+                                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                                    <img class="rounded-circle" src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg" alt="" width="42">
+                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                                </a>
+                                                <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right" style="">
+                                                    <div class="dropdown-menu-header">
+                                                        <div class="dropdown-menu-header-inner bg-info">
+                                                            <div class="menu-header-image opacity-2" style="background-image: url('/img/city3.jpg');"></div>
+
+                                                            <div class="menu-header-content text-left">
+                                                                <div class="widget-content p-0">
+                                                                    <div class="widget-content-wrapper">
+                                                                        <div class="widget-content-left mr-3">
+                                                                            <img class="rounded-circle" src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg" alt="" width="42">
+                                                                        </div>
+                                                                        <div class="widget-content-left">
+                                                                            <div class="widget-heading text-white">{{ \Auth::user()->fName . ' ' .  \Auth::user()->lName }}</div>
+                                                                            <div class="widget-subheading opacity-8">
+                                                                                @if (\Auth::user()->type === 'admin')
+                                                                                    مدیر
+                                                                                @elseif(\Auth::user()->type === 'superviser')
+                                                                                @else
+                                                                                    بازیکن
+                                                                                @endif
+                                                                                تیموفیت
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="widget-content-right mr-2">
+                                                                            <a href="{{ route('dashboard-logout') }}"><button class="btn-pill btn-shadow btn-shine btn btn-focus">خروج</button></a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item-divider mb-0 nav-item" style="margin:0px;"></li>
-                                                </ul>
-                                                <div class="grid-menu grid-menu-2col">
-                                                    <div class="no-gutters row">
-                                                        <div class="col-sm-6">
-                                                            <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
-                                                                <i class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i> تعویض اکانت
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
-                                                                <i class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
-                                                                <b>ویرایش حساب کاربری</b>
-                                                            </button>
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item-divider mb-0 nav-item" style="margin:0px;"></li>
+                                                    </ul>
+                                                    <div class="grid-menu grid-menu-2col">
+                                                        <div class="no-gutters row">
+                                                            <div class="col-sm-6">
+                                                                <a href="{{ route('panel.profile') }}">
+                                                                    <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
+                                                                        <i class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i> تعویض اکانت
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <a href="{{ route('panel.profile') }}">
+                                                                    <button class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
+                                                                        <i class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
+                                                                        <b>ویرایش حساب کاربری</b>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item-divider nav-item">
-                                                    </li>
-                                                    <li class="nav-item-btn text-center nav-item">
-                                                        <button class="btn-wide btn btn-primary btn-sm"> ارتباط با پشتیبانی </button>
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
+                                        <div class="widget-content-left  ml-3 header-user-info hide-on-mobile" style="direction:rtl; text-align:right; border-right: 1px solid #fff; padding-right:12px;">
+                                            <div class="widget-heading text-white"> {{ \Auth::user()->fName . ' ' .  \Auth::user()->lName }} </div>
+                                            <div class="widget-subheading">
+                                                @if (\Auth::user()->type === 'admin')
+                                                    مدیر
+                                                @elseif(\Auth::user()->type === 'superviser')
+                                                @else
+                                                    بازیکن
+                                                @endif
+                                                تیموفیت
+                                            </div>
+                                        </div>
+                                        <div class="widget-content-right header-user-info ml-3">
+                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                                <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                            </button>
+                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                                <i class="fa text-white fa-bell pr-1 pl-1"></i>
+                                            </button>
+                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                                <i class="fa text-white fa-credit-card pr-1 pl-1"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="widget-content-left  ml-3 header-user-info hide-on-mobile" style="direction:rtl; text-align:right; border-right: 1px solid #fff; padding-right:12px;">
-                                        <div class="widget-heading"> محمدعلی مشاعی </div>
-                                        <div class="widget-subheading"> بازیکن تیموفیت </div>
-                                    </div>
-                                    <div class="widget-content-right header-user-info ml-3">
-                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                            <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                                        </button>
-                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                            <i class="fa text-white fa-bell pr-1 pl-1"></i>
-                                        </button>
-                                        <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                            <i class="fa text-white fa-credit-card pr-1 pl-1"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                    @endauth
                             </div>
                         </div>
                     </div>
@@ -381,8 +398,8 @@
 <script src="{{ asset('vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('vendor/vide/vide.min.js') }}"></script>
 
-<script src="{{ asset('js/persian-datepicker.min.js') }}"></script>
-<script src="{{ asset('js/persian-date.min.js') }}"></script>
+<script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
+<script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
 
 <!-- Theme Base, Components and Settings -->
 <script src="{{ asset('js/theme.js') }}"></script>

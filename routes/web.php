@@ -32,6 +32,7 @@ Route::get('/teamsSearch/{city_id?}/{gender?}/', 'AppController@teamsSearch')->n
 Route::get('/teams/{id}', 'AppController@teamShow')->name('app.teams.show');
 Route::get('/teams/{id}/events', 'AppController@teamEvents')->name('app.teams.events');
 
+Route::get('/teams/request/{id}', 'AppController@teamRequest')->name('app.teams.request');
 
 // Add middleware auth
 Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function () {
@@ -65,6 +66,12 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::get('team/{id}/events', 'TeamController@events')->name('team.events');
     Route::post('team/invite', 'TeamController@invite')->name('team.invite');
     Route::get('team/remove/{team_id}/{user_id}', 'TeamController@remove')->name('team.remove');
+    Route::get('team/exit/{team_id}/{user_id}', 'TeamController@exit')->name('team.exit');
+
+
+    Route::get('team/request/accept/{id}', 'TeamController@requestAccept')->name('team.requestAccept');
+    Route::get('team/request/reject/{id}', 'TeamController@requestReject')->name('team.requestReject');
+
 
     Route::resource('category', 'CategoryController');
     Route::get('category/delete/{id}', 'CategoryController@destroy')->name('category.delete');

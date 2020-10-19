@@ -219,7 +219,7 @@ class EventController extends \App\Http\Controllers\Controller
         } else {
             \DB::table('event_user')->where('id', $request->id)->update(['status' => 'accept']);
             alert()->success('کاربر عضو رویداد شد', 'عضو شد');
-            return redirect()->route('panel.index');
+            return redirect()->back();
         }
     }
 
@@ -230,7 +230,7 @@ class EventController extends \App\Http\Controllers\Controller
 
         \DB::table('event_user')->where('id', $request->id)->update(['status' => 'reject']);
         alert()->success('درخواست کاربر لغو شد', 'رد شد');
-        return redirect()->route('panel.index');
+        return redirect()->back();
     }
 
     public function wallet(Request $request)

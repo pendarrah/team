@@ -73,11 +73,7 @@
                                                                         <img src="{{ \App\User::where('id',$request->user_id )->first()->avatar }}" width="42" alt="">
                                                                     </div>
                                                                     <div class="title-req">
-                                                                        @php
-                                                                            $dbDate = \Auth::user()->birthday;
-                                                                            $diffYears = \Carbon\Carbon::now()->diffInYears($dbDate);
-                                                                        @endphp
-                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن : {{ $diffYears }}</div>
+                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن :  {{ \App\User::where('id',$request->user_id )->first()->birthYear ?  jdate()->format('Y') - \App\User::where('id',$request->user_id )->first()->birthYear : ''}}</div>
                                                                         <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
                                                                     </div>
                                                                     <div class="btn-req">
