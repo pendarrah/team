@@ -22,7 +22,7 @@
                                                 <div> درخواست های دردست بررسی </div>
                                             </div>
                                             <div class="scroll-box">
-                                                @if (\Auth::user()->type == 'supervisor')
+                                                @if (\Auth::user()->type == 'supervisor' OR \Auth::user()->type == 'admin')
                                                     <ul>
                                                         @forelse (\DB::table('event_user')->where('owner_id', \Auth::user()->id)->where('status', 'pending')->get() as $request)
                                                             <li>
@@ -33,6 +33,7 @@
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }}  | سن : {{ \App\User::where('id',$request->user_id )->first()->birthYear ?  jdate()->format('Y') - \App\User::where('id',$request->user_id )->first()->birthYear : ''}}</div>
                                                                         <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
                                                                     <div class="btn-req">
                                                                         <a href="{{ route('event.requestAccept', $request->id) }}" class="btn btn-success"> پذیرفتن </a>
@@ -41,7 +42,6 @@
                                                                 </div>
                                                             </li>
                                                         @empty
-                                                            <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                         @endforelse
                                                     </ul>
 
@@ -60,6 +60,7 @@
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن : {{ $diffYears }}</div>
                                                                         <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">تیم</span> {{ \App\Team::where('id', $request->team_id )->first()->name }} </div>
+                                                                        <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
                                                                     <div class="btn-req">
                                                                         <a href="{{ route('team.requestAccept', $request->id) }}" class="btn btn-success"> پذیرفتن </a>
@@ -68,7 +69,6 @@
                                                                 </div>
                                                             </li>
                                                         @empty
-                                                            <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                         @endforelse
                                                     </ul>
                                                 @endif
@@ -84,6 +84,7 @@
                                                                         <div class="title-req">
                                                                             <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
                                                                             <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important;; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                            <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                         </div>
                                                                         <div class="btn-req">
                                                                             <a href="" class="btn btn-primary"> وضعیت:
@@ -115,7 +116,6 @@
                                                                     </div>
                                                                 </li>
                                                             @empty
-                                                                <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                             @endforelse
                                                         </ul>
 
@@ -129,6 +129,7 @@
                                                                         <div class="title-req">
                                                                             <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
                                                                             <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important;; color: black">تیم</span> {{ \App\Team::where('id', $request->team_id )->first()->name }} </div>
+                                                                            <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                         </div>
                                                                         <div class="btn-req">
                                                                             <a href="" class="btn btn-primary"> وضعیت:
@@ -150,7 +151,6 @@
                                                                     </div>
                                                                 </li>
                                                             @empty
-                                                                <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                             @endforelse
                                                         </ul>
 
@@ -178,6 +178,7 @@
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
                                                                         <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
                                                                     <div class="btn-req">
                                                                         <a href="" class="btn btn-primary"> وضعیت:
@@ -203,7 +204,6 @@
                                                                 </div>
                                                             </li>
                                                         @empty
-                                                            <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                         @endforelse
                                                     </ul>
 
@@ -232,6 +232,8 @@
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
                                                                         <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
+
                                                                     </div>
                                                                     <div class="btn-req">
                                                                         <a href="" class="btn btn-primary"> وضعیت:
@@ -263,7 +265,6 @@
                                                                 </div>
                                                             </li>
                                                         @empty
-                                                            <p style="margin: auto; margin-top: 10px">بدون درخواست</p>
                                                         @endforelse
                                                     </ul>
 

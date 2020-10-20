@@ -72,7 +72,7 @@ class EventController extends \App\Http\Controllers\Controller
             'region' => 'required',
             'address' => 'required',
             'description' => 'nullable',
-            'picture' => 'nullable',
+            'picture' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
             'type' => 'required',
             'city_id' => 'required',
             'category_id' => 'required',
@@ -155,7 +155,7 @@ class EventController extends \App\Http\Controllers\Controller
             'address' => 'required',
             'type' => 'required',
             'description' => 'required',
-            'picture' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
+            'picture' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
             'city_id' => 'required',
             'category_id' => 'required',
             'lat' => 'nullable',
@@ -235,7 +235,7 @@ class EventController extends \App\Http\Controllers\Controller
 
     public function wallet(Request $request)
     {
-        $reqs = \DB::table('event_user')->where('event_id', $request->id)->get();
+        $reqs = \DB::table('event_user')->where('event_id', $request->id)->where('status', 'accept')->get();
         return view('app.panel.events.wallet', compact('reqs'));
 
     }

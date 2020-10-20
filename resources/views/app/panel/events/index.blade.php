@@ -25,7 +25,6 @@
                                                 <tr>
                                                     <th>عنوان</th>
                                                     <th>تیم</th>
-                                                    <th>نوع</th>
                                                     <th>قیمت (ریال)</th>
                                                     <th>ظرفیت</th>
                                                     <th>عضو</th>
@@ -38,9 +37,8 @@
                                                 <tbody>
                                                 @foreach ($events as $event)
                                                     <tr>
-                                                        <td>{{ $event->title }}</td>
+                                                        <td><a target="_blank" href="{{ route('app.events.show', $event->id) }}">{{ $event->title }}</a></td>
                                                         <td><a target="_blank" href="{{ route('app.teams.show', $event->team->id) }}">{{ $event->team->name }}</a></td>
-                                                        <td>{{ $event->category->title }}</td>
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>
                                                         <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>

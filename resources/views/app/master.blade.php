@@ -182,12 +182,10 @@
                                 <nav class="collapse">
                                 <ul class="nav nav-pills" id="mainNav">
                                         <li>
-                                            <a class="nav-link" href="{{ Route('app.index') }}">
-                                                <i class="fa fa-home"></i>
-                                            </a>
+
                                         </li>
 
-                                    <li id="login-box-menu">
+                                    <li style="margin-right: 40px;    background: #007bff!important;" id="login-box-menu">
                                         <a class="nav-link" href="/login">
                                             @guest()
                                                 ورود / عضویت

@@ -18,7 +18,10 @@
 
                                     <div class="card">
                                         @if ($reqs->first())
-                                            <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">کیف پول رویداد<a href="{{ route('checkout.request', ['event_id' => $reqs->first()->event_id]) }}"><button class="btn btn-success mr-3">ثبت درخواست تسویه</button></a></h5>
+                                            <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">کیف پول رویداد<a href="{{ route('checkout.request', ['event_id' => $reqs->first()->event_id]) }}"><button class="btn btn-success mr-3">ثبت درخواست تسویه</button></a>
+                                          |   موجودی کیف پول:
+                                                {{ number_format(\App\Transaction::where('event_id', $reqs->first()->event_id)->where('checkout', 0)->where('owner_id', \Auth::user()->id)->sum('amount')) }} ریال
+                                            </h5>
                                         @endif
                                         <div class="card-body">
                                             <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">

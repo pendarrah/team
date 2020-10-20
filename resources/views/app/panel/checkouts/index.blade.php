@@ -30,6 +30,7 @@
                                                     <th>مقدار</th>
                                                     <th>وضعیت</th>
                                                     <th>کد رهگیری</th>
+                                                    <th>تاریخ ثبت</th>
                                                     @if (\Auth::user()->type == 'admin')
                                                         <th>ویرایش</th>
                                                     @endif
@@ -42,9 +43,10 @@
                                                         <td>{{ $checkout->user->fName . ' ' . $checkout->user->lName }}</td>
                                                         <td>{{ $checkout->event->title }}</td>
                                                         <td>{{ \Auth::user()->card }}</td>
-                                                        <td>{{ $checkout->event->amount }}</td>
+                                                        <td>{{ number_format(\App\Transaction::where('event_id', $checkout->event->id)->where('checkout', 0)->sum('amount')) }} ریال</td>
                                                         <td>{{ $checkout->status == 'notPaid' ? 'پرداخت نشده' : 'پرداخت شده'}}</td>
                                                         <td>{{ $checkout->trackingCode }}</td>
+                                                        <td style="direction: ltr">{{ jdate($checkout->crated_at) }}</td>
                                                         @if (\Auth::user()->type == 'admin')
                                                             <td style=""><a href="{{ route('checkout.edit', $checkout->id) }}">ویرایش</a></td>
                                                         @endif
@@ -83,6 +85,7 @@
 
                         scrollY:"",scrollX:!0,scrollCollapse:!0,
                         responsive: !0,
+                    "order": [[ 0, "desc" ]],
 
                         buttons: ["print", "copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
                     }

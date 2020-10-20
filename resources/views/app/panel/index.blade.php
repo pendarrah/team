@@ -61,7 +61,7 @@
                                                 <div class="dashboard-box-header">
                                                     <div> درخواست ها </div>
                                                     <div class="dashboard-box-btn">
-                                                        <a class="dashboard-btn"> مشاهده کامل </a>
+                                                        <a href="{{ route('requests.index') }}" class="dashboard-btn"> مشاهده کامل </a>
                                                     </div>
                                                 </div>
                                                 <div class="scroll-box">
@@ -75,6 +75,7 @@
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن :  {{ \App\User::where('id',$request->user_id )->first()->birthYear ?  jdate()->format('Y') - \App\User::where('id',$request->user_id )->first()->birthYear : ''}}</div>
                                                                         <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
                                                                     <div class="btn-req">
                                                                         <a href="{{ route('event.requestAccept', $request->id) }}" class="btn btn-success"> پذیرفتن </a>

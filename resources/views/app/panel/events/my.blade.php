@@ -23,7 +23,6 @@
                                                 <thead>
                                                 <tr>
                                                     <th>عنوان</th>
-                                                    <th>نوع</th>
                                                     <th>قیمت (ریال)</th>
                                                     <th>ظرفیت</th>
                                                     <th>عضو</th>
@@ -41,7 +40,6 @@
                                                     @endphp
                                                     <tr>
                                                         <td>{{ $event->title  }}</td>
-                                                        <td>{{ $event->category->title }}</td>
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>
                                                         <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>

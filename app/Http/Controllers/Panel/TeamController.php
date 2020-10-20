@@ -56,8 +56,8 @@ class TeamController extends \App\Http\Controllers\Controller
 
         $request->validate([
             'name' => 'required',
-            'avatar' => 'nullable',
-            'banner' => 'nullable',
+            'avatar' => 'nullable|nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
+            'banner' => 'nullable|nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
             'description' => 'required',
             'gender' => 'required',
             'city_id' => 'required',
@@ -138,9 +138,9 @@ class TeamController extends \App\Http\Controllers\Controller
     {
         $request->validate([
             'name' => 'required',
-            'banner' => 'nullable',
+            'banner' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
             'description' => 'required',
-            'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
+            'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
             'gender' => 'required',
             'city_id' => 'required',
             'category_id' => 'required',

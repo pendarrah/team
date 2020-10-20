@@ -40,7 +40,7 @@ class ReqController extends \App\Http\Controllers\Controller
         }else{
             \DB::table('event_user')->where('id', $request->id)->update(['payment' => 'paid', 'method' => 'online']);
             $user->update(['amount' => $userLastAmount - $eventCost]);
-            $transAction = Transaction::create(['type' => 'برداشت', 'for' => 'برداشت جهت شرکت در رویداد', 'amount' => $eventCost , 'description' => " کد رویداد: $event->id ", 'user_id' => $user->id]);
+            $transAction = Transaction::create(['event_id' => $event->id, 'team_id' => $event->team->id, 'owner_id' => $event->team->user_id ,'type' => 'برداشت', 'for' => 'برداشت جهت شرکت در رویداد', 'amount' => $eventCost , 'description' => " کد رویداد: $event->id ", 'user_id' => $user->id]);
             alert()->success('شما باموفقیت عضو رویداد شدید.', 'پرداخت شد');
             $reqs = \DB::table('event_user')->where('owner_id', \Auth::user()->id)->where('status', 'pending')->get();
             return view('app.panel.requests.index', compact('reqs'));

@@ -431,6 +431,15 @@
 								</div>
 								
 								@if ($event->timeStart >= \Carbon\Carbon::now())
+									@if (\DB::table('event_user')->where('event_id', $event->id)->where('user_id', \Auth::user()->id)->where('status', 'accept')->where('payment', 'paid')->count() >= 1)
+									    <p style="text-align: center;direction: rtl;">شما عضو رویداد هستید</p>
+									@elseif(\DB::table('event_user')->where('event_id', $event->id)->where('user_id', \Auth::user()->id)->where('status', 'accept')->where('payment', 'notPaid')->count() >= 1)
+									<p style="text-align: center;direction: rtl;">در انتظار پرداخت</p>
+									@elseif(\DB::table('event_user')->where('event_id', $event->id)->where('user_id', \Auth::user()->id)->where('status', 'pending')->count() >= 1)
+										<p style="text-align: center;direction: rtl;">درخواست شما دردست بررسی سرپرست میباشد</p>
+									@elseif(\DB::table('event_user')->where('event_id', $event->id)->where('user_id', \Auth::user()->id)->where('status', 'reject')->count() >= 1)
+									<p style="text-align: center;direction: rtl;">درخواست شما توسط سرپرست رد شده است</p>
+								@else
 									<h4 class="pt-4 mb-3 text-color-dark textAlginRightTeamofit teamofit-direction-rtl"> پیوستن به رویداد </h4>
 
 									@guest()
@@ -447,6 +456,8 @@
 
 										@endif
 									@endauth
+
+									@endif
 								@endif
 
 

@@ -107,7 +107,6 @@ class AppController extends Controller
 
         $event = Event::find($request->id);
         $user = User::where('id', \Auth::user()->id)->first();
-
         if (\DB::table('event_user')->where('event_id', $event->id)->where('user_id', $user->id)->count() >= 1){
             alert()->warning('درخواست قبلا ارسال شده است!', 'خطا');
             return redirect()->back();
@@ -115,10 +114,15 @@ class AppController extends Controller
             alert()->error('ظرفیت رویداد تکمیل شده است!', 'تکمیل ظرفیت');
             return redirect()->back();
         }else{
-            $event->users()->attach($user->id, ['owner_id' => $event->user_id]);
-            alert()->success('درخواست شما ارسال شد', 'ارسال شد');
-            $sent = true;
-            return redirect()->back(compact('sent'));
+            if (\DB::table('team_user')->where('team_id', $event->team->id)->where('user_id', $user->id)->where('status', 'accept')->count() >= 1){
+                $event->users()->attach($user->id, ['owner_id' => $event->user_id, 'status' => 'accept']);
+                alert()->success('شما با موفقیت عضو رویداد شدید', 'انجام شد');
+                return redirect()->back();
+            }else{
+                $event->users()->attach($user->id, ['owner_id' => $event->user_id]);
+                alert()->success('درخواست شما ارسال شد', 'ارسال شد');
+                return redirect()->back();
+            }
 
         }
 

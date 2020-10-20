@@ -60,7 +60,7 @@
                                                             @endif
                                                         </td>
                                                         <td>{{ number_format($user->amount) }}</td>
-                                                        <td>{{ $user->city->name }}</td>
+                                                        <td>{{ $user->city ? $user->city->name : '' }}</td>
                                                         <td><a href="{{ route('users.plays', $user->id) }}"><i class="fa fa-list"></i></a></td>
                                                         <td><a href="{{ route('users.transactions', $user->id) }}"><i class="fa fa-list"></i></a></td>
                                                         <td style=""><a href="{{ route('users.edit', $user->id) }}">ویرایش</a></td>
