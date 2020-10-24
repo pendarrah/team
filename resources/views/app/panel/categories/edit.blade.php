@@ -32,7 +32,7 @@
                                         <div class="form-row teamofitMarginTop">
 
                                             <div class="col">
-                                                <input type="text" class="form-control" id="title" value="{{ old('title', $category->title) }}" placeholder="عنوان دسته بندی" name="title">
+                                                <input type="text" class="form-control" id="title" value="{{ old('title', $category->title) }}" placeholder="عنوان رشته" name="title">
                                             </div>
 
                                             <div class="col">
@@ -45,7 +45,7 @@
 
                                         <div class="form-row teamofitMarginTop teamofitTextAlignRight">
                                             <div class="col">
-                                                <input type="submit" class="btn btn-success form-control" value="ویرایش دسته بندی">
+                                                <input type="submit" class="btn btn-success form-control" value="ویرایش رشته">
                                             </div>
                                         </div>
                                     </form>

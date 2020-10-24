@@ -157,7 +157,7 @@
                                         </div>
                                         <div class="form-row teamofitMarginTop">
                                             <div class="col">
-                                                <input type="number"  class="form-control" id="price" value="{{ old('price') }}" placeholder="قیمت رویداد (ریال)" name="price">
+                                                <input type="text"  class="form-control" id="delimiter" value="{{ old('price') }}" placeholder="قیمت رویداد (ریال)" name="price">
                                             </div>
                                             <div class="col">
                                                 <input type="number" class="form-control" id="membersCount" value="{{ old('membersCount') }}" placeholder="تعداد اعضا" name="membersCount">
@@ -223,7 +223,7 @@
                                             </div>
 
                                             <div class="col">
-                                                <input type="text" class="form-control" id="address" placeholder="آدرس" value="{{ old('address') }}" name="address">
+                                                <input type="text" class="form-control" id="address" placeholder="آدرس دقیق" value="{{ old('address') }}" name="address">
                                             </div>
                                         </div>
                                         <div class="form-row teamofitMarginTop">
@@ -240,10 +240,7 @@
                                             </div>
 
 
-                                            <div class="col">
-                                                <label style="color: white" for="">تصویر را انتخاب نمایید:</label>
-                                                <input type="file" name="picture" class="btn btn-warning" value="آپلود تصویر">
-                                            </div>
+
                                         </div>
 
 

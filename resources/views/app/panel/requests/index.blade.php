@@ -16,7 +16,7 @@
                                 <div class="container teamofitMarginTop">
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویدادتوضیحات در ارتباط با درج رویداد </p>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mt-3">
                                         <div class="dashboard-box">
                                             <div class="dashboard-box-header">
                                                 <div> درخواست های دردست بررسی </div>
@@ -32,7 +32,7 @@
                                                                     </div>
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }}  | سن : {{ \App\User::where('id',$request->user_id )->first()->birthYear ?  jdate()->format('Y') - \App\User::where('id',$request->user_id )->first()->birthYear : ''}}</div>
-                                                                        <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }}  |   تاریخ رویداد: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('Y/m/d') }} | زمان: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('H:i:s') }}</div>
                                                                         <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
                                                                     <div class="btn-req">
@@ -53,12 +53,8 @@
                                                                     <div class="img-req">
                                                                         <img src="{{ \App\User::where('id',$request->user_id )->first()->avatar }}" width="42" alt="">
                                                                     </div>
-                                                                    @php
-                                                                        $dbDate = \Auth::user()->birthday;
-                                                                        $diffYears = \Carbon\Carbon::now()->diffInYears($dbDate);
-                                                                    @endphp
                                                                     <div class="title-req">
-                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن : {{ $diffYears }}</div>
+                                                                        <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} | سن : {{ \App\User::where('id',$request->user_id )->first()->birthYear ?  jdate()->format('Y') - \App\User::where('id',$request->user_id )->first()->birthYear : ''}}</div>
                                                                         <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important; color: black">تیم</span> {{ \App\Team::where('id', $request->team_id )->first()->name }} </div>
                                                                         <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
@@ -83,7 +79,7 @@
                                                                         </div>
                                                                         <div class="title-req">
                                                                             <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
-                                                                            <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important;; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                            <div class="widget-subheading"> درخواست عضویت در <span style="font-size: 15px!important;; color: black">رویداد</span> {{ \App\Event::where('id', $request->event_id )->first()->title }}  |   تاریخ رویداد: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('Y/m/d') }} | زمان: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('H:i:s') }}</div>
                                                                             <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                         </div>
                                                                         <div class="btn-req">
@@ -159,8 +155,7 @@
                                         </div>
                                     </div>
 
-                                    @if (\Auth::user()->type == 'user')
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mt-3">
                                         <div class="dashboard-box">
                                             <div class="dashboard-box-header">
                                                 <div> درخواست های درانتظار پرداخت </div>
@@ -169,7 +164,7 @@
 
 
                                                     <ul>
-                                                        @forelse (\DB::table('event_user')->where('owner_id', \Auth::user()->id)->where('status', 'accept')->where('payment', 'notPaid')->get() as $request)
+                                                        @forelse (\DB::table('event_user')->where('user_id', \Auth::user()->id)->where('status', 'accept')->where('payment', 'notPaid')->get() as $request)
                                                             <li>
                                                                 <div class="bg-req">
                                                                     <div class="img-req">
@@ -177,7 +172,7 @@
                                                                     </div>
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
-                                                                        <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }}  |   تاریخ رویداد: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('Y/m/d') }} | زمان: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('H:i:s') }}</div>
                                                                         <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
                                                                     </div>
                                                                     <div class="btn-req">
@@ -216,14 +211,14 @@
 
 
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mt-3">
                                         <div class="dashboard-box">
                                             <div class="dashboard-box-header">
                                                 <div> تایید و پرداخت شده </div>
                                             </div>
                                             <div class="scroll-box">
                                                     <ul>
-                                                        @forelse (\DB::table('event_user')->where('owner_id', \Auth::user()->id)->where('status', 'accept')->where('payment', 'paid')->get() as $request)
+                                                        @forelse (\DB::table('event_user')->where('user_id', \Auth::user()->id)->where('status', 'accept')->where('payment', 'paid')->get() as $request)
                                                             <li>
                                                                 <div class="bg-req">
                                                                     <div class="img-req">
@@ -231,7 +226,7 @@
                                                                     </div>
                                                                     <div class="title-req">
                                                                         <div class="widget-heading"> {{ \App\User::where('id',$request->user_id )->first()->fName . ' ' . \App\User::where('id',$request->user_id )->first()->lName  }} </div>
-                                                                        <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} </div>
+                                                                        <div class="widget-subheading"> درخواست عضویت در رویداد {{ \App\Event::where('id', $request->event_id )->first()->title }} |   تاریخ رویداد: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('Y/m/d') }} | زمان: {{ jdate(\App\Event::where('id', $request->event_id )->first()->created_at)->format('H:i:s') }}</div>
                                                                         <div style="direction: ltr" class="widget-subheading"><p>  تاریخ ایجاد درخواست: {{ jdate($request->created_at)->format('Y/m/d') }} | زمان: {{ jdate($request->created_at)->format('H:i:s') }}</p></div>
 
                                                                     </div>
@@ -272,7 +267,6 @@
                                         </div>
                                     </div>
 
-                                    @endif
 
 
                                 </div>

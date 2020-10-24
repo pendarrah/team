@@ -17,29 +17,42 @@
                                     <p class="alert alert-warning teamofitTextAlignRight"> توضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندیتوضیحات در ارتباط با درج دسته بندی </p>
 
                                     <div class="card">
-                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">لیست رشته ها<a href="{{ route('category.create') }}"><button class="btn btn-success mr-3">ایجاد رشته</button></a></h5>
+                                        <h5 style="direction: rtl; text-align: right!important;" class="card-header text-right">تغییر رمز عبور</h5>
 
                                         <div class="card-body">
-                                            <table style="width: 100%; text-align: center" id="table_id" class="table table-striped table-bordered table-hover table-checkable display nowrap">
-                                                <thead>
-                                                <tr>
-                                                    <th>شناسه</th>
-                                                    <th>عنوان</th>
-                                                    <th>نام انگلیسی</th>
-                                                    <th>ویرایش</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @foreach ($categories as $category)
-                                                    <tr>
-                                                        <td>{{ $category->id }}</td>
-                                                        <td>{{ $category->title }}</td>
-                                                        <td>{{ $category->english }}</td>
-                                                        <td style=""><a href="{{ route('category.edit', $category->id) }}">ویرایش</a></td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
+
+
+                                                <form method="post" enctype="multipart/form-data" action="{{ route('panel.password.store') }}" >
+                                                    @csrf
+                                                    @if ($errors->any())
+                                                        <div style="direction: rtl!important; text-align: right" class="alert alert-danger">
+                                                            <ul style="direction: rtl!important; text-align: right" >
+                                                                @foreach ($errors->all() as $error)
+                                                                    <li>{{ $error }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+
+                                                    <div class="form-row teamofitMarginTop">
+                                                        <div class="col">
+                                                            <input type="password" class="form-control" id="old_password"  placeholder="رمز عبور قدیم" name="old_password">
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <input type="password" class="form-control" id="password"  placeholder="رمز عبور جدید" name="password">
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                            <div class="form-row teamofitMarginTop teamofitTextAlignRight">
+                                                <div class="col">
+                                                    <input type="submit" class="btn btn-success form-control" value="تغییر رمز">
+                                                </div>
+                                            </div>
+                                                </form>
                                         </div>
                                     </div>
 

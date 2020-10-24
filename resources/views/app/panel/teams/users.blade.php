@@ -40,6 +40,9 @@
                                                 </thead>
                                                 <tbody>
                                                 @foreach ($users as $user)
+                                                    @php
+                                                        $user = \App\User::where('id', $user)->first()
+                                                    @endphp
                                                     <tr style="vertical-align: middle">
                                                         <td>{{ $user->fName }}</td>
                                                         <td>{{ $user->lName }}</td>

@@ -46,7 +46,7 @@
                                         <div class="form-row teamofitMarginTop">
                                             <div class="col">
                                                 <select class="form-control" name="category_id">
-                                                    <option disabled selected value >لطفا دسته بندی رویداد را وارد فرمایید ...</option>
+                                                    <option disabled selected value >لطفا رشته تیم را وارد فرمایید ...</option>
                                                     @foreach (\App\Category::all() as $category)
                                                         <option {{ old('category_id') == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
                                                     @endforeach
@@ -68,12 +68,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-row teamofitMarginTop">
-                                            <div style=" direction: rtl; text-align: right;" class="col">
-                                                <label style="color: white" for="">آواتار سرپرست را انتخاب نمایید:</label>
-                                                <input type="file" name="avatar" class="btn btn-warning" value="آپلود تصویر">
-                                            </div>
-                                        </div>
 
 
                                         <div class="form-row teamofitMarginTop">

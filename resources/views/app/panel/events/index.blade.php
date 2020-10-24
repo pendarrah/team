@@ -49,7 +49,7 @@
                                                         <td>
                                                             <a href="{{ route('event.edit', $event->id) }}">ویرایش</a>
                                                             |
-                                                            <a href="{{ route('event.delete', $event->id) }}">حذف</a>
+                                                            <a href="{{ route('event.delete', $event->id) }}">بستن رویداد</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

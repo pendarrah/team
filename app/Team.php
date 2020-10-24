@@ -26,6 +26,14 @@ class Team extends Model
         return $this->hasMany('App\Event');
     }
 
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
 
 }

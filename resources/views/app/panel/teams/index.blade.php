@@ -112,7 +112,6 @@
                                                 <thead>
                                                 <tr>
                                                     <th>نام</th>
-                                                    <th>آواتار</th>
                                                     <th>بنر</th>
                                                     <th>سرپرست</th>
                                                     @canany(['admin', 'supervisor'])
@@ -126,8 +125,7 @@
                                                 <tbody>
                                                 @foreach ($teams as $team)
                                                     <tr style="vertical-align: middle">
-                                                        <td>{{ $team->name }}</td>
-                                                        <td><a target="_blank" href="{{ $team->avatar }}"><img style="max-width: 100px" src="{{ $team->avatar }}" alt=""></a></td>
+                                                        <td><a target="_blank" href="{{ route('app.teams.show', $team->id) }}">{{ $team->name }}</a></td>
                                                         <td><a target="_blank" href="{{ $team->banner }}"><img style="max-width: 100px" src="{{ $team->banner }}" alt=""></a></td>
                                                         <td>{{ $team->user->fName . ' ' . $team->user->lName }}</td>
                                                         @canany(['admin', 'supervisor'])
@@ -139,7 +137,7 @@
                                                         @canany(['admin', 'supervisor'])
                                                                 <a href="{{ route('team.edit', $team->id) }}">ویرایش</a>
                                                                 |
-                                                                <a href="{{ route('team.delete', $team->id) }}">حذف</a>
+                                                                <a href="{{ route('team.delete', $team->id) }}">بستن تیم</a>
                                                         @endcanany
 
 

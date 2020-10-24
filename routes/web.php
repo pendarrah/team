@@ -94,6 +94,9 @@ Route::namespace('Panel')->prefix('panel')->middleware('auth')->group(function (
     Route::get('user/profile', 'UserController@profileShow')->name('panel.profile');
     Route::post('user/profile/store', 'UserController@profileStore')->name('panel.profile.store');
 
+    Route::get('user/password', 'UserController@passwordShow')->name('panel.password');
+    Route::post('user/password/store', 'UserController@passwordStore')->name('panel.password.store');
+
 });
 
 

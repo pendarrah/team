@@ -6,6 +6,7 @@ use App\City;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends \App\Http\Controllers\Controller
 {
@@ -140,7 +141,7 @@ class UserController extends \App\Http\Controllers\Controller
             'fName' => 'required',
             'lName' => 'required',
             'email' => 'required|email',
-            'card' => 'required|numeric|digits:16',
+            'card' => 'nullable|numeric|digits:16',
             'type' => 'required|in:supervisor,user',
             'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif',
 
@@ -167,6 +168,42 @@ class UserController extends \App\Http\Controllers\Controller
 
         alert()->success('تغییرات پروفایل باموفقیت شد.', 'انجام شد.');
         return redirect()->back();
+
+    }
+
+
+    public function passwordShow()
+    {
+        return view('app.panel.password');
+    }
+
+    public function passwordStore(Request $request)
+    {
+
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required',
+        ]);
+
+
+        if (!(Hash::check($request->get('old_password'), \Auth::user()->password))) {
+            // The passwords not matches
+
+            return redirect()->back()->withErrors(['خطا', 'رمز عبور قدیم صحیح نمیباشد']);
+        }
+        //uncomment this if you need to validate that the new password is same as old one
+
+        if(strcmp($request->get('old_password'), $request->get('password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->withErrors(['خطا', 'رمز عبور قدیم و جدید یکسان میباشد']);
+        }
+
+        //Change Password
+        $user = \auth::user();
+        $user->password = Hash::make($request->get('password'));
+        $user->save();
+        alert()->success('رمز عبور با موفقیت تغییر کرد.', 'انجام شد');
+        return redirect()->route('panel.index');
 
     }
 }

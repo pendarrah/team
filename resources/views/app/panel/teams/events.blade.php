@@ -38,7 +38,7 @@
                                                 <tbody>
                                                 @foreach ($events as $event)
                                                     <tr>
-                                                        <td>{{ $event->title }}</td>
+                                                        <td><a target="_blank" href="{{ route('app.events.show', $event->id) }}">{{ $event->title }}</a></td>
                                                         <td>{{ $event->category->title }}</td>
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>

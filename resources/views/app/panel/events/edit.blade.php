@@ -168,7 +168,8 @@
                                         </div>
                                         <div class="form-row teamofitMarginTop">
                                             <div class="col">
-                                                <input type="number"  class="form-control" id="price" value="{{ old('price', $event->price) }}" placeholder="قیمت رویداد (ریال)" name="price">
+                                                <input type="text"  class="form-control" id="delimiter" value="{{ old('price', $event->price) }}" placeholder="قیمت رویداد (ریال)" name="price">
+
                                             </div>
                                             <div class="col">
                                                 <input type="number" class="form-control" id="membersCount" value="{{ old('membersCount', $event->membersCount) }}" placeholder="تعداد اعضا" name="membersCount">

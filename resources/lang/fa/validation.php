@@ -200,5 +200,8 @@ return array(
         'heightNew' => 'طول جدید',
         'city_id' => 'شهر محل تولد',
         'card' => 'شماره کارت بانکی',
+        'duration' => 'مدت زمان',
+        'region' => 'منطقه',
+        'team_id' => 'تیم',
     ),
 );

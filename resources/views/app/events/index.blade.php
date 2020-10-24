@@ -23,7 +23,7 @@
     <div class="ovaem_events_filter_content">
 
         @if (Route::currentRouteName() != 'app.teams.events')
-            <form action="{{ route('app.events.search') }}" method="get">
+            <form style="    direction: rtl; text-align: right;" action="{{ route('app.events.search') }}" method="get">
                 <div class="form-group row">
 
                     <label class="col-md-1 control-label text-md-right ">نوع:</label>
@@ -54,7 +54,7 @@
                             <option value="بانوان" {{ request()->gender == 'بانوان' ? 'selected' : '' }} >بانوان</option>
                         </select>
                     </div>
-                    <button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">جستجو</button>
+                    <button style="margin: auto; margin-top: 30px;" class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">جستجو</button>
                 </div>
             </form>
         @endif
@@ -70,7 +70,7 @@
                     <div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 {{ $event->category->english }}">
                         <a href="{{ route('app.events.show', $event->id) }}">
                             <div class="ova_thumbnail">
-                                <img alt="" src="{{ asset("/files/$event->picture") }}">
+                                <img alt="" src="{{ $event->team->banner ? $event->team->banner : '/img/no-banner.jpg' }}">
                                 <div class="date">
                                     <span class="month">{{ jdate($event->timeStart)->format('d F Y') }}</span>
                                 </div>
@@ -91,6 +91,8 @@
                                 {{ $event->title }}
                             </div>
                             <div class="except">
+                                {{ $event->city->name }}
+                                |
                                 {{ $event->region }} |  <span>زمان شروع: {{ jdate($event->timeFinish)->format('H:i') }}</span>
                             </div>
                             <div class="more_detail">

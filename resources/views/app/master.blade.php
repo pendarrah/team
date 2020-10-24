@@ -17,7 +17,7 @@
 
     <!-- Web Fonts  -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css">
-
+    <style></style>
     <!-- Filtering Css
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">-->
@@ -86,7 +86,7 @@
                                         <div class="widget-content-left">
                                             <div class="btn-group">
                                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                                    <img class="rounded-circle" src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg" alt="" width="42">
+                                                    <img class="rounded-circle" src="/files/{{ \Auth::user()->avatar }}" alt="" width="42">
                                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                                 </a>
                                                 <div tabindex="-1" role="menu" aria-hidden="true" class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right" style="">
@@ -98,7 +98,7 @@
                                                                 <div class="widget-content p-0">
                                                                     <div class="widget-content-wrapper">
                                                                         <div class="widget-content-left mr-3">
-                                                                            <img class="rounded-circle" src="https://d11a6trkgmumsb.cloudfront.net/original/3X/d/8/d8b5d0a738295345ebd8934b859fa1fca1c8c6ad.jpeg" alt="" width="42">
+                                                                            <img class="rounded-circle" src="/files/{{ \Auth::user()->avatar }}" alt="" width="42">
                                                                         </div>
                                                                         <div class="widget-content-left">
                                                                             <div class="widget-heading text-white">{{ \Auth::user()->fName . ' ' .  \Auth::user()->lName }}</div>
@@ -158,17 +158,7 @@
                                                 تیموفیت
                                             </div>
                                         </div>
-                                        <div class="widget-content-right header-user-info ml-3">
-                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                                <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                                            </button>
-                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                                <i class="fa text-white fa-bell pr-1 pl-1"></i>
-                                            </button>
-                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                                <i class="fa text-white fa-credit-card pr-1 pl-1"></i>
-                                            </button>
-                                        </div>
+
                                     </div>
                                     @endauth
                             </div>
@@ -185,17 +175,17 @@
 
                                         </li>
 
-                                    <li style="margin-right: 40px;    background: #007bff!important;" id="login-box-menu">
-                                        <a class="nav-link" href="/login">
                                             @guest()
-                                                ورود / عضویت
+
+                                        <li style="margin-right: 30px;    background: #007bff!important;" id="login-box-menu"><a class="nav-link" href="/login">ورود</a></li>
+                                        <li style="margin-right: 20px;    background: #007bff!important;" id="login-box-menu"><a class="nav-link" href="/register">عضویت</a></li>
+
+
                                             @endguest()
 
                                             @auth()
-                                              مشاهده پنل کاربری
+                                        <li style="margin-right: 40px;    background: #007bff!important;" id="login-box-menu"><a class="nav-link" href="/login">مشاهده پنل کاربری</a></li>
                                             @endauth()
-                                        </a>
-                                    </li>
 
                                         <li>
                                             <a class="nav-link" href="{{ Route('app.events.index') }}">
@@ -210,16 +200,18 @@
                                     </li>
 
                                     </ul>
+                                    <div class="header-logo ">
+                                        <a href="{{ Route('app.index') }}">
+                                            <img alt="teamofit"  width="50" src="/img/logo.png">
+                                        </a>
+                                    </div>
                                 </nav>
-                                <div class="header-logo hide-on-mobile">
-                                    <a href="{{ Route('app.index') }}">
-                                        <img alt="teamofit"  width="50" src="/img/logo.png">
-                                    </a>
-                                </div>
+
                             </div>
                             <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
                                 <i class="fa fa-bars"></i>
                             </button>
+
                         </div>
                     </div>
                 </div>
@@ -427,22 +419,30 @@
 <link rel="stylesheet" href="{{ asset('datatables/datatables.bundle.rtl.css') }}"/>
 <!---start GOFTINO code--->
 <script type="text/javascript">
-    !function(){var a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/Hqa6DI",l=localStorage.getItem("goftino");g.type="text/javascript",g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+    !function(){var a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/H4qHjY",l=localStorage.getItem("goftino");g.type="text/javascript",g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();
+</script>
+
+<script>
+    $('input#delimiter').keyup(function(event) {
+        if(event.which >= 37 && event.which <= 40){
+            event.preventDefault();
+        }
+        $(this).val(function(index, value) {
+            value = value.replace(/,/g,''); // remove commas from existing input
+            return numberWithCommas(value); // add commas back in
+        });
+    });
+
+    function numberWithCommas(x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
 </script>
 <!---end GOFTINO code--->
 @yield('footerScripts')
 
-<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-12345678-1', 'auto');
-    ga('send', 'pageview');
-</script>
- -->
 
 
 </body>

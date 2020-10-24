@@ -48,8 +48,8 @@
                                                         <div class="col">
                                                             <select class="form-control" name="type">
                                                                 <option disabled >لطفا نوع حساب کاربری را انتخاب نمایید ...</option>
-                                                                <option {{ \Auth::user()->type == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
-                                                                <option {{ \Auth::user()->type == 'supervisor' ? 'selected' : '' }} value="supervisor" >سرپرست</option>
+                                                                <option {{ old('type', \Auth::user()->type) == 'user' ? 'selected' : '' }} value="user">ورزشکار</option>
+                                                                <option {{ old('type', \Auth::user()->type) == 'supervisor' ? 'selected' : '' }} value="supervisor" >سرپرست</option>
                                                                 {{--<option {{ \Auth::user()->type == 'coach' ? 'selected' : '' }} value="coach" >مربی</option>--}}
                                                             </select>
                                                         </div>
@@ -66,7 +66,7 @@
                                                             <select class="form-control" name="category_id">
                                                                 <option disabled selected value> -- رشته انتخاب نمایید -- </option>
                                                                 @foreach (\App\Category::all() as $category)
-                                                                    <option {{ \Auth::user()->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                                                    <option {{ old('category_id', \Auth::user()->category_id) == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -78,7 +78,7 @@
                                                             <select class="form-control" name="city_id">
                                                                 <option disabled selected value> -- شهر را انتخاب نمایید -- </option>
                                                                 @foreach (\App\City::all() as $city)
-                                                                    <option {{ \Auth::user()->city_id == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                                                                    <option {{ old('city_id', \Auth::user()->city_id) == $city->id ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -88,9 +88,12 @@
 
                                                     <div class="form-row teamofitMarginTop teamofitTextAlignRight">
 
-                                                        <div class="col">
-                                                            <input type="number" class="form-control" id="card" value="{{ old('card', \Auth::user()->card) }}" placeholder="شماره کارت ۱۶ رقمی" name="card">
-                                                        </div>
+                                                        @if (\Auth::user()->type == 'supervisor')
+                                                            <div class="col">
+                                                                <input type="number" class="form-control" id="card" value="{{ old('card', \Auth::user()->card) }}" placeholder="شماره کارت ۱۶ رقمی" name="card">
+                                                            </div>
+                                                        @endif
+
 
 
                                                         <div class="col">

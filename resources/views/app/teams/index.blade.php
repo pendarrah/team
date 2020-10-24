@@ -23,7 +23,7 @@
 		<div class="ovaem_events_filter_content">
 
 
-			<form action="{{ route('app.teams.search') }}" method="get">
+			<form style="    direction: rtl; text-align: right;" action="{{ route('app.teams.search') }}" method="get">
 				<div class="form-group row">
 
 					<label class="col-md-1 control-label text-md-right ">نوع:</label>
@@ -54,7 +54,7 @@
 							<option value="بانوان" {{ request()->gender == 'بانوان' ? 'selected' : '' }} >بانوان</option>
 						</select>
 					</div>
-					<button class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">جستجو</button>
+					<button style="margin: auto; margin-top: 30px;" class="btn custom-btn-style-1 _size-1 text-color-light" type="submit">جستجو</button>
 				</div>
 			</form>
 
@@ -67,7 +67,7 @@
 						<div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 ">
 							<a href="{{ route('app.teams.show', $team->id) }}">
 								<div class="ova_thumbnail">
-									<img alt="" src="{{ asset("/files/$team->banner") }}">
+									<img alt="" src="{{ $team->banner ? $team->banner : '/img/no-banner.jpg' }}">
 								</div>
 							</a>
 							<div class="wrap_content">

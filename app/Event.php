@@ -31,4 +31,9 @@ class Event extends Model
         return $this->belongsTo('App\Team');
     }
 
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
+
 }

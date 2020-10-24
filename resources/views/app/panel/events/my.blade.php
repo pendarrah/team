@@ -26,11 +26,10 @@
                                                     <th>قیمت (ریال)</th>
                                                     <th>ظرفیت</th>
                                                     <th>عضو</th>
-                                                    <th>باقیمانده</th>
                                                     <th>وضعیت درخواست</th>
                                                     <th>مالی</th>
                                                     <th>شروع</th>
-                                                    <th>مدت زمان</th>
+                                                    <th>مدت (دقیقه)</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -43,7 +42,6 @@
                                                         <td>{{ number_format($event->price) }}</td>
                                                         <td>{{ $event->membersCount }}</td>
                                                         <td>{{  \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->where('payment', 'paid')->count() }}</td>
-                                                        <td>{{ $event->membersCount - \DB::table('event_user')->where('event_id', $event->id)->where('status', 'accept')->count() }}</td>
                                                         <td>
                                                             @if ($request->status == 'accept')
                                                                 تایید شده
@@ -64,7 +62,7 @@
                                                             @endif
                                                         </td>
                                                         <td style="direction: ltr">{{ jdate($event->timeStart) }}</td>
-                                                        <td style="direction: ltr">{{ jdate($event->duration) }}</td>
+                                                        <td style="direction: ltr">{{ $event->duration }}</td>
 
                                                     </tr>
                                                 @endforeach

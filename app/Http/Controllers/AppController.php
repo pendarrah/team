@@ -7,6 +7,7 @@ use App\Team;
 use App\User;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
+use GuzzleHttp\Client;
 
 class AppController extends Controller
 {
@@ -50,7 +51,8 @@ class AppController extends Controller
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
         $event = Event::find($request->id);
-        $eventMembers = \DB::table('event_user')->where('status', 'accept')->where('payment', 'paid')->pluck('user_id');
+        $eventMembers = \DB::table('event_user')->where('status', 'accept')->where('payment', 'paid')->pluck('user_id')->toArray();
+        $eventMembers = array_unique($eventMembers);
         return view('app.events.show', compact('event', 'eventMembers'));
     }
     public function coaches()
@@ -90,7 +92,7 @@ class AppController extends Controller
         $this->seo()->setDescription('پلتفرم تیموفیت');
 
         $team = Team::find($request->id);
-        $teamMembers = \DB::table('team_user')->where('status', 'accept')->pluck('user_id');
+        $teamMembers = \DB::table('team_user')->where('team_id', $team->id)->where('status', 'accept')->pluck('user_id');
 
         return view('app.teams.show', compact('team', 'teamMembers'));
     }
@@ -120,6 +122,18 @@ class AppController extends Controller
                 return redirect()->back();
             }else{
                 $event->users()->attach($user->id, ['owner_id' => $event->user_id]);
+                $user = User::where('id', $event->user_id)->first();
+                $client = new Client();
+                $res = $client->request('POST', 'https://rest.payamak-panel.com/api/SendSMS/SendSMS', [
+                    'form_params' => [
+                        'username' => 'riecocompany',
+                        'password' => 'ali021ALI)@!',
+                        'to' => $user->mobile,
+                        'from' => '10001010111',
+                        'text' => "یک درخواست جدید برای عضویت در رویداد $event->title ثبت شد. جهت مشاهده برروی لینک زیر کلیک نمایید:
+https://teamofit.com/panel",
+                    ]
+                ]);
                 alert()->success('درخواست شما ارسال شد', 'ارسال شد');
                 return redirect()->back();
             }
@@ -146,6 +160,18 @@ class AppController extends Controller
             return redirect()->back();
         }else{
             $team->users()->attach($user->id, ['owner_id' => $team->user_id]);
+            $user = User::where('id', $team->user_id)->first();
+            $client = new Client();
+            $res = $client->request('POST', 'https://rest.payamak-panel.com/api/SendSMS/SendSMS', [
+                'form_params' => [
+                    'username' => 'riecocompany',
+                    'password' => 'ali021ALI)@!',
+                    'to' => $user->mobile,
+                    'from' => '10001010111',
+                    'text' => "یک درخواست جدید برای عضویت در تیم $team->name ثبت شد. جهت مشاهده برروی لینک زیر کلیک نمایید:
+https://teamofit.com/panel",
+                ]
+            ]);
             alert()->success('درخواست شما ارسال شد', 'ارسال شد');
             return redirect()->back();
 

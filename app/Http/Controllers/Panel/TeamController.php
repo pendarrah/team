@@ -56,9 +56,8 @@ class TeamController extends \App\Http\Controllers\Controller
 
         $request->validate([
             'name' => 'required',
-            'avatar' => 'nullable|nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
             'banner' => 'nullable|nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
-            'description' => 'required',
+            'description' => 'nullable',
             'gender' => 'required',
             'city_id' => 'required',
             'category_id' => 'required',
@@ -66,28 +65,13 @@ class TeamController extends \App\Http\Controllers\Controller
         ]);
 
 
-        if ($request->has('avatar') AND $request->has('banner')) {
-            $avatar = $this->uploadFile($request->file('avatar'));
+        if ($request->has('banner')) {
             $banner = $this->uploadFile($request->file('banner'));
-            $team = Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id,'description' => $request->description, 'avatar' => $avatar, 'banner' => $banner]);
+            $team = Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id,'description' => $request->description, 'banner' => $banner]);
             \DB::table('team_user')->insert(['team_id' => $team->id ,'user_id' => \Auth::user()->id, 'owner_id' => \Auth::user()->id, 'status' => 'accept' ]);
             alert()->success('تیم با موفقیت اضافه شد', 'اضافه شد');
             return redirect()->route('team.index');
 
-        } else if($request->has('avatar')) {
-
-            $avatar = $this->uploadFile($request->file('avatar'));
-            $team = Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id,'description' => $request->description, 'avatar' => $avatar]);
-            \DB::table('team_user')->insert(['team_id' => $team->id ,'user_id' => \Auth::user()->id, 'owner_id' => \Auth::user()->id, 'status' => 'accept' ]);
-            alert()->success('تیم با موفقیت اضافه شد', 'اضافه شد');
-            return redirect()->route('team.index');
-
-        } else if($request->has('banner')) {
-            $banner = $this->uploadFile($request->file('banner'));
-            $team = Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id,'description' => $request->description,  'banner' => $banner]);
-            \DB::table('team_user')->insert(['team_id' => $team->id ,'user_id' => \Auth::user()->id, 'owner_id' => \Auth::user()->id, 'status' => 'accept' ]);
-            alert()->success('تیم با موفقیت اضافه شد', 'اضافه شد');
-            return redirect()->route('team.index');
         }else{
             $team = Team::create(['user_id' => \Auth::user()->id, 'name' => $request->name, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id,'description' => $request->description]);
             \DB::table('team_user')->insert(['team_id' => $team->id ,'user_id' => \Auth::user()->id, 'owner_id' => \Auth::user()->id, 'status' => 'accept' ]);
@@ -139,32 +123,18 @@ class TeamController extends \App\Http\Controllers\Controller
         $request->validate([
             'name' => 'required',
             'banner' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
-            'description' => 'required',
-            'avatar' => 'nullable|mimes:png,PNG,jpeg,JPEG,gif,tiff,jtiff',
+            'description' => 'nullable',
             'gender' => 'required',
             'city_id' => 'required',
             'category_id' => 'required',
         ]);
 
-        if ($request->has('avatar') AND $request->has('banner')) {
-            $avatar = $this->uploadFile($request->file('avatar'));
+        if ($request->has('banner')) {
             $banner = $this->uploadFile($request->file('banner'));
-            $team->update( ['name' => $request->name, 'avatar' => $avatar, 'banner' => $banner,  'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
+            $team->update( ['name' => $request->name,'banner' => $banner,  'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
             alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
             return redirect()->route('team.index');
 
-        } else if($request->has('avatar')) {
-
-            $avatar = $this->uploadFile($request->file('avatar'));
-            $team->update(['name' => $request->name, 'avatar' => $avatar,  'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
-            alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
-            return redirect()->route('team.index');
-
-        } else if($request->has('banner')) {
-            $banner = $this->uploadFile($request->file('banner'));
-            $team->update(['name' => $request->name, 'banner' => $banner, 'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
-            alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
-            return redirect()->route('team.index');
         }else{
             $team->update(['name' => $request->name, 'description' => $request->description, 'gender' => $request->gender, 'city_id' => $request->city_id, 'category_id' => $request->category_id]);
             alert()->success('تیم با موفقیت اضافه شد', 'ویرایش شد');
@@ -184,7 +154,7 @@ class TeamController extends \App\Http\Controllers\Controller
         $team = Team::find($request->id);
         if ($team->user_id == \Auth::user()->id){
             $team->delete();
-            alert()->success('تیم با موفقیت حذف شد', 'حذف شد');
+            alert()->success('تیم با موفقیت بسته شد', 'بسته شد');
             return redirect()->back();
         }else{
             alert()->warning('عدم دسترسی');
@@ -197,7 +167,8 @@ class TeamController extends \App\Http\Controllers\Controller
     {
         if( \Gate::allows('admin') OR \Gate::allows('supervisor') ) {
             $team = Team::where('id', $request->id)->first();
-            $users = $team->users;
+            $users = \DB::table('team_user')->where('team_id', $team->id)->where('status', 'accept')->pluck('user_id')->toArray();
+            $users = array_unique($users);
             return view('app.panel.teams.users', compact( 'team', 'users'));
         }else{
             alert()->warning('عدم دسترسی');

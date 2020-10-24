@@ -74,7 +74,7 @@
                     <div class="col-md-4 col-sm-6 col-xs-6 ova-item isotope-item style3 {{ $event->category->english }}">
                         <a href="{{ route('app.events.show', $event->id) }}">
                             <div class="ova_thumbnail">
-                                <img alt="" src="{{ asset("/files/$event->picture") }}">
+                                <img alt="" src="{{ $event->team->banner ? $event->team->banner : '/img/no-banner.jpg' }}">
                                 <div class="date">
                                     <span class="month">{{ jdate($event->timeStart)->format('d F Y') }}</span>
                                 </div>
@@ -95,6 +95,8 @@
                                 {{ $event->title }}
                             </div>
                             <div class="except">
+                                {{ $event->city->name }}
+                                |
                                 {{ $event->region }} |  <span>زمان شروع: {{ jdate($event->timeFinish)->format('H:i') }}</span>
                             </div>
                             <div class="more_detail">
